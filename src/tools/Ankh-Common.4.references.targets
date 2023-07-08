@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup Condition="'$(VisualStudioVersion)' &gt;= '15.0'">
+		<Reference Include="SharpSvn">
+			<HintPath>$(LocalReferences_)\SharpSvn\SharpSvn.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="SharpSvn.UI">
+			<HintPath>$(LocalReferences_)\SharpSvn\SharpSvn.UI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+</Project>
