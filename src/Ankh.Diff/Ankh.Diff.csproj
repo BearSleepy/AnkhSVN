@@ -1,18 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(SolutionDir)tools\Ankh-Common.1.props.targets" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <Import Project="../tools/Ankh-Common.targets" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{62F97060-6A9E-477D-B15B-E1A1F5320039}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ankh.Diff</RootNamespace>
     <AssemblyName>Ankh.Diff</AssemblyName>
-    <FileAlignment>512</FileAlignment>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Ankh.Diff.snk</AssemblyOriginatorKeyFile>
     <SccProjectName>
@@ -24,30 +21,56 @@
     <SccProvider>
     </SccProvider>
   </PropertyGroup>
+  <Import Project="$(SolutionDir)tools\Ankh-Common.2.build.targets" />
+  <PropertyGroup>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <ErrorReport>prompt</ErrorReport>
+    <DefineConstants>DEBUG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <ErrorReport>none</ErrorReport>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
+    <DefineConstants>DEBUG</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
     <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
+    <ErrorReport>none</ErrorReport>
+    <DefineConstants>
+    </DefineConstants>
   </PropertyGroup>
+  <Import Project="$(SolutionDir)tools/Ankh-Common.3.sdk.targets" />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ankh.Ids\Ankh.Ids.csproj">
+      <Project>{61d343cf-77ba-4ef2-96f5-e0d4efd04844}</Project>
+      <Name>Ankh.Ids</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Ankh.Services\Ankh.Services.csproj">
+      <Project>{D90A8E89-66B2-451E-8B31-3D86F0CD4AFB}</Project>
+      <Name>Ankh.Services</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\Classes\Caret.cs" />
@@ -180,19 +203,14 @@
     <None Include="DiffUtils\Docs\BurnsBinaryDiff_Thesis.pdf" />
     <None Include="DiffUtils\Docs\MyersDiff.pdf" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Ankh.Ids\Ankh.Ids.csproj">
-      <Project>{61D343CF-77BA-4EF2-96F5-E0D4EFD04844}</Project>
-      <Name>Ankh.Ids</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ankh.Services\Ankh.Services.csproj">
-      <Project>{D90A8E89-66B2-451E-8B31-3D86F0CD4AFB}</Project>
-      <Name>Ankh.Services</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <PropertyGroup>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)tools\Ankh-Common.6.defines.targets" />
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);$(FaReleaseDefines);$(FaDefineConstants)</DefineConstants>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+  <!--
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

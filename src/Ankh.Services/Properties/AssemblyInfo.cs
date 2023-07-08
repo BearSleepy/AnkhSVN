@@ -41,14 +41,5 @@ using Ankh;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("0efd4e60-7245-42f0-82e4-a2935645b3f9")]
 
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("2.9.*")]
+[assembly: AssemblyVersion(AnkhId.AssemblyVersion)]
+//[assembly: AssemblyVersion("2.9.*")]

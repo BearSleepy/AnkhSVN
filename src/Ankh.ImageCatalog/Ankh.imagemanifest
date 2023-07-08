@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImageManifest xmlns="http://schemas.microsoft.com/VisualStudio/ImageManifestSchema/2014">
+  <Symbols>
+    <String Name="Resource" Value="/Ankh.ImageCatalog;Component" />
+    <Guid Name="Ankh_AnkhImage" Value="{0c431364-3245-4a8a-945f-97fa5aab2d98}" />
+    <ID Name="Img_SvnRepository" Value="0" />
+  </Symbols>
+  <Images>
+    <Image Guid="$(Ankh_AnkhImage)" ID="$(Img_SvnRepository)">
+      <Source Uri="$(Resource)/Imgs/RepositoryExplorer.png">
+        <Size Value="16" />
+      </Source>
+    </Image>
+  </Images>
+</ImageManifest>

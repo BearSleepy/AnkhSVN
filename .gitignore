@@ -5,6 +5,14 @@
 V4_obj/
 V4_bin/
 
+# bin17 obj10
+[Oo]bj[0-9][0-9]/
+[Bb]in[0-9][0-9]/
+
+# uncomment this to skip auto-generated file
+# is commented so that others can test if regressed the cto build or otherwise
+#src/Ankh.Package/AnkhSvn.vsct
+
 # Buildbot
 scripts/gh.cache.bat
 scripts/msbuild-version.rsp

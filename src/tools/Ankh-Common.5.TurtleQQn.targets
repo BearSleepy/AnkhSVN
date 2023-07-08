@@ -2,22 +2,24 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
 	<!-- Import our tasks -->
-	<UsingTask TaskName="QQn.TurtleTasks.CachedDownloadAndExtract" AssemblyFile="QQn.TurtleTasks.dll" />
+	<!--<UsingTask TaskName="QQn.TurtleTasks.CachedDownloadAndExtract" AssemblyFile="QQn.TurtleTasks.dll" />-->
 	<UsingTask TaskName="QQn.TurtleTasks.ApplyXslTransform" AssemblyFile="QQn.TurtleTasks.dll" />
 
 	<PropertyGroup>
-	  <!-- TODO: Calculate this some other way -->
-		<QQnTurtleTasksFolder>..\tools\TurtleTasks\</QQnTurtleTasksFolder>
-		
-		<MSBuildAllProjects>$(MSBuildAllProjects);$(QQnTurtleTasksFolder)QQn.TurtleTasks.targets</MSBuildAllProjects>
-		<CoreCompileDependsOn>ApplyXslTemplates;DownloadDependencies;$(CoreCompileDependsOn)</CoreCompileDependsOn>
-		<ResolveReferencesDependsOn>DownloadDependencies;$(ResolveReferencesDependsOn)</ResolveReferencesDependsOn>
+    <QQnTurtleTasksFolder>$(SolutionDir)tools\</QQnTurtleTasksFolder>
+    <AnhkBinDir>$(OutputPath)</AnhkBinDir>
+
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(QQnTurtleTasksFolder)QQn.TurtleTasks.targets</MSBuildAllProjects>
+    <CoreCompileDependsOn>ApplyXslTemplates;$(CoreCompileDependsOn)</CoreCompileDependsOn>
+    <!--<CoreCompileDependsOn>ApplyXslTemplates;DownloadDependencies;$(CoreCompileDependsOn)</CoreCompileDependsOn>-->
+    <!--<ResolveReferencesDependsOn>DownloadDependencies;$(ResolveReferencesDependsOn)</ResolveReferencesDependsOn>-->
 		<MergeCtoResourceDependsOn>ApplyXslTemplates;$(MergeCtoResourceDependsOn)</MergeCtoResourceDependsOn>
-		<CoreResGenDependsOn>ApplyXslTemplates;$(CoreResGenDependsOn)</CoreResGenDependsOn>
+		<!--<CoreResGenDependsOn>ApplyXslTemplates;$(CoreResGenDependsOn)</CoreResGenDependsOn>-->
 		<ApplyXslTemplatesDependsOn>$(ApplyXslTemplatesDependsOn);</ApplyXslTemplatesDependsOn>
 	</PropertyGroup>
 
-	<Target Name="DownloadDependencies" 
+	<!--
+  <Target Name="DownloadDependencies" 
      Inputs="$(MSBuildAllProjects)" 
      Outputs="@(DependencyDownload->'%(TargetDir)\%(Version)-%(Identity).tick')">
      
@@ -31,6 +33,8 @@
 			<Output TaskParameter="CacheFiles" ItemName="DownloadedCacheFiles" />
 		</CachedDownloadAndExtract>
 	</Target>
+  -->
+  
 	<Target Name="ApplyXslTemplates" 
 			Inputs="@(XslSource);@(XslSource->'%(Template)');@(ReferencePath)" 
 			Outputs="@(XslSource->'%(To)')"
@@ -42,9 +46,31 @@
 			Outputs="@(XslSource->'%(To)')"
 			TargetDir="$(OutputPath)"
 			IntermediateDir="$(IntermediateOutputPath)"
-			Attributes="Configuration=$(Configuration);%(Variables)"
+			Attributes="AnhkBinDir=$(AnhkBinDir);Configuration=$(Configuration);%(Variables)"
+      Compile="true"
 			>
 			<Output TaskParameter="FilesWritten" ItemName="FileWrites" />
 		</ApplyXslTransform>
 	</Target>
+  
+  <!--
+  <Target Name="ApplyXslTemplates"
+			Inputs="@(XslSource);@(XslSource->'%(Template)');@(ReferencePath)"
+			Outputs="@(XslSource->'%(To)')"
+			DependsOnTargets="$(ApplyXslTemplatesDependsOn)"
+			>
+    <ApplyXslTransform
+			Sources="@(XslSource)"
+			Transform="@(XslSource->'%(Transform)')"
+			Outputs="@(XslSource->'%(To)')"
+			TargetDir="$(OutputPath)"
+			IntermediateDir="$(IntermediateOutputPath)"
+			Attributes="Configuration=$(Configuration);%(Variables)"
+			>
+      <Output TaskParameter="FilesWritten" ItemName="FileWrites" />
+    </ApplyXslTransform>
+  </Target>
+  -->
+  
 </Project>
+

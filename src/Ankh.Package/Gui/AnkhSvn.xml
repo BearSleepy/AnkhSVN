@@ -6,16 +6,16 @@
     <Import include="stdidcmd.h" />
     <Import include="vsshlids.h" />
     <Import include="virtkeys.h" />
-    <Import type="Ankh.AnkhId" from="..\..\Ankh.Ids\bin\$(Configuration)\Ankh.Ids.dll" prefix="Ankh_" />
-    <Import type="Ankh.AnkhCommand" from="..\..\Ankh.Ids\bin\$(Configuration)\Ankh.Ids.dll" prefix="Cmd_" />
-    <Import type="Ankh.AnkhCommandGroup" from="..\..\Ankh.Ids\bin\$(Configuration)\Ankh.Ids.dll" prefix="Grp_" />
-    <Import type="Ankh.AnkhCommandMenu" from="..\..\Ankh.Ids\bin\$(Configuration)\Ankh.Ids.dll" prefix="Menu_" />
-    <Import type="Ankh.AnkhCommandBitmap" from="..\..\Ankh.Ids\bin\$(Configuration)\Ankh.Ids.dll" prefix="Bmp_" />
-    <Import type="Ankh.AnkhToolBar" from="..\..\Ankh.Ids\bin\$(Configuration)\Ankh.Ids.dll" prefix="ToolBar_" />
-    <Import type="Ankh.CMDSETID_HtmEdGrp" from="..\..\Ankh.VS.Interop\bin\$(Configuration)\Ankh.VS.Interop.dll" />
-    <Import type="Ankh.CMDSETID_TeamSystemDac" from="..\..\Ankh.VS.Interop\bin\$(Configuration)\Ankh.VS.Interop.dll" />
-    <Import type="Ankh.CMDSETID_WinFormsDesigner" from="..\..\Ankh.VS.Interop\bin\$(Configuration)\Ankh.VS.Interop.dll" />
-    <Import type="Ankh.CMDSETID_XamlUI" from="..\..\Ankh.VS.Interop\bin\$(Configuration)\Ankh.VS.Interop.dll" />
+    <Import type="Ankh.AnkhId" from="$(AnhkBinDir)\Ankh.Ids.dll" prefix="Ankh_" />
+    <Import type="Ankh.AnkhCommand" from="$(AnhkBinDir)\Ankh.Ids.dll" prefix="Cmd_" />
+    <Import type="Ankh.AnkhCommandGroup" from="$(AnhkBinDir)\Ankh.Ids.dll" prefix="Grp_" />
+    <Import type="Ankh.AnkhCommandMenu" from="$(AnhkBinDir)\Ankh.Ids.dll" prefix="Menu_" />
+    <Import type="Ankh.AnkhCommandBitmap" from="$(AnhkBinDir)\Ankh.Ids.dll" prefix="Bmp_" />
+    <Import type="Ankh.AnkhToolBar" from="$(AnhkBinDir)\Ankh.Ids.dll" prefix="ToolBar_" />
+    <Import type="Ankh.CMDSETID_HtmEdGrp" from="$(AnhkBinDir)\Ankh.VS.Interop.dll" />
+    <Import type="Ankh.CMDSETID_TeamSystemDac" from="$(AnhkBinDir)\Ankh.VS.Interop.dll" />
+    <Import type="Ankh.CMDSETID_WinFormsDesigner" from="$(AnhkBinDir)\Ankh.VS.Interop.dll" />
+    <Import type="Ankh.CMDSETID_XamlUI" from="$(AnhkBinDir)\Ankh.VS.Interop.dll" />
   </Imports>
   <UI packageId="Ankh_PackageGuid" autoBmpId="Ankh_AnkhCommandBitmap">
     <MenuRef id="guidSHLMainMenu:IDM_VS_CSCD_OPEN">
@@ -1201,19 +1201,21 @@
     <!--Command id="guidVSStd97:ECMD_SLNREFRESH" /-->
   </UsedCommands>
   <BitmapStrips>
-    <Strip name="ToolWindows" bitmap24="..\obj\ToolWindows.bmp" type="Ankh.AnkhToolWindow" from="..\..\Ankh.Ids\bin\$(Configuration)\Ankh.Ids.dll">
+    <Strip name="ToolWindows" bitmap24="..\References\ToolWindows.bmp" type="Ankh.AnkhToolWindow" from="$(AnhkBinDir)\Ankh.Ids.dll">
       <StripIcon id="RepositoryExplorer" iconFile="PendingChanges/RepositoryExplorer.png" />
       <StripIcon id="WorkingCopyExplorer" iconFile="Scc/FindInFiles.png"/>
       <StripIcon id="PendingChanges" iconFile="Scc/TfsContextViewPendingChanges.png"/>
       <StripIcon id="Log" iconFile="Scc/TfsHistory.png"/>
       <StripIcon id="SvnInfo" iconFile="Scc/CompareProperties.png"/>
     </Strip>
-    <Strip name="ToolWindows" bitmap24="..\obj\ToolWindows-Legacy.bmp" type="Ankh.AnkhToolWindow" from="..\..\Ankh.Ids\bin\$(Configuration)\Ankh.Ids.dll">
+    <!--
+    <Strip name="ToolWindows" bitmap24="..\References\ToolWindows-Legacy.bmp" type="Ankh.AnkhToolWindow" from="$(AnhkBinDir)\Ankh.Ids.dll">
       <StripIcon id="RepositoryExplorer" iconFile="PendingChanges/Legacy/RepositoryExplorer.png" />
       <StripIcon id="WorkingCopyExplorer" iconFile="Scc/Legacy/FindInFiles.png"/>
       <StripIcon id="PendingChanges" iconFile="Scc/Legacy/TfsContextViewPendingChanges.png"/>
       <StripIcon id="Log" iconFile="Scc/Legacy/TfsHistory.png"/>
       <StripIcon id="SvnInfo" iconFile="Scc/Legacy/CompareProperties.png"/>
     </Strip>
+    -->
   </BitmapStrips>
 </VsGui>

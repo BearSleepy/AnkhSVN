@@ -33,7 +33,7 @@
           <xsl:if test="gui:UI/@autoBmpId and //gui:UI//gui:Button[@iconFile]">
             <Bitmap guid="{gui:UI/@autoBmpId}">
               <xsl:choose>
-                <xsl:when test="1=1">
+                <xsl:when test="1=0">
                   <!-- This caches the bitmap file inside the CTC -->
                   <xsl:attribute name="href">
                     <xsl:value-of select="me:FullPath($BitmapFile, $Src)"/>
@@ -46,8 +46,11 @@
                   </xsl:attribute>
                 </xsl:otherwise>
               </xsl:choose>
-              <xsl:attribute name="usedList">
+              <xsl:attribute name="usedList">  
+                <xsl:value-of select="normalize-space(substring-after(me:generateBitmap_NoFile(//gui:UI//gui:Button[@iconFile]/@iconFile, $BitmapFile, $Src, $ImgSubdir),','))"/>
+                <!--
                 <xsl:value-of select="normalize-space(substring-after(me:generateBitmap(//gui:UI//gui:Button[@iconFile]/@iconFile, $BitmapFile, $Src, $ImgSubdir),','))"/>
+                -->
               </xsl:attribute>
             </Bitmap>
           </xsl:if>
@@ -88,19 +91,21 @@
         </UsedCommands>
       </xsl:if>
 
+      <!--
       <xsl:for-each select="gui:BitmapStrips/gui:Strip">
         <xsl:comment>
           <xsl:value-of select="concat('Creating strip: ', @name)" />
         </xsl:comment>
         <xsl:variable name="q">
           <xsl:if test="@bitmap">
-            <xsl:value-of select="me:generateStrip(@bitmap, @type, @from, gui:StripIcon/@id, gui:StripIcon/@iconFile, 1, $Src, $Configuration)"/>
+            <xsl:value-of select="me:generateStrip(@bitmap, @type, @from, gui:StripIcon/@id, gui:StripIcon/@iconFile, 1, $Src, $Configuration, $AnhkBinDir)"/>
           </xsl:if>
           <xsl:if test="@bitmap24">
-            <xsl:value-of select="me:generateStrip(@bitmap24, @type, @from, gui:StripIcon/@id, gui:StripIcon/@iconFile, 0, $Src, $Configuration)"/>
+            <xsl:value-of select="me:generateStrip(@bitmap24, @type, @from, gui:StripIcon/@id, gui:StripIcon/@iconFile, 0, $Src, $Configuration, $AnhkBinDir)"/>
           </xsl:if>
         </xsl:variable>
       </xsl:for-each>
+      -->
       <Symbols>
         <xsl:copy-of select="$symbols" />
       </Symbols>
@@ -110,7 +115,7 @@
     <Extern href="{translate(@include,'/','\')}" />
   </xsl:template>
   <xsl:template match="gui:Import[@type]" mode="include">
-    <xsl:copy-of select="me:InputSymbol(@type, @from, @prefix, $Src, $Configuration)"/>
+    <xsl:copy-of select="me:InputSymbol(@type, @from, @prefix, $Src, $Configuration, $AnhkBinDir)"/>
   </xsl:template>
   <xsl:template name="parentRef">
     <Parent
