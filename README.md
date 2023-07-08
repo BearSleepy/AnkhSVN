@@ -1,3 +1,25 @@
+# Fork
+
+Primarily intended to share a working stripped down AnkhSVN build setup, and a
+working visx extention with the latest changes.
+
+This version AnkhSVN is capable of generating extention assests that are compatible
+with all current and past versions and editions of Visual Studio 2022.
+
+The rationale currently is explained in src/tools/*.props.targets
+
+Notes:
+1. Some parts of the build setup are missing and need to be added for a build.
+
+   a. The SDK folders. Will be rectified soon with a compatible automated package. Or in the
+   meantime, can make your own folder with a set of the lowest common denominator SDK dlls.
+
+   See: src/tools/*.props.targets and src/tools/*.sdk.targets
+
+   b. The Common References folder. Where your copy of SharpSVN goes.
+
+   See: src/tools/*.props.targets and src/tools/*.references.targets
+
 # AnkhSVN - Subversion Support for Visual Studio
 
 Contents:
