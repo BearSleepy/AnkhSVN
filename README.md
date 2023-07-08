@@ -1,3 +1,11 @@
+# Fork
+
+Primarily intended to share a working stripped down AnkhSVN build setup, and a
+working visx extention with the latest changes.
+
+This version AnkhSVN is capable of generating extention assests
+that are compatible with all versions of Visual Studio 2022.
+
 # AnkhSVN - Subversion Support for Visual Studio
 
 Contents:
