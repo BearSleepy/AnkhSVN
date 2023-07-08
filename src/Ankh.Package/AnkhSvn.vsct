@@ -3246,7 +3246,7 @@
     <KeyBinding guid="guidVSStd2K" id="ECMD_SCROLLDN" editor="Ankh_LogContextGuid" emulator="Ankh_LogContextGuid" key1="VK_DOWN" mod1="Control" />
   </KeyBindings>
   <Symbols>
-    <!--Type: Ankh.AnkhId, Ankh.Ids, Version=2.9.18.0, Culture=neutral, PublicKeyToken=0d97df2e182c6a77-->
+    <!--Type: Ankh.AnkhId, Ankh.Ids, Version=2.9.88.0, Culture=neutral, PublicKeyToken=0d97df2e182c6a77-->
     <GuidSymbol name="Ankh_CommandSetGuid" value="{aa61c329-d559-468f-8f0f-4f03896f704d}" />
     <GuidSymbol name="Ankh_PackageGuid" value="{604ad610-5cf9-4bd5-8acc-f49810e2efd4}" />
     <GuidSymbol name="Ankh_BmpGuid" value="{9db594ca-ebdd-40e1-9e37-51b7f9ef8df0}" />
@@ -3257,7 +3257,7 @@
     <GuidSymbol name="Ankh_SccExplorerContextGuid" value="{fd4828f6-49a3-4e2f-bf36-8304884219ca}" />
     <GuidSymbol name="Ankh_LogContextGuid" value="{0d2ca125-6cdf-407a-9c03-e8427e27f34d}" />
     <GuidSymbol name="Ankh_AnnotateContextGuid" value="{61ade608-f2f9-4983-ae28-623de0dca5c6}" />
-    <!--Type: Ankh.AnkhCommand, Ankh.Ids, Version=2.9.18.0, Culture=neutral, PublicKeyToken=0d97df2e182c6a77-->
+    <!--Type: Ankh.AnkhCommand, Ankh.Ids, Version=2.9.88.0, Culture=neutral, PublicKeyToken=0d97df2e182c6a77-->
     <GuidSymbol name="Ankh_AnkhCommand" value="{aa61c329-d559-468f-8f0f-4f03896f704d}">
       <IDSymbol name="Cmd_None" value="0x0" />
       <IDSymbol name="Cmd_TickFirst" value="0x1" />
@@ -3473,7 +3473,7 @@
       <IDSymbol name="Cmd_CopyRevisionNumber" value="0x2000197" />
       <IDSymbol name="Cmd_PcLogEditorOpenRevision" value="0x2000198" />
     </GuidSymbol>
-    <!--Type: Ankh.AnkhCommandGroup, Ankh.Ids, Version=2.9.18.0, Culture=neutral, PublicKeyToken=0d97df2e182c6a77-->
+    <!--Type: Ankh.AnkhCommandGroup, Ankh.Ids, Version=2.9.88.0, Culture=neutral, PublicKeyToken=0d97df2e182c6a77-->
     <GuidSymbol name="Ankh_AnkhCommandGroup" value="{aa61c329-d559-468f-8f0f-4f03896f704d}">
       <IDSymbol name="Grp_None" value="0x0" />
       <IDSymbol name="Grp_GroupFirst" value="0x3FFFFFF" />
@@ -3601,7 +3601,7 @@
       <IDSymbol name="Grp_LogViewerEdit" value="0x4000079" />
       <IDSymbol name="Grp_AnnotateCompare" value="0x400007A" />
     </GuidSymbol>
-    <!--Type: Ankh.AnkhCommandMenu, Ankh.Ids, Version=2.9.18.0, Culture=neutral, PublicKeyToken=0d97df2e182c6a77-->
+    <!--Type: Ankh.AnkhCommandMenu, Ankh.Ids, Version=2.9.88.0, Culture=neutral, PublicKeyToken=0d97df2e182c6a77-->
     <GuidSymbol name="Ankh_AnkhCommandMenu" value="{aa61c329-d559-468f-8f0f-4f03896f704d}">
       <IDSymbol name="Menu_None" value="0x0" />
       <IDSymbol name="Menu_MenuFirst" value="0x5FFFFFF" />
@@ -3644,12 +3644,12 @@
       <IDSymbol name="Menu_MdiSccMenu" value="0x6000024" />
       <IDSymbol name="Menu_FileSccSelectedFile" value="0x6000025" />
     </GuidSymbol>
-    <!--Type: Ankh.AnkhCommandBitmap, Ankh.Ids, Version=2.9.18.0, Culture=neutral, PublicKeyToken=0d97df2e182c6a77-->
+    <!--Type: Ankh.AnkhCommandBitmap, Ankh.Ids, Version=2.9.88.0, Culture=neutral, PublicKeyToken=0d97df2e182c6a77-->
     <GuidSymbol name="Ankh_AnkhCommandBitmap" value="{9db594ca-ebdd-40e1-9e37-51b7f9ef8df0}">
       <IDSymbol name="Bmp_AnkhBmp" value="0x22B" />
       <IDSymbol name="Bmp_AnkhBmpLegacy" value="0x22C" />
     </GuidSymbol>
-    <!--Type: Ankh.AnkhToolBar, Ankh.Ids, Version=2.9.18.0, Culture=neutral, PublicKeyToken=0d97df2e182c6a77-->
+    <!--Type: Ankh.AnkhToolBar, Ankh.Ids, Version=2.9.88.0, Culture=neutral, PublicKeyToken=0d97df2e182c6a77-->
     <GuidSymbol name="Ankh_AnkhToolBar" value="{aa61c329-d559-468f-8f0f-4f03896f704d}">
       <IDSymbol name="ToolBar_None" value="0x0" />
       <IDSymbol name="ToolBar_ToolBarFirst" value="0x7FFFFFF" />
@@ -3659,7 +3659,7 @@
       <IDSymbol name="ToolBar_SvnInfo" value="0x8000003" />
       <IDSymbol name="ToolBar_SvnInfoCombo" value="0x8000004" />
     </GuidSymbol>
-    <!--Type: Ankh.CMDSETID_HtmEdGrp, Ankh.VS.Interop, Version=2.9.18.0, Culture=neutral, PublicKeyToken=bffe7921e5d2c483-->
+    <!--Type: Ankh.CMDSETID_HtmEdGrp, Ankh.VS.Interop, Version=2.9.88.0, Culture=neutral, PublicKeyToken=bffe7921e5d2c483-->
     <GuidSymbol name="Ankh_CMDSETID_HtmEdGrp" value="{d7e8c5e1-bdb8-11d0-9c88-0000f8040a53}">
       <IDSymbol name="IDMX_HTM_DESIGN_BASE" value="0x30" />
       <IDSymbol name="IDMX_HTM_DESIGN_TABLE" value="0x31" />
@@ -3676,11 +3676,11 @@
       <IDSymbol name="IDMX_HTM_SOURCE_ASAX_CODE" value="0x3C" />
       <IDSymbol name="IDMX_HTM_SOURCE_ASAX_CODE_VB" value="0x3D" />
     </GuidSymbol>
-    <!--Type: Ankh.CMDSETID_TeamSystemDac, Ankh.VS.Interop, Version=2.9.18.0, Culture=neutral, PublicKeyToken=bffe7921e5d2c483-->
+    <!--Type: Ankh.CMDSETID_TeamSystemDac, Ankh.VS.Interop, Version=2.9.88.0, Culture=neutral, PublicKeyToken=bffe7921e5d2c483-->
     <GuidSymbol name="Ankh_CMDSETID_TeamSystemDac" value="{09e21035-245e-4ffe-ae74-105773c29cc7}">
       <IDSymbol name="mnuIdTeamSystemSqlEditorContext" value="0x5200" />
     </GuidSymbol>
-    <!--Type: Ankh.CMDSETID_WinFormsDesigner, Ankh.VS.Interop, Version=2.9.18.0, Culture=neutral, PublicKeyToken=bffe7921e5d2c483-->
+    <!--Type: Ankh.CMDSETID_WinFormsDesigner, Ankh.VS.Interop, Version=2.9.88.0, Culture=neutral, PublicKeyToken=bffe7921e5d2c483-->
     <GuidSymbol name="Ankh_CMDSETID_WinFormsDesigner" value="{09e21035-245e-4ffe-ae74-105773c29cc7}">
       <IDSymbol name="IDM_IF_CTXT_SELECTION" value="0x500" />
       <IDSymbol name="IDM_IF_CTXT_CONTAINER" value="0x501" />
@@ -3688,7 +3688,7 @@
       <IDSymbol name="IDM_IF_CTXT_DOCUMENT_OUTLINE" value="0x504" />
       <IDSymbol name="IDM_IF_CTXT_TRAY" value="0x506" />
     </GuidSymbol>
-    <!--Type: Ankh.CMDSETID_XamlUI, Ankh.VS.Interop, Version=2.9.18.0, Culture=neutral, PublicKeyToken=bffe7921e5d2c483-->
+    <!--Type: Ankh.CMDSETID_XamlUI, Ankh.VS.Interop, Version=2.9.88.0, Culture=neutral, PublicKeyToken=bffe7921e5d2c483-->
     <GuidSymbol name="Ankh_CMDSETID_XamlUI" value="{4c87b692-1202-46aa-b64c-ef01faec53da}">
       <IDSymbol name="IDM_XAML_EDITOR" value="0x103" />
     </GuidSymbol>

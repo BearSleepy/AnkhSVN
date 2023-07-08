@@ -34,7 +34,7 @@ namespace Ankh
 		// You can specify all the values or you can default the Build and Revision Numbers
 		// by using the '*' as shown below:
 		//[assembly: AssemblyVersion("2.9.*")]
-		public const string AssemblyVersion = @"2.9.18.0";
+		public const string AssemblyVersion = @"2.9.88.0";
 
 		//************ The Package Load Key Registration ***********************************
 		/// <summary>
@@ -51,9 +51,12 @@ namespace Ankh
 		public const string PlkCompany = "AnkhSVN Core Team";
 		//**********************************************************************************
 
-		public const string AssemblyCopyright = "Copyright © AnkhSVN Team 2003-2021";
+		public const string AssemblyCopyright = "Apache 2.0 licensed. See https://github.com/AmpScm/AnkhSVN";
+		//public const string AssemblyCopyright = "Copyright © AnkhSVN Team 2003-2021";
 		public const string AssemblyProduct = "AnkhSVN - Subversion Support for Visual Studio";
-		public const string AssemblyCompany = "AnkhSVN Team";
+		//public const string AssemblyProduct = "AnkhSVN - Subversion Support for Visual Studio";
+		public const string AssemblyCompany = "AnkhSVN Project, powered by AmpScm, QQn & GitHub";
+		//public const string AssemblyCompany = "AnkhSVN Team";
 		//**********************************************************************************
 
 		/// <summary>The Subversion SCC Provider name as used in the solution file</summary>
