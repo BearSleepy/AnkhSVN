@@ -8,9 +8,10 @@
   <!-- cannot set actual defines in a sub-target. must use proxy var -->
   <PropertyGroup Condition="!Exists('$(SourceCommonBase_)\Build.VCS_Thirdparty.3.targets')">
 
-    <FaDefineConstants Condition="'$(VisualStudioVersion)' &gt;= '14.0'">$(DefineConstants);VS_14_ENV</FaDefineConstants>
-    <FaDefineConstants Condition="'$(VisualStudioVersion)' &gt;= '15.0'">$(DefineConstants);VS_15_ENV</FaDefineConstants>
-    <FaDefineConstants Condition="'$(VisualStudioVersion)' &gt;= '17.0'">$(DefineConstants);VS_17_ENV</FaDefineConstants>
+    <FaDefineConstants></FaDefineConstants>
+    <FaDefineConstants Condition="'$(VisualStudioVersion)' &gt;= '14.0'">$(FaDefineConstants);VS_14_ENV</FaDefineConstants>
+    <FaDefineConstants Condition="'$(VisualStudioVersion)' &gt;= '15.0'">$(FaDefineConstants);VS_15_ENV</FaDefineConstants>
+    <FaDefineConstants Condition="'$(VisualStudioVersion)' &gt;= '17.0'">$(FaDefineConstants);VS_17_ENV</FaDefineConstants>
 
   </PropertyGroup>
 
