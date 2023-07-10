@@ -19,7 +19,7 @@
     <PacakgeReferences_>True</PacakgeReferences_>
     <UseCodebase>true</UseCodebase>
     <Deterministic>true</Deterministic>
-    <TargetVsixContainerName>AnkhSVN for Visual Studio $(SourcePlatDir_).vsix</TargetVsixContainerName>
+    <TargetVsixContainerName>AnkhSVN_for_Visual_Studio_$(SourcePlatDir_).vsix</TargetVsixContainerName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
