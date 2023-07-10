@@ -12,4 +12,3 @@ V4_bin/
 # Buildbot
 scripts/gh.cache.bat
 scripts/msbuild-version.rsp
-/src/Ankh.Package/AnkhSvn.vsct
