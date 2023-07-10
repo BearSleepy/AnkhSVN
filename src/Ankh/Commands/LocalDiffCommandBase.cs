@@ -26,85 +26,85 @@ using System.Collections.Generic;
 
 namespace Ankh.Commands
 {
-    /// <summary>
-    /// Base class for the DiffLocalItem and CreatePatch commands
-    /// </summary>
-    public abstract class LocalDiffCommandBase : CommandBase
-    {
-        readonly TempFileCollection _tempFileCollection = new TempFileCollection();
+	/// <summary>
+	/// Base class for the DiffLocalItem and CreatePatch commands
+	/// </summary>
+	public abstract class LocalDiffCommandBase : CommandBase
+	{
+		readonly TempFileCollection _tempFileCollection = new TempFileCollection();
 
-        /// <summary>
-        /// Gets the temp file collection.
-        /// </summary>
-        /// <value>The temp file collection.</value>
-        protected TempFileCollection TempFileCollection
-        {
-            get { return _tempFileCollection; }
-        }
+		/// <summary>
+		/// Gets the temp file collection.
+		/// </summary>
+		/// <value>The temp file collection.</value>
+		protected TempFileCollection TempFileCollection
+		{
+			get { return _tempFileCollection; }
+		}
 
-        private static string DoExternalDiff(IAnkhServiceProvider context, IEnumerable<SvnItem> selection, SvnRevision start, SvnRevision end)
-        {
-            foreach (SvnItem item in selection)
-            {
-                // skip unmodified for a diff against the textbase
-                if (start == SvnRevision.Base && end == SvnRevision.Working && !item.IsModified)
-                    continue;
+		private static string DoExternalDiff(IAnkhServiceProvider context, IEnumerable<SvnItem> selection, SvnRevision start, SvnRevision end)
+		{
+			foreach (SvnItem item in selection)
+			{
+				// skip unmodified for a diff against the textbase
+				if (start == SvnRevision.Base && end == SvnRevision.Working && !item.IsModified)
+					continue;
 
-                string tempDir = context.GetService<IAnkhTempDirManager>().GetTempDir();
+				string tempDir = context.GetService<IAnkhTempDirManager>().GetTempDir();
 
-                AnkhDiffArgs da = new AnkhDiffArgs();
+				AnkhDiffArgs da = new AnkhDiffArgs();
 
-                da.BaseFile = GetPath(context, start, item, tempDir);
-                da.MineFile = GetPath(context, end, item, tempDir);
+				da.BaseFile = GetPath(context, start, item, tempDir);
+				da.MineFile = GetPath(context, end, item, tempDir);
 
 
-                context.GetService<IAnkhDiffHandler>().RunDiff(da);
-            }
+				context.GetService<IAnkhDiffHandler>().RunDiff(da);
+			}
 
-            return null;
-        }
+			return null;
+		}
 
-        private static string GetPath(IAnkhServiceProvider context, SvnRevision revision, SvnItem item, string tempDir)
-        {
-            if (revision == SvnRevision.Working)
-            {
-                return item.FullPath;
-            }
+		private static string GetPath(IAnkhServiceProvider context, SvnRevision revision, SvnItem item, string tempDir)
+		{
+			if (revision == SvnRevision.Working)
+			{
+				return item.FullPath;
+			}
 
-            string strRevision;
-            if (revision.RevisionType == SvnRevisionType.Time)
-                strRevision = revision.Time.ToLocalTime().ToString("yyyyMMdd_hhmmss");
-            else
-                strRevision = revision.ToString();
-            string tempFile = Path.GetFileNameWithoutExtension(item.Name) + "." + strRevision + Path.GetExtension(item.Name);
-            tempFile = Path.Combine(tempDir, tempFile);
-            // we need to get it from the repos
-            context.GetService<IProgressRunner>().RunModal(CommandStrings.RetrievingFileForComparison, delegate(object o, ProgressWorkerArgs ee)
-            {
-                SvnTarget target;
+			string strRevision;
+			if (revision.RevisionType == SvnRevisionType.Time)
+				strRevision = revision.Time.ToLocalTime().ToString("yyyyMMdd_hhmmss");
+			else
+				strRevision = revision.ToString();
+			string tempFile = Path.GetFileNameWithoutExtension(item.Name) + "." + strRevision + Path.GetExtension(item.Name);
+			tempFile = Path.Combine(tempDir, tempFile);
+			// we need to get it from the repos
+			context.GetService<IProgressRunner>().RunModal(Resources.RetrievingFileForComparison, delegate(object o, ProgressWorkerArgs ee)
+			{
+				SvnTarget target;
 
-                switch (revision.RevisionType)
-                {
-                    case SvnRevisionType.Head:
-                    case SvnRevisionType.Number:
-                    case SvnRevisionType.Time:
-                        target = item.Uri;
-                        break;
-                    default:
-                        target = item.FullPath;
-                        break;
-                }
-                SvnWriteArgs args = new SvnWriteArgs();
-                args.Revision = revision;
-                args.AddExpectedError(SvnErrorCode.SVN_ERR_CLIENT_UNRELATED_RESOURCES);
+				switch (revision.RevisionType)
+				{
+					case SvnRevisionType.Head:
+					case SvnRevisionType.Number:
+					case SvnRevisionType.Time:
+						target = item.Uri;
+						break;
+					default:
+						target = item.FullPath;
+						break;
+				}
+				SvnWriteArgs args = new SvnWriteArgs();
+				args.Revision = revision;
+				args.AddExpectedError(SvnErrorCode.SVN_ERR_CLIENT_UNRELATED_RESOURCES);
 
-                using (FileStream stream = File.Create(tempFile))
-                {
-                    ee.Client.Write(target, stream, args);
-                }
-            });
+				using (FileStream stream = File.Create(tempFile))
+				{
+					ee.Client.Write(target, stream, args);
+				}
+			});
 
-            return tempFile;
-        }
-    }
+			return tempFile;
+		}
+	}
 }

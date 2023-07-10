@@ -14,63 +14,63 @@
 
 namespace Ankh.UI.MergeWizard
 {
-    partial class MergeRevisionsSelectionPage
-    {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class MergeRevisionsSelectionPage
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Component Designer generated code
+		#region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MergeRevisionsSelectionPage));
-            this.logToolControl1 = new Ankh.UI.SvnLog.LogControl(this.components);
-            this.SuspendLayout();
-            // 
-            // logToolControl1
-            // 
-            this.logToolControl1.ShowChangedPaths = true;
-            this.logToolControl1.Context = null;
-            resources.ApplyResources(this.logToolControl1, "logToolControl1");
-            this.logToolControl1.IncludeMergedRevisions = false;
-            this.logToolControl1.ShowLogMessage = true;
-            this.logToolControl1.Mode = Ankh.UI.SvnLog.LogMode.Log;
-            this.logToolControl1.Name = "logToolControl1";
-            this.logToolControl1.StopOnCopy = true;
-            this.logToolControl1.BatchFinished += new System.EventHandler<Ankh.UI.SvnLog.BatchFinishedEventArgs>(this.logToolControl1_BatchFinished);
-            // 
-            // MergeRevisionsSelectionPageControl
-            // 
-            resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.logToolControl1);
-            this.Name = "MergeRevisionsSelectionPageControl";
-            this.ResumeLayout(false);
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			this.components = new System.ComponentModel.Container();
+			this.logToolControl1 = new Ankh.UI.SvnLog.LogControl(this.components);
+			this.SuspendLayout();
+			//
+			// logToolControl1
+			//
+			this.logToolControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.logToolControl1.Location = new System.Drawing.Point(0, 0);
+			this.logToolControl1.Mode = Ankh.UI.SvnLog.LogMode.Log;
+			this.logToolControl1.Name = "logToolControl1";
+			this.logToolControl1.Size = new System.Drawing.Size(500, 405);
+			this.logToolControl1.StopOnCopy = true;
+			this.logToolControl1.TabIndex = 0;
+			this.logToolControl1.BatchFinished += new System.EventHandler<Ankh.UI.SvnLog.BatchFinishedEventArgs>(this.logToolControl1_BatchFinished);
+			//
+			// MergeRevisionsSelectionPage
+			//
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.logToolControl1);
+			this.Margin = new System.Windows.Forms.Padding(0);
+			this.Name = "MergeRevisionsSelectionPage";
+			this.Size = new System.Drawing.Size(500, 405);
+			this.ResumeLayout(false);
 
-        }
+		}
 
-        #endregion
+		#endregion
 
 		private Ankh.UI.SvnLog.LogControl logToolControl1;
-    }
+	}
 }

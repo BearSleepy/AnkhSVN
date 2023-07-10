@@ -26,109 +26,223 @@ using Ankh.UI;
 
 namespace Ankh.VSPackage
 {
-    // This attribute is used to register the informations needed to show the this package
-    // in the Help/About dialog of Visual Studio.
-    [InstalledProductRegistration(true, null, null, null)]
-    public partial class AnkhSvnPackage : IVsInstalledProduct
-    {
-        Version _packageVersion;
+	// This attribute is used to register the informations needed to show the this package
+	// in the Help/About dialog of Visual Studio.
+	[InstalledProductRegistration("#203", "#204", AnkhId.AssemblyVersion, LanguageIndependentName =
+			AnkhId.PackageName, IconResourceID = 400)]
+	public partial class AnkhSvnPackage
+#if GEN_ABOUTLINKAGE
+		 : IVsInstalledProduct
+#endif // GEN_ABOUTLINKAGE
+	{
+		/// <summary>
+		/// Gets the package version. The assembly version of Ankh.Package.dll
+		/// </summary>
+		/// <value>The package version.</value>
+		public System.Version PackageVersion
+		{
+			get { return AnkhVersion.FullVersion; }
+		}
+		public string Version
+		{
+			get { return AnkhVersion.AssemblyVersion; }
+		}
 
-        /// <summary>
-        /// Gets the package version. The assembly version of Ankh.Package.dll
-        /// </summary>
-        /// <value>The package version.</value>
-        public Version PackageVersion
-        {
-            get { return _packageVersion ?? (_packageVersion = typeof(AnkhSvnPackage).Assembly.GetName().Version); }
-        }
+#if GEN_ABOUTLINKAGE
+		public int IdBmpSplash(out uint pIdBmp)
+		{
+			pIdBmp = 0; // Not used by VS2005+
+			return VSErr.S_OK;
+		}
 
-        #region IVsInstalledProduct Members
+		public int OfficialName(out string pbstrName)
+		{
 
-        public int IdBmpSplash(out uint pIdBmp)
-        {
-            pIdBmp = 0; // Not used by VS2005+
-            return VSErr.E_NOTIMPL;
-        }
+			pbstrName = AnkhId.PackageName;
+			return VSErr.S_OK;
+		}
 
-        public int IdIcoLogoForAboutbox(out uint pIdIco)
-        {
-            pIdIco = 400;
-            return VSErr.S_OK;
-        }
+		public int ProductID(out string pbstrPID)
+		{
+			pbstrPID = AnkhId.AssemblyVersion;
+			return VSErr.S_OK;
+		}
 
-        public int OfficialName(out string pbstrName)
-        {
-            if (InCommandLineMode)
-            {
-                // We are running in /setup. The text is cached for the about box
-                pbstrName = Resources.AboutTitleNameShort;
-            }
-            else
-            {
-                // We are running with full UI. Probably used for the about box
-                pbstrName = Resources.AboutTitleName;
-            }
-            return VSErr.S_OK;
-        }
+		public int ProductDetails(out string pbstrProductDetails)
+		{
+#if false
+			pbstrProductDetails = AnkhId.ExtensionDescription;
+			return VSErr.E_NOTIMPL;
+#else
+			var sb = new StringBuilder();
 
-        public int ProductDetails(out string pbstrProductDetails)
-        {
-            StringBuilder sb = new StringBuilder();
+			sb.AppendLine(AnkhId.ExtensionDescription);
+			sb.AppendLine();
 
-            string svnVersion = SvnClient.VersionString;
-            if (svnVersion.EndsWith("-SharpSvn"))
-                svnVersion = svnVersion.Substring(0, svnVersion.Length - 9);
+			string svnVersion = SvnClient.VersionString;
+			if (svnVersion.EndsWith("-SharpSvn"))
+				svnVersion = svnVersion.Substring(0, svnVersion.Length - 9);
 
-            sb.AppendFormat(Resources.AboutDetails,
-                PackageVersion,
-                svnVersion,
-                SvnClient.SharpSvnVersion);
+			sb.AppendFormat(Resources.AboutDetails,
+				AnkhId.AssemblyVersion,
+				svnVersion,
+				SvnClient.SharpSvnVersion);
 
-            sb.AppendLine();
-            sb.AppendLine();
-            sb.AppendFormat(Resources.AboutLinkedTo, "SharpSvn");
-            foreach (SharpSvn.Implementation.SvnLibrary lib in SvnClient.SvnLibraries)
-            {
-                if (!lib.Optional)
-                {
-                    sb.AppendFormat("{0} {1}", lib.Name, lib.VersionString);
-                    sb.Append(", ");
-                }
-            }
+			sb.AppendLine();
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AboutLinkedTo, "SharpSvn");
+			foreach (var lib in SvnClient.SvnLibraries)
+			{
+				if (!lib.Optional)
+				{
+					sb.AppendFormat("{0} {1}", lib.Name, lib.VersionString);
+					sb.Append(", ");
+				}
+			}
 
-            sb.Length -= 2;
-            sb.AppendLine();
+			sb.Length -= 2;
+			sb.AppendLine();
 
-            bool has = false;
-            foreach (SharpSvn.Implementation.SvnLibrary lib in SvnClient.SvnLibraries)
-            {
-                if (lib.Optional)
-                {
-                    if (!has)
-                    {
-                        has = true;
-                        sb.AppendFormat(Resources.AboutOptionallyLinkedTo, "SharpSvn");
-                    }
+			bool has = false;
+			foreach (SharpSvn.Implementation.SvnLibrary lib in SvnClient.SvnLibraries)
+			{
+				if (lib.Optional)
+				{
+					if (!has)
+					{
+						has = true;
+						sb.AppendFormat(Resources.AboutOptionallyLinkedTo, "SharpSvn");
+					}
 
-                    sb.AppendFormat("{0} {1}", lib.Name, lib.VersionString);
-                    sb.Append(", ");
-                }
-            }
+					sb.AppendFormat("{0} {1}", lib.Name, lib.VersionString);
+					sb.Append(", ");
+				}
+			}
 
-            sb.Length -= 2;
+			sb.Length -= 2;
 
-            pbstrProductDetails = sb.ToString();
+			pbstrProductDetails = sb.ToString();
 
-            return VSErr.S_OK;
-        }
+			return VSErr.S_OK;
+#endif
+		}
 
-        public int ProductID(out string pbstrPID)
-        {
-            pbstrPID = PackageVersion.ToString();
 
-            return VSErr.S_OK;
-        }
+		public int IdIcoLogoForAboutbox(out uint pIdIco)
+		{
+			pIdIco = 400;
+			return VSErr.S_OK;
+		}
+#endif // GEN_ABOUTLINKAGE
+	}
 
-        #endregion
-    }
+#if AS_BUILD_REPLACED   // this isnt changing much anymore. doing normal and doc the linkage with the readme/license
+
+	// This attribute is used to register the informations needed to show the this package
+	// in the Help/About dialog of Visual Studio.
+	[InstalledProductRegistration(true, null, null, null)]
+	public partial class AnkhSvnPackage : IVsInstalledProduct
+	{
+		Version _packageVersion;
+
+		/// <summary>
+		/// Gets the package version. The assembly version of Ankh.Package.dll
+		/// </summary>
+		/// <value>The package version.</value>
+		public Version PackageVersion
+		{
+			get { return _packageVersion ?? (_packageVersion = typeof(AnkhSvnPackage).Assembly.GetName().Version); }
+		}
+
+		#region IVsInstalledProduct Members
+
+		public int IdBmpSplash(out uint pIdBmp)
+		{
+			pIdBmp = 0; // Not used by VS2005+
+			return VSErr.E_NOTIMPL;
+		}
+
+		public int IdIcoLogoForAboutbox(out uint pIdIco)
+		{
+			pIdIco = 400;
+			return VSErr.S_OK;
+		}
+
+		public int OfficialName(out string pbstrName)
+		{
+			if (InCommandLineMode)
+			{
+				// We are running in /setup. The text is cached for the about box
+				pbstrName = Resources.AboutTitleNameShort;
+			}
+			else
+			{
+				// We are running with full UI. Probably used for the about box
+				pbstrName = Resources.AboutTitleName;
+			}
+			return VSErr.S_OK;
+		}
+
+		public int ProductDetails(out string pbstrProductDetails)
+		{
+			StringBuilder sb = new StringBuilder();
+
+			string svnVersion = SvnClient.VersionString;
+			if (svnVersion.EndsWith("-SharpSvn"))
+				svnVersion = svnVersion.Substring(0, svnVersion.Length - 9);
+
+			sb.AppendFormat(Resources.AboutDetails,
+				PackageVersion,
+				svnVersion,
+				SvnClient.SharpSvnVersion);
+
+			sb.AppendLine();
+			sb.AppendLine();
+			sb.AppendFormat(Resources.AboutLinkedTo, "SharpSvn");
+			foreach (SharpSvn.Implementation.SvnLibrary lib in SvnClient.SvnLibraries)
+			{
+				if (!lib.Optional)
+				{
+					sb.AppendFormat("{0} {1}", lib.Name, lib.VersionString);
+					sb.Append(", ");
+				}
+			}
+
+			sb.Length -= 2;
+			sb.AppendLine();
+
+			bool has = false;
+			foreach (SharpSvn.Implementation.SvnLibrary lib in SvnClient.SvnLibraries)
+			{
+				if (lib.Optional)
+				{
+					if (!has)
+					{
+						has = true;
+						sb.AppendFormat(Resources.AboutOptionallyLinkedTo, "SharpSvn");
+					}
+
+					sb.AppendFormat("{0} {1}", lib.Name, lib.VersionString);
+					sb.Append(", ");
+				}
+			}
+
+			sb.Length -= 2;
+
+			pbstrProductDetails = sb.ToString();
+
+			return VSErr.S_OK;
+		}
+
+		public int ProductID(out string pbstrPID)
+		{
+			pbstrPID = PackageVersion.ToString();
+
+			return VSErr.S_OK;
+		}
+
+		#endregion
+	}
+
+#endif // AS_BUILD_REPLACED
 }

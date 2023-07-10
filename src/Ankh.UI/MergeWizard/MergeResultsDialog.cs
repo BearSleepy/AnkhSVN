@@ -21,310 +21,310 @@ using System.Drawing;
 
 namespace Ankh.UI.MergeWizard
 {
-    public partial class MergeResultsDialog : VSDialogForm
-    {
-        public MergeResultsDialog()
-        {
-            InitializeComponent();
-        }
+	public partial class MergeResultsDialog : VSDialogForm
+	{
+		public MergeResultsDialog()
+		{
+			InitializeComponent();
+		}
 
-        public MergeResultsDialog(List<SvnNotifyEventArgs> mergeActions, Dictionary<string, List<SvnConflictType>> resolvedConflicts)
-            : this()
-        {
-            MergeActions = mergeActions;
-            ResolvedMergeConflicts = resolvedConflicts;
-        }
+		public MergeResultsDialog(List<SvnNotifyEventArgs> mergeActions, Dictionary<string, List<SvnConflictType>> resolvedConflicts)
+			: this()
+		{
+			MergeActions = mergeActions;
+			ResolvedMergeConflicts = resolvedConflicts;
+		}
 
-        /// <summary>
-        /// Gets the actions performed by the merge.
-        /// </summary>
-        public List<SvnNotifyEventArgs> MergeActions
-        {
-            get { return _mergeActions; }
-            set { _mergeActions = value; }
-        }
+		/// <summary>
+		/// Gets the actions performed by the merge.
+		/// </summary>
+		public List<SvnNotifyEventArgs> MergeActions
+		{
+			get { return _mergeActions; }
+			set { _mergeActions = value; }
+		}
 
-        /// <summary>
-        /// Gets the paths of the conflicts resolved during the merge.
-        /// </summary>
-        public Dictionary<string, List<SvnConflictType>> ResolvedMergeConflicts
-        {
-            get { return _resolvedMergeConflicts; }
-            set { _resolvedMergeConflicts = value; }
-        }
+		/// <summary>
+		/// Gets the paths of the conflicts resolved during the merge.
+		/// </summary>
+		public Dictionary<string, List<SvnConflictType>> ResolvedMergeConflicts
+		{
+			get { return _resolvedMergeConflicts; }
+			set { _resolvedMergeConflicts = value; }
+		}
 
-        private void PopulateUI()
-        {
-            Dictionary<string, List<string>> model = new Dictionary<string, List<string>>();
+		private void PopulateUI()
+		{
+			Dictionary<string, List<string>> model = new Dictionary<string, List<string>>();
 
-            foreach (SvnNotifyEventArgs snea in MergeActions)
-            {
-                string contentAction = "";
-                string propertyAction = "";
+			foreach (SvnNotifyEventArgs snea in MergeActions)
+			{
+				string contentAction = "";
+				string propertyAction = "";
 
-                switch (snea.Action)
-                {
-                    case SvnNotifyAction.Exists:
-                        if (!model.ContainsKey(snea.FullPath) ||
-                            (model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + MergeStrings.Existed)))
-                        {
-                            fileExisted++;
-                            contentAction = MergeStrings.Existed;
-                        }
-                        break;
-                    case SvnNotifyAction.Skip:
-                        if (!model.ContainsKey(snea.FullPath) ||
-                            (model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + MergeStrings.Skipped)))
-                        {
-                            if (snea.NodeKind == SvnNodeKind.Directory)
-                                fileSkippedDirs++;
-                            else if (snea.NodeKind == SvnNodeKind.File)
-                                fileSkippedFiles++;
-                            contentAction = MergeStrings.Skipped;
-                        }
-                        break;
-                    case SvnNotifyAction.UpdateAdd:
-                        if (!model.ContainsKey(snea.FullPath) ||
-                            (model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + MergeStrings.Added)))
-                        {
-                            fileAdded++;
-                            contentAction = MergeStrings.Added;
-                        }
-                        break;
-                    case SvnNotifyAction.UpdateDelete:
-                        if (!model.ContainsKey(snea.FullPath) ||
-                            (model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + MergeStrings.Deleted)))
-                        {
-                            fileDeleted++;
-                            contentAction = MergeStrings.Deleted;
-                        }
-                        break;
-                    case SvnNotifyAction.UpdateReplace:
-                        if (!model.ContainsKey(snea.FullPath) ||
-                            (model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + MergeStrings.Replaced)))
-                        {
-                            fileAdded++;
-                            contentAction = MergeStrings.Replaced;
-                        }
-                        break;
-                    case SvnNotifyAction.UpdateUpdate:
-                        if (snea.ContentState != SvnNotifyState.None &&
-                            snea.ContentState != SvnNotifyState.Unchanged &&
-                            snea.ContentState != SvnNotifyState.Unknown)
-                        {
-                            switch (snea.ContentState)
-                            {
-                                case SvnNotifyState.Changed:
-                                    if (!model.ContainsKey(snea.FullPath) ||
-                                        (model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + MergeStrings.Modified)))
-                                    {
-                                        fileUpdated++;
-                                        contentAction = MergeStrings.Modified;
-                                    }
-                                    break;
-                                case SvnNotifyState.Conflicted:
-                                    if (!model.ContainsKey(snea.FullPath) ||
-                                        (model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + MergeStrings.Conflicted)))
-                                    {
-                                        fileConflicted++;
-                                        contentAction = MergeStrings.Conflicted;
-                                    }
-                                    break;
-                                case SvnNotifyState.Merged:
-                                    if (!model.ContainsKey(snea.FullPath) ||
-                                        (model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + MergeStrings.Merged)))
-                                    {
-                                        fileMerged++;
-                                        contentAction = MergeStrings.Merged;
-                                    }
-                                    break;
-                                default:
-                                    // Do nothing.
-                                    break;
-                            }
-                        }
+				switch (snea.Action)
+				{
+					case SvnNotifyAction.Exists:
+						if (!model.ContainsKey(snea.FullPath) ||
+							(model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + ResourcesMerge.Existed)))
+						{
+							fileExisted++;
+							contentAction = ResourcesMerge.Existed;
+						}
+						break;
+					case SvnNotifyAction.Skip:
+						if (!model.ContainsKey(snea.FullPath) ||
+							(model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + ResourcesMerge.Skipped)))
+						{
+							if (snea.NodeKind == SvnNodeKind.Directory)
+								fileSkippedDirs++;
+							else if (snea.NodeKind == SvnNodeKind.File)
+								fileSkippedFiles++;
+							contentAction = ResourcesMerge.Skipped;
+						}
+						break;
+					case SvnNotifyAction.UpdateAdd:
+						if (!model.ContainsKey(snea.FullPath) ||
+							(model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + ResourcesMerge.Added)))
+						{
+							fileAdded++;
+							contentAction = ResourcesMerge.Added;
+						}
+						break;
+					case SvnNotifyAction.UpdateDelete:
+						if (!model.ContainsKey(snea.FullPath) ||
+							(model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + ResourcesMerge.Deleted)))
+						{
+							fileDeleted++;
+							contentAction = ResourcesMerge.Deleted;
+						}
+						break;
+					case SvnNotifyAction.UpdateReplace:
+						if (!model.ContainsKey(snea.FullPath) ||
+							(model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + ResourcesMerge.Replaced)))
+						{
+							fileAdded++;
+							contentAction = ResourcesMerge.Replaced;
+						}
+						break;
+					case SvnNotifyAction.UpdateUpdate:
+						if (snea.ContentState != SvnNotifyState.None &&
+							snea.ContentState != SvnNotifyState.Unchanged &&
+							snea.ContentState != SvnNotifyState.Unknown)
+						{
+							switch (snea.ContentState)
+							{
+								case SvnNotifyState.Changed:
+									if (!model.ContainsKey(snea.FullPath) ||
+										(model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + ResourcesMerge.Modified)))
+									{
+										fileUpdated++;
+										contentAction = ResourcesMerge.Modified;
+									}
+									break;
+								case SvnNotifyState.Conflicted:
+									if (!model.ContainsKey(snea.FullPath) ||
+										(model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + ResourcesMerge.Conflicted)))
+									{
+										fileConflicted++;
+										contentAction = ResourcesMerge.Conflicted;
+									}
+									break;
+								case SvnNotifyState.Merged:
+									if (!model.ContainsKey(snea.FullPath) ||
+										(model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Text-" + ResourcesMerge.Merged)))
+									{
+										fileMerged++;
+										contentAction = ResourcesMerge.Merged;
+									}
+									break;
+								default:
+									// Do nothing.
+									break;
+							}
+						}
 
-                        if (snea.PropertyState != SvnNotifyState.None &&
-                            snea.PropertyState != SvnNotifyState.Unchanged &&
-                            snea.PropertyState != SvnNotifyState.Unknown)
-                        {
-                            switch (snea.PropertyState)
-                            {
-                                case SvnNotifyState.Changed:
-                                    if (!model.ContainsKey(snea.FullPath) ||
-                                        (model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Prop-" + MergeStrings.Modified)))
-                                    {
-                                        propertyUpdated++;
-                                        propertyAction = MergeStrings.Modified;
-                                    }
-                                    break;
-                                case SvnNotifyState.Conflicted:
-                                    if (!model.ContainsKey(snea.FullPath) ||
-                                            (model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Prop-" + MergeStrings.Conflicted)))
-                                    {
-                                        propertyConflicted++;
-                                        propertyAction = MergeStrings.Conflicted;
-                                    }
-                                    break;
-                                case SvnNotifyState.Merged:
-                                    if (!model.ContainsKey(snea.FullPath) ||
-                                        (model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Prop-" + MergeStrings.Merged)))
-                                    {
-                                        propertyMerged++;
-                                        propertyAction = MergeStrings.Merged;
-                                    }
-                                    break;
-                                default:
-                                    // Do nothing.
-                                    break;
-                            }
-                        }
-                        break;
-                    default:
-                        // Do nothing
-                        break;
-                }
+						if (snea.PropertyState != SvnNotifyState.None &&
+							snea.PropertyState != SvnNotifyState.Unchanged &&
+							snea.PropertyState != SvnNotifyState.Unknown)
+						{
+							switch (snea.PropertyState)
+							{
+								case SvnNotifyState.Changed:
+									if (!model.ContainsKey(snea.FullPath) ||
+										(model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Prop-" + ResourcesMerge.Modified)))
+									{
+										propertyUpdated++;
+										propertyAction = ResourcesMerge.Modified;
+									}
+									break;
+								case SvnNotifyState.Conflicted:
+									if (!model.ContainsKey(snea.FullPath) ||
+											(model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Prop-" + ResourcesMerge.Conflicted)))
+									{
+										propertyConflicted++;
+										propertyAction = ResourcesMerge.Conflicted;
+									}
+									break;
+								case SvnNotifyState.Merged:
+									if (!model.ContainsKey(snea.FullPath) ||
+										(model.ContainsKey(snea.FullPath) && !model[snea.FullPath].Contains("Prop-" + ResourcesMerge.Merged)))
+									{
+										propertyMerged++;
+										propertyAction = ResourcesMerge.Merged;
+									}
+									break;
+								default:
+									// Do nothing.
+									break;
+							}
+						}
+						break;
+					default:
+						// Do nothing
+						break;
+				}
 
-                if (model.ContainsKey(snea.FullPath))
-                {
-                    if (contentAction.Length > 0)
-                    {
-                        if (!model[snea.FullPath].Contains("Text-" + contentAction))
-                            model[snea.FullPath].Add("Text-" + contentAction);
-                    }
+				if (model.ContainsKey(snea.FullPath))
+				{
+					if (contentAction.Length > 0)
+					{
+						if (!model[snea.FullPath].Contains("Text-" + contentAction))
+							model[snea.FullPath].Add("Text-" + contentAction);
+					}
 
-                    if (propertyAction.Length > 0)
-                    {
-                        if (!model[snea.FullPath].Contains("Prop-" + propertyAction))
-                            model[snea.FullPath].Add("Prop-" + propertyAction);
-                    }
-                }
-                else
-                {
-                    if (contentAction.Length > 0 || propertyAction.Length > 0)
-                    {
-                        List<string> l = new List<string>();
+					if (propertyAction.Length > 0)
+					{
+						if (!model[snea.FullPath].Contains("Prop-" + propertyAction))
+							model[snea.FullPath].Add("Prop-" + propertyAction);
+					}
+				}
+				else
+				{
+					if (contentAction.Length > 0 || propertyAction.Length > 0)
+					{
+						List<string> l = new List<string>();
 
-                        if (contentAction.Length > 0)
-                            l.Add("Text-" + contentAction);
+						if (contentAction.Length > 0)
+							l.Add("Text-" + contentAction);
 
-                        if (propertyAction.Length > 0)
-                            l.Add("Prop-" + propertyAction);
+						if (propertyAction.Length > 0)
+							l.Add("Prop-" + propertyAction);
 
-                        model.Add(snea.FullPath, l);
-                    }
-                }
-            }
+						model.Add(snea.FullPath, l);
+					}
+				}
+			}
 
-            // Calculate Resolved
-            foreach (KeyValuePair<string, List<SvnConflictType>> resolution in ResolvedMergeConflicts)
-            {
-                if (resolution.Value.Contains(SvnConflictType.Content))
-                    fileResolved++;
-                else if (resolution.Value.Contains(SvnConflictType.Property))
-                    propertyResolved++;
-            }
+			// Calculate Resolved
+			foreach (KeyValuePair<string, List<SvnConflictType>> resolution in ResolvedMergeConflicts)
+			{
+				if (resolution.Value.Contains(SvnConflictType.Content))
+					fileResolved++;
+				else if (resolution.Value.Contains(SvnConflictType.Property))
+					propertyResolved++;
+			}
 
-            // Update File Labels
-            fileUpdatedValueLabel.Text = fileUpdated.ToString();
-            fileAddedValueLabel.Text = fileAdded.ToString();
-            fileExistedValueLabel.Text = fileExisted.ToString();
-            fileDeletedValueLabel.Text = fileDeleted.ToString();
-            fileMergedValueLabel.Text = fileMerged.ToString();
-            fileConflictedValueLabel.Text = fileConflicted.ToString();
-            fileResolvedValueLabel.Text = fileResolved.ToString();
-            fileSkippedDirectoriesValueLabel.Text = fileSkippedDirs.ToString();
-            fileSkippedFilesValueLabel.Text = fileSkippedFiles.ToString();
+			// Update File Labels
+			fileUpdatedValueLabel.Text = fileUpdated.ToString();
+			fileAddedValueLabel.Text = fileAdded.ToString();
+			fileExistedValueLabel.Text = fileExisted.ToString();
+			fileDeletedValueLabel.Text = fileDeleted.ToString();
+			fileMergedValueLabel.Text = fileMerged.ToString();
+			fileConflictedValueLabel.Text = fileConflicted.ToString();
+			fileResolvedValueLabel.Text = fileResolved.ToString();
+			fileSkippedDirectoriesValueLabel.Text = fileSkippedDirs.ToString();
+			fileSkippedFilesValueLabel.Text = fileSkippedFiles.ToString();
 
-            // Update Property Labels
-            propertyUpdatedValueLabel.Text = propertyUpdated.ToString();
-            propertyMergedValueLabel.Text = propertyMerged.ToString();
-            propertyConflictedValueLabel.Text = propertyConflicted.ToString();
-            propertyResolvedValueLabel.Text = propertyResolved.ToString();
+			// Update Property Labels
+			propertyUpdatedValueLabel.Text = propertyUpdated.ToString();
+			propertyMergedValueLabel.Text = propertyMerged.ToString();
+			propertyConflictedValueLabel.Text = propertyConflicted.ToString();
+			propertyResolvedValueLabel.Text = propertyResolved.ToString();
 
-            // Populate the Modified Paths ListView
-            foreach (KeyValuePair<string, List<string>> item in model)
-            {
-                ListViewItem lvi;
-                string[] row = new string[3];
-                string contents = "";
-                string properties = "";
+			// Populate the Modified Paths ListView
+			foreach (KeyValuePair<string, List<string>> item in model)
+			{
+				ListViewItem lvi;
+				string[] row = new string[3];
+				string contents = "";
+				string properties = "";
 
-                row[0] = item.Key;
+				row[0] = item.Key;
 
-                foreach (string action in item.Value)
-                {
-                    if (action.StartsWith("Text"))
-                    {
-                        if (contents.Length == 0)
-                            contents = action.Split('-')[1];
-                        else
-                            contents += (", " + action.Split('-')[1]);
-                    }
-                    else if (action.StartsWith("Prop"))
-                    {
-                        if (properties.Length == 0)
-                            properties = action.Split('-')[1];
-                        else
-                            properties += (", " + action.Split('-')[1]);
-                    }
-                }
+				foreach (string action in item.Value)
+				{
+					if (action.StartsWith("Text"))
+					{
+						if (contents.Length == 0)
+							contents = action.Split('-')[1];
+						else
+							contents += (", " + action.Split('-')[1]);
+					}
+					else if (action.StartsWith("Prop"))
+					{
+						if (properties.Length == 0)
+							properties = action.Split('-')[1];
+						else
+							properties += (", " + action.Split('-')[1]);
+					}
+				}
 
-                if (contents.Length == 0)
-                    row[1] = MergeStrings.Unchanged;
-                else
-                    row[1] = contents;
+				if (contents.Length == 0)
+					row[1] = ResourcesMerge.Unchanged;
+				else
+					row[1] = contents;
 
-                if (properties.Length == 0)
-                    row[2] = MergeStrings.Unchanged;
-                else
-                    row[2] = properties;
+				if (properties.Length == 0)
+					row[2] = ResourcesMerge.Unchanged;
+				else
+					row[2] = properties;
 
-                lvi = new ListViewItem(row);
+				lvi = new ListViewItem(row);
 
-                modifiedPathsListView.Items.Add(lvi);
-            }
-        }
+				modifiedPathsListView.Items.Add(lvi);
+			}
+		}
 
-        #region UI Events
-        private void MergeResultsDialog_Load(object sender, EventArgs e)
-        {
-            if (MergeActions != null)
-            {
-                this.Visible = false;
+		#region UI Events
+		private void MergeResultsDialog_Load(object sender, EventArgs e)
+		{
+			if (MergeActions != null)
+			{
+				this.Visible = false;
 
-                PopulateUI();
+				PopulateUI();
 
-                this.Visible = true;
-            }
-        }
+				this.Visible = true;
+			}
+		}
 
-        private void MergeResultsDialog_Resize(object sender, EventArgs e)
-        {
-            modifiedPathsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-        }
-        #endregion
+		private void MergeResultsDialog_Resize(object sender, EventArgs e)
+		{
+			modifiedPathsListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+		}
+		#endregion
 
-        protected override void OnFontChanged(EventArgs e)
-        {
-            base.OnFontChanged(e);
-            headerTitle.Font = new Font(Font, FontStyle.Bold);
-        }
+		protected override void OnFontChanged(EventArgs e)
+		{
+			base.OnFontChanged(e);
+			headerTitle.Font = new Font(Font, FontStyle.Bold);
+		}
 
-        long fileUpdated = 0;
-        long fileAdded = 0;
-        long fileExisted = 0;
-        long fileDeleted = 0;
-        long fileMerged = 0;
-        long fileConflicted = 0;
-        long fileResolved = 0;
-        long fileSkippedDirs = 0;
-        long fileSkippedFiles = 0;
-        long propertyUpdated = 0;
-        long propertyMerged = 0;
-        long propertyConflicted = 0;
-        long propertyResolved = 0;
-        List<SvnNotifyEventArgs> _mergeActions;
-        Dictionary<string, List<SvnConflictType>> _resolvedMergeConflicts;
-    }
+		long fileUpdated = 0;
+		long fileAdded = 0;
+		long fileExisted = 0;
+		long fileDeleted = 0;
+		long fileMerged = 0;
+		long fileConflicted = 0;
+		long fileResolved = 0;
+		long fileSkippedDirs = 0;
+		long fileSkippedFiles = 0;
+		long propertyUpdated = 0;
+		long propertyMerged = 0;
+		long propertyConflicted = 0;
+		long propertyResolved = 0;
+		List<SvnNotifyEventArgs> _mergeActions;
+		Dictionary<string, List<SvnConflictType>> _resolvedMergeConflicts;
+	}
 }

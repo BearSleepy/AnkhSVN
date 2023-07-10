@@ -30,277 +30,278 @@ using System.Runtime.InteropServices;
 
 namespace Ankh.Services
 {
-    /// <summary>
-    /// Encapsulates error handling functionality.
-    /// </summary>
-    [GlobalService(typeof(IAnkhErrorHandler), AllowPreRegistered = true)]
-    class AnkhErrorHandler : AnkhService, IAnkhErrorHandler
-    {
-        const string _errorReportMailAddress = "error@support.ankhsvn.net";
-        const string _errorReportSubject = "Exception";
-        readonly HandlerDelegator Handler;
+	/// <summary>
+	/// Encapsulates error handling functionality.
+	/// </summary>
+	[GlobalService(typeof(IAnkhErrorHandler), AllowPreRegistered = true)]
+	class AnkhErrorHandler : AnkhService, IAnkhErrorHandler
+	{
+		const string _errorReportMailAddress = "error@support.ankhsvn.net";
+		const string _errorReportSubject = "Exception";
+		readonly HandlerDelegator Handler;
 
-        public AnkhErrorHandler(IAnkhServiceProvider context)
-            : base(context)
-        {
-            Handler = new HandlerDelegator(this);
-        }
+		public AnkhErrorHandler(IAnkhServiceProvider context)
+			: base(context)
+		{
+			Handler = new HandlerDelegator(this);
+		}
 
-        public bool IsEnabled(Exception ex)
-        {
+		public bool IsEnabled(Exception ex)
+		{
 #if DEBUG
-            return false;
+			return false;
 #else
-            return true;
+			return true;
 #endif
-        }
+		}
 
-        /// <summary>
-        /// Handles an exception.
-        /// </summary>
-        /// <param name="ex"></param>
-        public void OnError(Exception ex)
-        {
-            if (ex == null)
-                return;
+		/// <summary>
+		/// Handles an exception.
+		/// </summary>
+		/// <param name="ex"></param>
+		public void OnError(Exception ex)
+		{
+			if (ex == null)
+				return;
 
-            Handler.Invoke(ex, null);
-        }
+			Handler.Invoke(ex, null);
+		}
 
-        public void OnError(Exception ex, BaseCommandEventArgs commandArgs)
-        {
-            if (ex == null)
-                return;
-            else if (commandArgs == null)
-                OnError(ex);
-            else
-                Handler.Invoke(ex, new ExceptionInfo(commandArgs));
-        }
+		public void OnError(Exception ex, BaseCommandEventArgs commandArgs)
+		{
+			if (ex == null)
+				return;
+			else if (commandArgs == null)
+				OnError(ex);
+			else
+				Handler.Invoke(ex, new ExceptionInfo(commandArgs));
+		}
 
-        sealed class ExceptionInfo
-        {
-            readonly BaseCommandEventArgs _commandArgs;
-            public ExceptionInfo(BaseCommandEventArgs e)
-            {
-                _commandArgs = e;
-            }
+		sealed class ExceptionInfo
+		{
+			readonly BaseCommandEventArgs _commandArgs;
+			public ExceptionInfo(BaseCommandEventArgs e)
+			{
+				_commandArgs = e;
+			}
 
-            public BaseCommandEventArgs CommandArgs
-            {
-                get { return _commandArgs; }
-            }
-        }
+			public BaseCommandEventArgs CommandArgs
+			{
+				get { return _commandArgs; }
+			}
+		}
 
-        sealed class HandlerDelegator : AnkhService
-        {
-            AnkhErrorHandler _handler;
-            public HandlerDelegator(AnkhErrorHandler context)
-                : base(context)
-            {
-                _handler = context;
-            }
+		sealed class HandlerDelegator : AnkhService
+		{
+			AnkhErrorHandler _handler;
+			public HandlerDelegator(AnkhErrorHandler context)
+				: base(context)
+			{
+				_handler = context;
+			}
 
-            IWin32Window Owner
-            {
-                get { return GetService<IUIService>().GetDialogOwnerWindow(); }
-            }
+			IWin32Window Owner
+			{
+				get { return GetService<IUIService>().GetDialogOwnerWindow(); }
+			}
 
-            public void Invoke(Exception ex, ExceptionInfo info)
-            {
-                try
-                {
-                    // BH: Uses reflection to find the best match based on the exception??
+			public void Invoke(Exception ex, ExceptionInfo info)
+			{
+				try
+				{
+					// BH: Uses reflection to find the best match based on the exception??
 
-                    Type t = typeof(HandlerDelegator);
-                    MethodInfo method = t.GetMethod("DoHandle", BindingFlags.Instance | BindingFlags.NonPublic, null, new Type[] { ex.GetType(), typeof(ExceptionInfo) }, null);
+					Type t = typeof(HandlerDelegator);
+					MethodInfo method = t.GetMethod("DoHandle", BindingFlags.Instance | BindingFlags.NonPublic, null, new Type[] { ex.GetType(), typeof(ExceptionInfo) }, null);
 
-                    if (method != null)
-                        method.Invoke(this, new object[] { ex, info });
-                    else
-                        DoHandle(ex, info);
-                }
-                catch (Exception x)
-                {
-                    Debug.WriteLine(x);
-                }
-            }
-
-
-            private void DoHandle(ProgressRunnerException ex, ExceptionInfo info)
-            {
-                // we're only interested in the inner exception - we know where the 
-                // outer one comes from
-                Invoke(ex.InnerException, info);
-            }
-
-            private void DoHandle(SvnRepositoryHookException e, ExceptionInfo info)
-            {
-                string message;
-                if (e.InnerException != null)
-                    message = GetNestedMessages(e).Replace("\r", "").Replace("\n", Environment.NewLine);
-                else
-                    message = e.Message;
-
-                MessageBox.Show(Owner, message, "Repository hook failed", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-            }
+					if (method != null)
+						method.Invoke(this, new object[] { ex, info });
+					else
+						DoHandle(ex, info);
+				}
+				catch (Exception x)
+				{
+					Debug.WriteLine(x);
+				}
+			}
 
 
-            private void DoHandle(SvnWorkingCopyLockException ex, ExceptionInfo info)
-            {
-                if (ex.SvnErrorCode != SvnErrorCode.SVN_ERR_WC_NOT_LOCKED)
-                {
-                    MessageBox.Show(Owner,
-                        "Your working copy appears to be locked. " + Environment.NewLine +
-                        "Run Cleanup to amend the situation.",
-                        "Working copy locked", MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    MessageBox.Show(Owner,
-                        "The working copy lock appears to be broken.",
-                        "Working copy not locked", MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                }
-            }
+			private void DoHandle(ProgressRunnerException ex, ExceptionInfo info)
+			{
+				// we're only interested in the inner exception - we know where the
+				// outer one comes from
+				Invoke(ex.InnerException, info);
+			}
 
-            private void DoHandle(SvnAuthorizationException ex, ExceptionInfo info)
-            {
-                // TODO: Show at least some parts of the real error to help resolve it.
-                MessageBox.Show(Owner,
-                    "You failed to authorize against the remote repository. ",
-                    "Authorization failed", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-            }
+			private void DoHandle(SvnRepositoryHookException e, ExceptionInfo info)
+			{
+				string message;
+				if (e.InnerException != null)
+					message = GetNestedMessages(e).Replace("\r", "").Replace("\n", Environment.NewLine);
+				else
+					message = e.Message;
 
-            private void DoHandle(SvnAuthenticationException ex, ExceptionInfo info)
-            {
-                MessageBox.Show(Owner,
-                    "You failed to authenticate against the remote repository. ",
-                    "Authentication failed", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-            }
+				MessageBox.Show(Owner, message, "Repository hook failed", MessageBoxButtons.OK,
+					MessageBoxIcon.Warning);
+			}
 
-            private void DoHandle(SvnFileSystemOutOfDateException ex, ExceptionInfo info)
-            {
-                MessageBox.Show(Owner,
-                    "One or more of your local resources are out of date. " +
-                    "You need to run Update before you can proceed with the operation",
-                    "Resource(s) out of date", MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-            }
 
-            private void DoHandle(Exception ex, ExceptionInfo info)
-            {
-                bool svnException = (ex is SvnException);
+			private void DoHandle(SvnWorkingCopyLockException ex, ExceptionInfo info)
+			{
+				if (ex.SvnErrorCode != SvnErrorCode.SVN_ERR_WC_NOT_LOCKED)
+				{
+					MessageBox.Show(Owner,
+						"Your working copy appears to be locked. " + Environment.NewLine +
+						"Run Cleanup to amend the situation.",
+						"Working copy locked", MessageBoxButtons.OK,
+						MessageBoxIcon.Warning);
+				}
+				else
+				{
+					MessageBox.Show(Owner,
+						"The working copy lock appears to be broken.",
+						"Working copy not locked", MessageBoxButtons.OK,
+						MessageBoxIcon.Warning);
+				}
+			}
 
-                _handler.ShowErrorDialog(ex, !svnException, !svnException, info);
-            }
-        }
+			private void DoHandle(SvnAuthorizationException ex, ExceptionInfo info)
+			{
+				// TODO: Show at least some parts of the real error to help resolve it.
+				MessageBox.Show(Owner,
+					"You failed to authorize against the remote repository. ",
+					"Authorization failed", MessageBoxButtons.OK,
+					MessageBoxIcon.Warning);
+			}
 
-        private void ShowErrorDialog(Exception ex, bool showStackTrace, bool internalError, ExceptionInfo info)
-        {
-            string stackTrace = ex.ToString();
-            string message = GetNestedMessages(ex);
-            System.Collections.Specialized.StringDictionary additionalInfo =
-                new System.Collections.Specialized.StringDictionary();
+			private void DoHandle(SvnAuthenticationException ex, ExceptionInfo info)
+			{
+				MessageBox.Show(Owner,
+					"You failed to authenticate against the remote repository. ",
+					"Authentication failed", MessageBoxButtons.OK,
+					MessageBoxIcon.Warning);
+			}
 
-            IAnkhSolutionSettings ss = GetService<IAnkhSolutionSettings>();
-            if (ss != null)
-                additionalInfo.Add("VS-Version", VSVersion.FullVersion.ToString());
+			private void DoHandle(SvnFileSystemOutOfDateException ex, ExceptionInfo info)
+			{
+				MessageBox.Show(Owner,
+					"One or more of your local resources are out of date. " +
+					"You need to run Update before you can proceed with the operation",
+					"Resource(s) out of date", MessageBoxButtons.OK,
+					MessageBoxIcon.Warning);
+			}
 
-            if (info != null && info.CommandArgs != null)
-                additionalInfo.Add("Command", info.CommandArgs.Command.ToString());
+			private void DoHandle(Exception ex, ExceptionInfo info)
+			{
+				bool svnException = (ex is SvnException);
 
-            IAnkhPackage pkg = GetService<IAnkhPackage>();
-            if (pkg != null)
-                additionalInfo.Add("Ankh-Version", pkg.PackageVersion.ToString());
+				_handler.ShowErrorDialog(ex, !svnException, !svnException, info);
+			}
+		}
 
-            additionalInfo.Add("SharpSvn-Version", SharpSvn.SvnClient.SharpSvnVersion.ToString());
-            additionalInfo.Add("Svn-Version", SharpSvn.SvnClient.Version.ToString());
-            additionalInfo.Add("OS-Version", Environment.OSVersion.Version.ToString());
+		private void ShowErrorDialog(Exception ex, bool showStackTrace, bool internalError, ExceptionInfo info)
+		{
+			string stackTrace = ex.ToString();
+			string message = GetNestedMessages(ex);
+			System.Collections.Specialized.StringDictionary additionalInfo =
+				new System.Collections.Specialized.StringDictionary();
 
-            using (ErrorDialog dlg = new ErrorDialog())
-            {
-                dlg.ErrorMessage = message;
-                dlg.ShowStackTrace = showStackTrace;
-                dlg.StackTrace = stackTrace;
-                dlg.InternalError = internalError;
+			IAnkhSolutionSettings ss = GetService<IAnkhSolutionSettings>();
+			if (ss != null)
+				additionalInfo.Add("VS-Version", VSVersion.FullVersion.ToString());
 
-                if (dlg.ShowDialog(Context) == DialogResult.Retry)
-                {
-                    string subject = _errorReportSubject;
+			if (info != null && info.CommandArgs != null)
+				additionalInfo.Add("Command", info.CommandArgs.Command.ToString());
 
-                    if (info != null && info.CommandArgs != null)
-                        subject = string.Format("Error handling {0}", info.CommandArgs.Command);
+			IAnkhPackage pkg = GetService<IAnkhPackage>();
+			if (pkg != null)
+				additionalInfo.Add("Ankh-Version", pkg.Version);
+				//additionalInfo.Add("Ankh-Version", pkg.PackageVersion.ToString());
 
-                    SvnException sx = ex as SvnException;
-                    SvnException ix;
+			additionalInfo.Add("SharpSvn-Version", SharpSvn.SvnClient.SharpSvnVersion.ToString());
+			additionalInfo.Add("Svn-Version", SharpSvn.SvnClient.Version.ToString());
+			additionalInfo.Add("OS-Version", Environment.OSVersion.Version.ToString());
 
-                    while (sx != null
-                           && sx.SvnErrorCode == SvnErrorCode.SVN_ERR_BASE
-                           && (null != (ix = sx.InnerException as SvnException)))
-                    {
-                        sx = ix;
-                    }
+			using (ErrorDialog dlg = new ErrorDialog())
+			{
+				dlg.ErrorMessage = message;
+				dlg.ShowStackTrace = showStackTrace;
+				dlg.StackTrace = stackTrace;
+				dlg.InternalError = internalError;
 
-                    if (sx != null)
-                    {
-                        SvnException rc = sx.RootCause as SvnException;
-                        if (rc == null || rc.SvnErrorCode == sx.SvnErrorCode)
-                            subject += " (" + ErrorToString(sx) + ")";
-                        else
-                            subject += " (" + ErrorToString(sx) + "-" + ErrorToString(rc) + ")";
-                    }
+				if (dlg.ShowDialog(Context) == DialogResult.Retry)
+				{
+					string subject = _errorReportSubject;
 
-                    AnkhErrorMessage.SendByMail(_errorReportMailAddress,
-                        subject, ex, typeof(AnkhErrorHandler).Assembly, additionalInfo);
-                }
-            }
-        }
+					if (info != null && info.CommandArgs != null)
+						subject = string.Format("Error handling {0}", info.CommandArgs.Command);
 
-        static string ErrorToString(SvnException ex)
-        {
-            if (Enum.IsDefined(typeof(SvnErrorCode), ex.SvnErrorCode))
-                return ex.SvnErrorCode.ToString();
-            else if (Enum.IsDefined(typeof(SvnAprErrorCode), ex.AprErrorCode))
-                return ex.AprErrorCode.ToString();
-            else if (ex.SvnErrorCategory == SvnErrorCategory.OperatingSystem)
-            {
-                if (Enum.IsDefined(typeof(SvnWindowsErrorCode), ex.WindowsErrorCode))
-                    return ex.WindowsErrorCode.ToString();
-                // 
-                int num = (int)ex.WindowsErrorCode;
+					SvnException sx = ex as SvnException;
+					SvnException ix;
 
-                if ((num & 0x80000000) == 0)
-                {
-                    num = unchecked((int)(((uint)num & 0xFFFF) | 0x80070000));
-                }
+					while (sx != null
+						   && sx.SvnErrorCode == SvnErrorCode.SVN_ERR_BASE
+						   && (null != (ix = sx.InnerException as SvnException)))
+					{
+						sx = ix;
+					}
 
-                Exception sysEx = Marshal.GetExceptionForHR(num);
+					if (sx != null)
+					{
+						SvnException rc = sx.RootCause as SvnException;
+						if (rc == null || rc.SvnErrorCode == sx.SvnErrorCode)
+							subject += " (" + ErrorToString(sx) + ")";
+						else
+							subject += " (" + ErrorToString(sx) + "-" + ErrorToString(rc) + ")";
+					}
 
-                if (sysEx != null)
-                    return string.Format("OS:{0}/{1}", sysEx.GetType().Name, ex.WindowsErrorCode);
-            }
-            else if (ex.SvnErrorCategory > SvnErrorCategory.None
-                     && Enum.IsDefined(typeof(SvnErrorCategory), ex.SvnErrorCategory))
-                return string.Format("{0}:{1}", ex.SvnErrorCategory, ex.SvnErrorCode);
+					AnkhErrorMessage.SendByMail(_errorReportMailAddress,
+						subject, ex, typeof(AnkhErrorHandler).Assembly, additionalInfo);
+				}
+			}
+		}
 
-            return ((int)ex.SvnErrorCode).ToString();
-        }
+		static string ErrorToString(SvnException ex)
+		{
+			if (Enum.IsDefined(typeof(SvnErrorCode), ex.SvnErrorCode))
+				return ex.SvnErrorCode.ToString();
+			else if (Enum.IsDefined(typeof(SvnAprErrorCode), ex.AprErrorCode))
+				return ex.AprErrorCode.ToString();
+			else if (ex.SvnErrorCategory == SvnErrorCategory.OperatingSystem)
+			{
+				if (Enum.IsDefined(typeof(SvnWindowsErrorCode), ex.WindowsErrorCode))
+					return ex.WindowsErrorCode.ToString();
+				//
+				int num = (int)ex.WindowsErrorCode;
 
-        private static string GetNestedMessages(Exception ex)
-        {
-            StringBuilder sb = new StringBuilder();
+				if ((num & 0x80000000) == 0)
+				{
+					num = unchecked((int)(((uint)num & 0xFFFF) | 0x80070000));
+				}
 
-            while (ex != null)
-            {
-                sb.AppendLine(ex.Message.Trim());
-                ex = ex.InnerException;
-            }
+				Exception sysEx = Marshal.GetExceptionForHR(num);
 
-            return sb.ToString();
-        }
-    }
+				if (sysEx != null)
+					return string.Format("OS:{0}/{1}", sysEx.GetType().Name, ex.WindowsErrorCode);
+			}
+			else if (ex.SvnErrorCategory > SvnErrorCategory.None
+					 && Enum.IsDefined(typeof(SvnErrorCategory), ex.SvnErrorCategory))
+				return string.Format("{0}:{1}", ex.SvnErrorCategory, ex.SvnErrorCode);
+
+			return ((int)ex.SvnErrorCode).ToString();
+		}
+
+		private static string GetNestedMessages(Exception ex)
+		{
+			StringBuilder sb = new StringBuilder();
+
+			while (ex != null)
+			{
+				sb.AppendLine(ex.Message.Trim());
+				ex = ex.InnerException;
+			}
+
+			return sb.ToString();
+		}
+	}
 }

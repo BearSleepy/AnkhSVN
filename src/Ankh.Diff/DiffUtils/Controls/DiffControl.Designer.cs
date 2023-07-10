@@ -117,7 +117,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             // 
             // mnuCopy
             // 
-            this.mnuCopy.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.Copy;
+            this.mnuCopy.Image = Resources.Copy;
             this.mnuCopy.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.mnuCopy.Name = "mnuCopy";
             this.mnuCopy.Size = new System.Drawing.Size(157, 22);
@@ -126,7 +126,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             // 
             // mnuTextDiff
             // 
-            this.mnuTextDiff.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.ShowDifferences;
+            this.mnuTextDiff.Image = Resources.ShowDifferences;
             this.mnuTextDiff.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.mnuTextDiff.Name = "mnuTextDiff";
             this.mnuTextDiff.Size = new System.Drawing.Size(157, 22);
@@ -293,7 +293,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             // btnCopy
             // 
             this.btnCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnCopy.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.Copy;
+            this.btnCopy.Image = Resources.Copy;
             this.btnCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(23, 22);
@@ -303,7 +303,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             // btnTextDiff
             // 
             this.btnTextDiff.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnTextDiff.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.ShowDifferences;
+            this.btnTextDiff.Image = Resources.ShowDifferences;
             this.btnTextDiff.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnTextDiff.Name = "btnTextDiff";
             this.btnTextDiff.Size = new System.Drawing.Size(23, 22);
@@ -318,7 +318,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             // btnFind
             // 
             this.btnFind.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFind.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.Find;
+            this.btnFind.Image = Resources.Find;
             this.btnFind.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(23, 22);
@@ -328,7 +328,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             // btnFindNext
             // 
             this.btnFindNext.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFindNext.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.FindNext;
+            this.btnFindNext.Image = Resources.FindNext;
             this.btnFindNext.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnFindNext.Name = "btnFindNext";
             this.btnFindNext.Size = new System.Drawing.Size(23, 22);
@@ -338,7 +338,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             // btnFindPrevious
             // 
             this.btnFindPrevious.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFindPrevious.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.FindPrev;
+            this.btnFindPrevious.Image = Resources.FindPrev;
             this.btnFindPrevious.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnFindPrevious.Name = "btnFindPrevious";
             this.btnFindPrevious.Size = new System.Drawing.Size(23, 22);
@@ -353,7 +353,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             // btnFirstDiff
             // 
             this.btnFirstDiff.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFirstDiff.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.FirstDiff;
+            this.btnFirstDiff.Image = Resources.FirstDiff;
             this.btnFirstDiff.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnFirstDiff.Name = "btnFirstDiff";
             this.btnFirstDiff.Size = new System.Drawing.Size(23, 22);
@@ -364,7 +364,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             // btnPrevDiff
             // 
             this.btnPrevDiff.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnPrevDiff.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.PrevDiff;
+            this.btnPrevDiff.Image = Resources.PrevDiff;
             this.btnPrevDiff.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPrevDiff.Name = "btnPrevDiff";
             this.btnPrevDiff.Size = new System.Drawing.Size(23, 22);
@@ -374,7 +374,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             // btnNextDiff
             // 
             this.btnNextDiff.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnNextDiff.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.NextDiff;
+            this.btnNextDiff.Image = Resources.NextDiff;
             this.btnNextDiff.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNextDiff.Name = "btnNextDiff";
             this.btnNextDiff.Size = new System.Drawing.Size(23, 22);
@@ -384,7 +384,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             // btnLastDiff
             // 
             this.btnLastDiff.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnLastDiff.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.LastDiff;
+            this.btnLastDiff.Image = Resources.LastDiff;
             this.btnLastDiff.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnLastDiff.Name = "btnLastDiff";
             this.btnLastDiff.Size = new System.Drawing.Size(23, 22);
@@ -399,7 +399,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             // btnGotoLine
             // 
             this.btnGotoLine.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnGotoLine.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.GotoLine;
+            this.btnGotoLine.Image = Resources.GotoLine;
             this.btnGotoLine.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnGotoLine.Name = "btnGotoLine";
             this.btnGotoLine.Size = new System.Drawing.Size(23, 22);
@@ -409,7 +409,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             // btnRecompare
             // 
             this.btnRecompare.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnRecompare.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.Recompare;
+            this.btnRecompare.Image = Resources.Recompare;
             this.btnRecompare.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRecompare.Name = "btnRecompare";
             this.btnRecompare.Size = new System.Drawing.Size(23, 22);
@@ -426,7 +426,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             this.lblDelete.AutoSize = false;
             this.lblDelete.BackColor = System.Drawing.Color.Pink;
             this.lblDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.lblDelete.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.Deleted;
+            this.lblDelete.Image = Resources.Deleted;
             this.lblDelete.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.lblDelete.Name = "lblDelete";
             this.lblDelete.Size = new System.Drawing.Size(22, 22);
@@ -439,7 +439,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             this.lblChange.AutoSize = false;
             this.lblChange.BackColor = System.Drawing.Color.PaleGreen;
             this.lblChange.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.lblChange.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.Changed;
+            this.lblChange.Image = Resources.Changed;
             this.lblChange.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.lblChange.Name = "lblChange";
             this.lblChange.Size = new System.Drawing.Size(22, 22);
@@ -452,7 +452,7 @@ namespace Ankh.Diff.DiffUtils.Controls
             this.lblInsert.AutoSize = false;
             this.lblInsert.BackColor = System.Drawing.Color.PaleTurquoise;
             this.lblInsert.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.lblInsert.Image = global::Ankh.Diff.DiffUtils.Properties.Resources.Inserted;
+            this.lblInsert.Image = Resources.Inserted;
             this.lblInsert.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.lblInsert.Name = "lblInsert";
             this.lblInsert.Size = new System.Drawing.Size(22, 22);

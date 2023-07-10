@@ -1,45 +1,51 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  
-  <!-- Intent is to share well-worn cross-platform and version build setup, 
-    without necessarily needing any specific toolkit or SDK, and to find way
-    to share the AddOn Studio AnkhSVN build setup that otherwise would have
-    been locked away. The organization here is a hybrid to help me and to make
-    it easy to share AnkhSVN build platform updates from the AS code set. -->
 
-  <!-- top-of-file seed locations -->
-  <PropertyGroup>
-    <!-- paths to addon studio targets -->
-    <SolutionCommonBase_>$(SolutionDir)..\..</SolutionCommonBase_>
-    <SourceCommonBase_>$(SolutionCommonBase_)\Shell\Common\ServicesC</SourceCommonBase_>
+	<!-- Intent is to share well-worn cross-platform and version build setup,
+		without necessarily needing any specific toolkit or SDK, and to find way
+		to share the AddOn Studio AnkhSVN build setup that otherwise would have
+		been locked away. The organization here is a hybrid to help me and to make
+		it easy to share AnkhSVN build platform updates from the AS code set. -->
 
-    <!-- path to common references between extensions, like SharpSvn in this case,
-      such that $(LocalReferenceBase_)\SharpSvn holds both SharpSvn dlls -->
-    <LocalReferenceBase_>$(SolutionDir)..\References</LocalReferenceBase_>
-  </PropertyGroup>
+	<!-- top-of-file seed locations -->
+	<PropertyGroup>
+		<!-- paths to addon studio targets -->
+		<SolutionCommonBase_>$(SolutionDir)..\..</SolutionCommonBase_>
+		<SourceCommonBase_>$(SolutionCommonBase_)\Shell\Common\ServicesC</SourceCommonBase_>
 
-  
-  <!-- addon studio -->
-  <Import Project="$(SourceCommonBase_)\Build.VCS_Thirdparty.1.targets" Condition="Exists('$(SourceCommonBase_)\Build.VCS_Thirdparty.1.targets')" />
+		<!-- path to common references between extensions, like SharpSvn in this case,
+			such that $(LocalReferenceBase_)\SharpSvn holds both SharpSvn dlls -->
+		<LocalReferenceBase_>$(SolutionDir)..\References</LocalReferenceBase_>
+	</PropertyGroup>
 
 
-  <!-- else minimal necessary for 17 only -->
-  <PropertyGroup Condition="!Exists('$(SourceCommonBase_)\Build.VCS_Thirdparty.1.targets')">
-    
-    <!-- defines that show in any CS file -->
-    <FaReleaseDefines></FaReleaseDefines>
+	<!-- addon studio -->
+	<Import Project="$(SourceCommonBase_)\Build.VCS_Thirdparty.1.targets" Condition="Exists('$(SourceCommonBase_)\Build.VCS_Thirdparty.1.targets')" />
 
-    <!-- required path to SDK dlls, AS has own curated set to work with any 17 version -->
-    <VsSdkRefsPath_></VsSdkRefsPath_>
-    
-    <MinimumVisualStudioVersion>$(VisualStudioVersion)</MinimumVisualStudioVersion>
+	<PropertyGroup>
+		<!-- defines that show in any CS file -->
+		<FaReleaseDefines>$(FaReleaseDefines);NO_ANKHSITE</FaReleaseDefines>
+		<!--<FaReleaseDefines>$(FaReleaseDefines);NO_ANKHSITE;GEN_ABOUTLINKAGE</FaReleaseDefines>-->
+		<!--
+		GEN_ABOUTLINKAGE - build version that generates and show the versions linkage in about
+		NO_ANKHSITE - strip any facilities for the old sites that currently no longer exist
+		-->
+	</PropertyGroup>
 
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+	<!-- else minimal necessary for 17 only -->
+	<PropertyGroup Condition="!Exists('$(SourceCommonBase_)\Build.VCS_Thirdparty.1.targets')">
 
-    <TargetFrameworkVersion Condition="'$(VisualStudioVersion)' == '17.0'">v4.7.2</TargetFrameworkVersion>
-    
-    <PlatformSuffix_ Condition="'$(VisualStudioVersion)' == '17.0'">17</PlatformSuffix_>
+		<!-- required path to SDK dlls, AS has own curated set to work with any 17 version -->
+		<VsSdkRefsPath_></VsSdkRefsPath_>
 
-  </PropertyGroup>
+		<MinimumVisualStudioVersion>$(VisualStudioVersion)</MinimumVisualStudioVersion>
+
+		<VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+
+		<TargetFrameworkVersion Condition="'$(VisualStudioVersion)' == '17.0'">v4.7.2</TargetFrameworkVersion>
+
+		<PlatformSuffix_ Condition="'$(VisualStudioVersion)' == '17.0'">17</PlatformSuffix_>
+
+	</PropertyGroup>
 
 </Project>

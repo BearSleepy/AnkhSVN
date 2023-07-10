@@ -15,13 +15,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ankh.VS.Interop", "Ankh.VS.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "readme", "readme", "{1C595CA2-D2B5-4C70-9C38-8E26038836FD}"
 	ProjectSection(SolutionItems) = preProject
-		Readme\BUILD.md = Readme\BUILD.md
-		Readme\CHANGES.txt = Readme\CHANGES.txt
-		Readme\CONTRIBUTORS.txt = Readme\CONTRIBUTORS.txt
-		Readme\LICENSE.rtf = Readme\LICENSE.rtf
-		Readme\LICENSE.txt = Readme\LICENSE.txt
-		Readme\NOTICE.txt = Readme\NOTICE.txt
-		Readme\README.md = Readme\README.md
+		BUILD.md = BUILD.md
+		CHANGES.txt = CHANGES.txt
+		CONTRIBUTORS.txt = CONTRIBUTORS.txt
+		LICENSE.rtf = LICENSE.rtf
+		LICENSE.txt = LICENSE.txt
+		NOTICE.txt = NOTICE.txt
+		README.md = README.md
+		Release-Checklist.txt = Release-Checklist.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{BFB6F0F7-23AE-4BA3-94E0-6FF0765F6A05}"
@@ -31,7 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{BFB6F0F7
 		tools\Ankh-Common.3.sdk.targets = tools\Ankh-Common.3.sdk.targets
 		tools\Ankh-Common.4.references.targets = tools\Ankh-Common.4.references.targets
 		tools\Ankh-Common.5.TurtleQQn.targets = tools\Ankh-Common.5.TurtleQQn.targets
-		tools\Ankh-Common.6.defines.targets = tools\Ankh-Common.6.defines.targets
+		tools\Tools-Common.1.props.targets = tools\Tools-Common.1.props.targets
+		tools\Tools-Common.2.build.targets = tools\Tools-Common.2.build.targets
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementation", "Implementation", "{F6E58164-D4AB-4249-87A7-01648B443602}"

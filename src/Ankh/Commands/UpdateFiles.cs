@@ -22,134 +22,134 @@ using Ankh.UI.PathSelector;
 
 namespace Ankh.Commands
 {
-    /// <summary>
-    /// A command that updates an item.
-    /// </summary>
-    [SvnCommand(AnkhCommand.UpdateItemSpecific)]
-    [SvnCommand(AnkhCommand.UpdateItemLatest)]
-    [SvnCommand(AnkhCommand.UpdateItemLatestRecursive)]
-    [SvnCommand(AnkhCommand.UpdateProjectFileSpecific)]
-    sealed class UpdateFiles : CommandBase
-    {
-        public override void OnUpdate(CommandUpdateEventArgs e)
-        {
-            bool hasDirectory = false;
-            bool hasFile = false;
+	/// <summary>
+	/// A command that updates an item.
+	/// </summary>
+	[SvnCommand(AnkhCommand.UpdateItemSpecific)]
+	[SvnCommand(AnkhCommand.UpdateItemLatest)]
+	[SvnCommand(AnkhCommand.UpdateItemLatestRecursive)]
+	[SvnCommand(AnkhCommand.UpdateProjectFileSpecific)]
+	sealed class UpdateFiles : CommandBase
+	{
+		public override void OnUpdate(CommandUpdateEventArgs e)
+		{
+			bool hasDirectory = false;
+			bool hasFile = false;
 
-            if (e.State.SolutionBuilding || e.State.Debugging || e.State.SolutionOpening)
-            {
-                e.Enabled = false;
-                return;
-            }
+			if (e.State.SolutionBuilding || e.State.Debugging || e.State.SolutionOpening)
+			{
+				e.Enabled = false;
+				return;
+			}
 
-            foreach (SvnItem item in e.Selection.GetSelectedSvnItems(false))
-            {
-                if (item.IsDirectory)
-                    hasDirectory = true;
-                else if (item.IsFile)
-                    hasFile = true;
+			foreach (SvnItem item in e.Selection.GetSelectedSvnItems(false))
+			{
+				if (item.IsDirectory)
+					hasDirectory = true;
+				else if (item.IsFile)
+					hasFile = true;
 
-                if (hasFile && hasDirectory)
-                    break;
-            }
+				if (hasFile && hasDirectory)
+					break;
+			}
 
-            if (hasDirectory && !hasFile)
-            {
-                // User should use the recursive folder update
-                e.Enabled = false;
-                return;
-            }
+			if (hasDirectory && !hasFile)
+			{
+				// User should use the recursive folder update
+				e.Enabled = false;
+				return;
+			}
 
-            if (e.Command != AnkhCommand.UpdateProjectFileSpecific)
-                foreach (SvnItem item in e.Selection.GetSelectedSvnItems(true))
-                {
-                    if (item.IsVersioned)
-                        return;
-                }
-            e.Enabled = false;
-        }
+			if (e.Command != AnkhCommand.UpdateProjectFileSpecific)
+				foreach (SvnItem item in e.Selection.GetSelectedSvnItems(true))
+				{
+					if (item.IsVersioned)
+						return;
+				}
+			e.Enabled = false;
+		}
 
-        public override void OnExecute(CommandEventArgs e)
-        {
-            SvnRevision updateTo;
-            List<string> files = new List<string>();
+		public override void OnExecute(CommandEventArgs e)
+		{
+			SvnRevision updateTo;
+			List<string> files = new List<string>();
 
-            if (e.Command == AnkhCommand.UpdateItemSpecific
-                || e.Command == AnkhCommand.UpdateProjectFileSpecific)
-            {
-                updateTo = SvnRevision.Head;
-                List<SvnItem> items = new List<SvnItem>();
+			if (e.Command == AnkhCommand.UpdateItemSpecific
+				|| e.Command == AnkhCommand.UpdateProjectFileSpecific)
+			{
+				updateTo = SvnRevision.Head;
+				List<SvnItem> items = new List<SvnItem>();
 
-                foreach (SvnItem item in e.Selection.GetSelectedSvnItems(true))
-                {
-                    if (item.IsFile && item.IsVersioned)
-                        items.Add(item);
-                }
+				foreach (SvnItem item in e.Selection.GetSelectedSvnItems(true))
+				{
+					if (item.IsFile && item.IsVersioned)
+						items.Add(item);
+				}
 
-                using (CommonFileSelectorDialog dlg = new CommonFileSelectorDialog())
-                {
-                    dlg.Text = CommandStrings.UpdateFilesTitle;
-                    dlg.Items = items;
-                    dlg.RevisionStart = updateTo;
+				using (CommonFileSelectorDialog dlg = new CommonFileSelectorDialog())
+				{
+					dlg.Text = Resources.UpdateFilesTitle;
+					dlg.Items = items;
+					dlg.RevisionStart = updateTo;
 
-                    if (dlg.ShowDialog(e.Context) != DialogResult.OK)
-                        return;
+					if (dlg.ShowDialog(e.Context) != DialogResult.OK)
+						return;
 
-                    files.AddRange(SvnItem.GetPaths(dlg.GetCheckedItems()));
-                    updateTo = dlg.RevisionStart;
-                }
-            }
-            else
-            {
-                updateTo = SvnRevision.Head;
-                List<SvnItem> dirs = new List<SvnItem>();
+					files.AddRange(SvnItem.GetPaths(dlg.GetCheckedItems()));
+					updateTo = dlg.RevisionStart;
+				}
+			}
+			else
+			{
+				updateTo = SvnRevision.Head;
+				List<SvnItem> dirs = new List<SvnItem>();
 
-                foreach (SvnItem item in e.Selection.GetSelectedSvnItems(true))
-                {
-                    if (!item.IsVersioned)
-                        continue;
+				foreach (SvnItem item in e.Selection.GetSelectedSvnItems(true))
+				{
+					if (!item.IsVersioned)
+						continue;
 
-                    bool found = false;
-                    foreach (SvnItem p in dirs)
-                    {
-                        if (item.IsBelowPath(p) && p.WorkingCopy == item.WorkingCopy)
-                        {
-                            found = true;
-                            break;
-                        }
-                    }
+					bool found = false;
+					foreach (SvnItem p in dirs)
+					{
+						if (item.IsBelowPath(p) && p.WorkingCopy == item.WorkingCopy)
+						{
+							found = true;
+							break;
+						}
+					}
 
-                    if (found)
-                        continue;
+					if (found)
+						continue;
 
-                    files.Add(item.FullPath);
+					files.Add(item.FullPath);
 
-                    if (item.IsDirectory)
-                        dirs.Add(item);
-                }
-            }
+					if (item.IsDirectory)
+						dirs.Add(item);
+				}
+			}
 
-            IAnkhOpenDocumentTracker tracker = e.GetService<IAnkhOpenDocumentTracker>();
-            tracker.SaveDocuments(e.Selection.GetSelectedFiles(true));
-            using (DocumentLock lck = tracker.LockDocuments(files, DocumentLockType.NoReload))
-            using (lck.MonitorChangesForReload())
-            {
-                SvnUpdateResult ur;
-                ProgressRunnerArgs pa = new ProgressRunnerArgs();
-                pa.CreateLog = true;
+			IAnkhOpenDocumentTracker tracker = e.GetService<IAnkhOpenDocumentTracker>();
+			tracker.SaveDocuments(e.Selection.GetSelectedFiles(true));
+			using (DocumentLock lck = tracker.LockDocuments(files, DocumentLockType.NoReload))
+			using (lck.MonitorChangesForReload())
+			{
+				SvnUpdateResult ur;
+				ProgressRunnerArgs pa = new ProgressRunnerArgs();
+				pa.CreateLog = true;
 
-                var ih = e.GetService<IConflictHandler>();
+				var ih = e.GetService<IConflictHandler>();
 
-                e.GetService<IProgressRunner>().RunModal(CommandStrings.UpdatingTitle, pa,
-                                                         delegate(object sender, ProgressWorkerArgs ee)
-                                                         {
-                                                             SvnUpdateArgs ua = new SvnUpdateArgs();
-                                                             ua.Depth = SvnDepth.Infinity;
-                                                             ua.Revision = updateTo;
-                                                             ih.RegisterConflictHandler(ua, ee.Synchronizer);
-                                                             ee.Client.Update(files, ua, out ur);
-                                                         });
-            }
-        }
-    }
+				e.GetService<IProgressRunner>().RunModal(Resources.UpdatingTitle, pa,
+														 delegate(object sender, ProgressWorkerArgs ee)
+														 {
+															 SvnUpdateArgs ua = new SvnUpdateArgs();
+															 ua.Depth = SvnDepth.Infinity;
+															 ua.Revision = updateTo;
+															 ih.RegisterConflictHandler(ua, ee.Synchronizer);
+															 ee.Client.Update(files, ua, out ur);
+														 });
+			}
+		}
+	}
 }

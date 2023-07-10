@@ -21,122 +21,122 @@ using SharpSvn;
 
 namespace Ankh.UI.SvnLog.Commands
 {
-    [SvnCommand(AnkhCommand.LogRevertThisRevisions, AlwaysAvailable = true)]
-    [SvnCommand(AnkhCommand.LogRevertTo, AlwaysAvailable = true)]
-    class RevertChanges : ICommandHandler
-    {
-        public void OnUpdate(CommandUpdateEventArgs e)
-        {
-            ILogControl logWindow = e.Selection.GetActiveControl<ILogControl>();
+	[SvnCommand(AnkhCommand.LogRevertThisRevisions, AlwaysAvailable = true)]
+	[SvnCommand(AnkhCommand.LogRevertTo, AlwaysAvailable = true)]
+	class RevertChanges : ICommandHandler
+	{
+		public void OnUpdate(CommandUpdateEventArgs e)
+		{
+			ILogControl logWindow = e.Selection.GetActiveControl<ILogControl>();
 
-            if (logWindow == null)
-            {
-                e.Enabled = false;
-                return;
-            }
+			if (logWindow == null)
+			{
+				e.Enabled = false;
+				return;
+			}
 
-            SvnOrigin origin = EnumTools.GetSingle(logWindow.Origins);
+			SvnOrigin origin = EnumTools.GetSingle(logWindow.Origins);
 
-            if (origin == null || !(origin.Target is SvnPathTarget))
-            {
-                e.Enabled = false;
-                return;
-            }
+			if (origin == null || !(origin.Target is SvnPathTarget))
+			{
+				e.Enabled = false;
+				return;
+			}
 
-            int count = 0;
-            foreach (ISvnLogItem item in e.Selection.GetSelection<ISvnLogItem>())
-            {
-                count++;
+			int count = 0;
+			foreach (ISvnLogItem item in e.Selection.GetSelection<ISvnLogItem>())
+			{
+				count++;
 
-                if (count > 1)
-                    break;
-            }
+				if (count > 1)
+					break;
+			}
 
-            switch (e.Command)
-            {
-                case AnkhCommand.LogRevertTo:
-                    if (count == 1)
-                        return;
-                    break;
-                case AnkhCommand.LogRevertThisRevisions:
-                    if (count > 0)
-                        return;
-                    break;
-            }
-            e.Enabled = false;
-        }
+			switch (e.Command)
+			{
+				case AnkhCommand.LogRevertTo:
+					if (count == 1)
+						return;
+					break;
+				case AnkhCommand.LogRevertThisRevisions:
+					if (count > 0)
+						return;
+					break;
+			}
+			e.Enabled = false;
+		}
 
-        public void OnExecute(CommandEventArgs e)
-        {
-            ILogControl logWindow = e.Selection.GetActiveControl<ILogControl>();
-            IProgressRunner progressRunner = e.GetService<IProgressRunner>();
+		public void OnExecute(CommandEventArgs e)
+		{
+			ILogControl logWindow = e.Selection.GetActiveControl<ILogControl>();
+			IProgressRunner progressRunner = e.GetService<IProgressRunner>();
 
-            if (logWindow == null)
-                return;
+			if (logWindow == null)
+				return;
 
-            List<SvnRevisionRange> revisions = new List<SvnRevisionRange>();
+			List<SvnRevisionRange> revisions = new List<SvnRevisionRange>();
 
-            if (e.Command == AnkhCommand.LogRevertTo)
-            {
-                ISvnLogItem item = EnumTools.GetSingle(e.Selection.GetSelection<ISvnLogItem>());
+			if (e.Command == AnkhCommand.LogRevertTo)
+			{
+				ISvnLogItem item = EnumTools.GetSingle(e.Selection.GetSelection<ISvnLogItem>());
 
-                if (item == null)
-                    return;
+				if (item == null)
+					return;
 
-                // Revert to revision, is revert everything after
-                revisions.Add(new SvnRevisionRange(SvnRevision.Working, item.Revision));
-            }
-            else
-            {
-                foreach (ISvnLogItem item in e.Selection.GetSelection<ISvnLogItem>())
-                {
-                    revisions.Add(new SvnRevisionRange(item.Revision, item.Revision - 1));
-                }
-            }
+				// Revert to revision, is revert everything after
+				revisions.Add(new SvnRevisionRange(SvnRevision.Working, item.Revision));
+			}
+			else
+			{
+				foreach (ISvnLogItem item in e.Selection.GetSelection<ISvnLogItem>())
+				{
+					revisions.Add(new SvnRevisionRange(item.Revision, item.Revision - 1));
+				}
+			}
 
-            if (revisions.Count == 0)
-                return;
+			if (revisions.Count == 0)
+				return;
 
-            IAnkhOpenDocumentTracker tracker = e.GetService<IAnkhOpenDocumentTracker>();
+			IAnkhOpenDocumentTracker tracker = e.GetService<IAnkhOpenDocumentTracker>();
 
-            HybridCollection<string> nodes = new HybridCollection<string>(StringComparer.OrdinalIgnoreCase);
+			HybridCollection<string> nodes = new HybridCollection<string>(StringComparer.OrdinalIgnoreCase);
 
-            foreach (SvnOrigin o in logWindow.Origins)
-            {
-                SvnPathTarget pt = o.Target as SvnPathTarget;
-                if (pt == null)
-                    continue;
+			foreach (SvnOrigin o in logWindow.Origins)
+			{
+				SvnPathTarget pt = o.Target as SvnPathTarget;
+				if (pt == null)
+					continue;
 
-                foreach (string file in tracker.GetDocumentsBelow(pt.FullPath))
-                {
-                    if (!nodes.Contains(file))
-                        nodes.Add(file);
-                }
-            }
+				foreach (string file in tracker.GetDocumentsBelow(pt.FullPath))
+				{
+					if (!nodes.Contains(file))
+						nodes.Add(file);
+				}
+			}
 
-            if (nodes.Count > 0)
-                tracker.SaveDocuments(nodes); // Saves all open documents below all specified origins
+			if (nodes.Count > 0)
+				tracker.SaveDocuments(nodes); // Saves all open documents below all specified origins
 
 
-            using (DocumentLock dl = tracker.LockDocuments(nodes, DocumentLockType.NoReload))
-            using (dl.MonitorChangesForReload())
-            {
-                SvnMergeArgs ma = new SvnMergeArgs();
+			using (DocumentLock dl = tracker.LockDocuments(nodes, DocumentLockType.NoReload))
+			using (dl.MonitorChangesForReload())
+			{
+				SvnMergeArgs ma = new SvnMergeArgs();
 
-                progressRunner.RunModal(LogStrings.Reverting,
-                delegate(object sender, ProgressWorkerArgs ee)
-                {
-                    foreach (SvnOrigin item in logWindow.Origins)
-                    {
-                        SvnPathTarget target = item.Target as SvnPathTarget;
+				progressRunner.RunModal(Resources.Reverting,
+				delegate(object sender, ProgressWorkerArgs ee)
+				{
+					foreach (SvnOrigin item in logWindow.Origins)
+					{
+						SvnPathTarget target = item.Target as SvnPathTarget;
 
-                        if (target == null)
-                            continue;
+						if (target == null)
+							continue;
 
-                        ee.Client.Merge(target.FullPath, target, revisions, ma);
-                    }
-                });
-            }
-        }
-    }
+						ee.Client.Merge(target.FullPath, target, revisions, ma);
+					}
+				});
+			}
+		}
+	}
 }

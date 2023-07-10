@@ -24,91 +24,89 @@ using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Ankh.UI.PendingChanges
 {
-    partial class PendingConflictsPage : PendingChangesPage
-    {
-        public PendingConflictsPage()
-        {
-            InitializeComponent();
-        }
+	partial class PendingConflictsPage : PendingChangesPage
+	{
+		public PendingConflictsPage()
+		{
+			InitializeComponent();
+		}
 
-        protected override Type PageType
-        {
-            get
-            {
-                return typeof(PendingConflictsPage);
-            }
-        }
+		protected override Type PageType
+		{
+			get
+			{
+				return typeof(PendingConflictsPage);
+			}
+		}
 
-        bool _loaded;
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            conflictView.Context = Context;
+		bool _loaded;
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
+			conflictView.Context = Context;
 
-            IAnkhVSColor clr = Context.GetService<IAnkhVSColor>();
-            if (clr != null)
-            {
-                Color c;
-                if (clr.TryGetColor(__VSSYSCOLOREX.VSCOLOR_TITLEBAR_INACTIVE, out c))
-                {
-                    resolvePanel.BackColor = c;
-                }
+			IAnkhVSColor clr = Context.GetService<IAnkhVSColor>();
+			if (clr != null)
+			{
+				Color c;
+				if (clr.TryGetColor(__VSSYSCOLOREX.VSCOLOR_TITLEBAR_INACTIVE, out c))
+				{
+					resolvePanel.BackColor = c;
+				}
 
-                if (clr.TryGetColor(__VSSYSCOLOREX.VSCOLOR_TITLEBAR_INACTIVE_TEXT, out c))
-                {
-                    resolvePanel.ForeColor = c;
-                }
+				if (clr.TryGetColor(__VSSYSCOLOREX.VSCOLOR_TITLEBAR_INACTIVE_TEXT, out c))
+				{
+					resolvePanel.ForeColor = c;
+				}
 
-                if (clr.TryGetColor((__VSSYSCOLOREX)(-207) /* VS2010: VSCOLOR_INFOBACKGROUND */, out c))
-                {
-                    conflictHeader.BackColor = c;
-                }
-                else
-                    conflictHeader.BackColor = System.Drawing.SystemColors.Info;
+				if (clr.TryGetColor((__VSSYSCOLOREX)(-207) /* VS2010: VSCOLOR_INFOBACKGROUND */, out c))
+				{
+					conflictHeader.BackColor = c;
+				}
+				else
+					conflictHeader.BackColor = System.Drawing.SystemColors.Info;
 
-                if (clr.TryGetColor((__VSSYSCOLOREX)(-208) /* VS2010: VSCOLOR_INFOTEXT */, out c))
-                {
-                    conflictHeader.ForeColor = c;
-                }
-                else
-                    conflictHeader.ForeColor = System.Drawing.SystemColors.InfoText;
-            }
+				if (clr.TryGetColor((__VSSYSCOLOREX)(-208) /* VS2010: VSCOLOR_INFOTEXT */, out c))
+				{
+					conflictHeader.ForeColor = c;
+				}
+				else
+					conflictHeader.ForeColor = System.Drawing.SystemColors.InfoText;
+			}
 
-            conflictView.ColumnWidthChanged += new ColumnWidthChangedEventHandler(conflictView_ColumnWidthChanged);
-            IDictionary<string, int> widths = ConfigurationService.GetColumnWidths(GetType());
-            conflictView.SetColumnWidths(widths);
+			conflictView.ColumnWidthChanged += new ColumnWidthChangedEventHandler(conflictView_ColumnWidthChanged);
+			IDictionary<string, int> widths = ConfigurationService.GetColumnWidths(GetType());
+			conflictView.SetColumnWidths(widths);
 
-            ResizeToFit();
-            _loaded = true;
-        }
+			ResizeToFit();
+			_loaded = true;
+		}
 
-        protected void conflictView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
-        {
-            IDictionary<string, int> widths = conflictView.GetColumnWidths();
-            ConfigurationService.SaveColumnsWidths(GetType(), widths);
-        }
+		protected void conflictView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+		{
+			IDictionary<string, int> widths = conflictView.GetColumnWidths();
+			ConfigurationService.SaveColumnsWidths(GetType(), widths);
+		}
 
-        protected override void OnSizeChanged(EventArgs e)
-        {
-            base.OnSizeChanged(e);
-            if (_loaded)
-                ResizeToFit();
-        }
+		protected override void OnSizeChanged(EventArgs e)
+		{
+			base.OnSizeChanged(e);
+			if (_loaded)
+				ResizeToFit();
+		}
 
-        public override void OnThemeChanged(EventArgs e)
-        {
-            base.OnThemeChanged(e);
-            if (VSVersion.VS2012OrLater)
-            {
-                borderPanel.BorderStyle = BorderStyle.None;
-                conflictView.BorderStyle = BorderStyle.None;
+		public override void OnThemeChanged(EventArgs e)
+		{
+			base.OnThemeChanged(e);
+#if VS_11_ENV
+			borderPanel.BorderStyle = BorderStyle.None;
+			conflictView.BorderStyle = BorderStyle.None;
+#endif // VS_11_ENV
+		}
 
-            }
-        }
-
-        private void ResizeToFit()
-        {
-            conflictEditSplitter.SplitterDistance += conflictEditSplitter.Panel2.Height - resolveLinkLabel.Bottom - resolveLinkLabel.Margin.Bottom;
-        }
-    }
+		private void ResizeToFit()
+		{
+			conflictEditSplitter.SplitterDistance += conflictEditSplitter.Panel2.Height - resolveLinkLabel.Bottom - resolveLinkLabel.Margin.Bottom;
+		}
+	}
 }

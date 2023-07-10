@@ -1,4 +1,4 @@
-﻿// Copyright 2008-2009 The AnkhSVN Project
+// Copyright 2008-2009 The AnkhSVN Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,13 +34,15 @@ namespace Ankh
 		// You can specify all the values or you can default the Build and Revision Numbers
 		// by using the '*' as shown below:
 		//[assembly: AssemblyVersion("2.9.*")]
-		public const string AssemblyVersion = @"2.9.88.0";
+		public const string AssemblyVersion = @"3.0.0.0";
+
 
 		//************ The Package Load Key Registration ***********************************
 		/// <summary>
 		/// The guid the AnkhSvn package is registered with inside Visual Studio
 		/// </summary>
 		public const string PackageId = "604ad610-5cf9-4bd5-8acc-f49810e2efd4";
+		public const string PackageName = "AnkhSVN - Subversion Support for Visual Studio";
 		public const string PackageDescription = "AnkhSVN - Subversion Support for Visual Studio";
 
 		/// <summary>The package version as used in the PLK</summary>
@@ -67,7 +69,8 @@ namespace Ankh
 		// Items for the VS 2010 Extension registration
 		public const string ExtensionTitle = AnkhId.AssemblyProduct;
 		public const string ExtensionAuthor = AnkhId.AssemblyCompany;
-		public const string ExtensionDescription = "Open Source Subversion SCC Provider for Visual Studio 2012, 2013, 2015, 2017, 2019 and 2022.";
+		public const string ExtensionDescription = "Open Source Subversion SCC Provider for " + VSVersion.name;
+		//public const string ExtensionDescription = "Open Source Subversion SCC Provider for Visual Studio 2012, 2013, 2015, 2017, 2019 and 2022.";
 		public const string ExtensionMoreInfoUrl = "http://www.ankhsvn.net/";
 		public const string ExtensionGettingStartedUrl = "http://www.ankhsvn.net/";
 		public const string ExtensionReleaseNotesUrl = "http://ankhsvn.net/releasenotes";

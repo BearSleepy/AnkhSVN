@@ -14,57 +14,64 @@
 
 namespace Ankh.UI.PendingChanges
 {
-    partial class PendingIssuesPage
-    {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class PendingIssuesPage
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Component Designer generated code
+		#region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PendingIssuesPage));
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			this.pleaseConfigureLabel = new System.Windows.Forms.LinkLabel();
 			this.SuspendLayout();
-			// 
+			//
 			// pleaseConfigureLabel
-			// 
+			//
 			this.pleaseConfigureLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			resources.ApplyResources(this.pleaseConfigureLabel, "pleaseConfigureLabel");
+			this.pleaseConfigureLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pleaseConfigureLabel.Location = new System.Drawing.Point(0, 0);
 			this.pleaseConfigureLabel.Name = "pleaseConfigureLabel";
+			this.pleaseConfigureLabel.Size = new System.Drawing.Size(768, 300);
+			this.pleaseConfigureLabel.TabIndex = 0;
 			this.pleaseConfigureLabel.TabStop = true;
+			this.pleaseConfigureLabel.Text = "This solution is not associated with an Issue Repository.\n\nConfigure an associati" +
+	"on on the Solution node in the Solution explorer\nor click here for more informat" +
+	"ion.";
+			this.pleaseConfigureLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.pleaseConfigureLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.pleaseConfigureLabel_LinkClicked);
-			// 
+			//
 			// PendingIssuesPage
-			// 
-			resources.ApplyResources(this, "$this");
+			//
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.pleaseConfigureLabel);
 			this.Name = "PendingIssuesPage";
+			this.Text = "Issues";
 			this.ResumeLayout(false);
 
-        }
+		}
 
-        #endregion
+		#endregion
 
 		private System.Windows.Forms.LinkLabel pleaseConfigureLabel;
 

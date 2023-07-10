@@ -18,39 +18,41 @@ using System.Text;
 
 namespace Ankh.UI.PropertyEditors
 {
-    partial class KeywordsPropertyEditor
-    {
-        #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KeywordsPropertyEditor));
+	partial class KeywordsPropertyEditor
+	{
+		#region Component Designer generated code
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			this.keywordList = new System.Windows.Forms.CheckedListBox();
 			this.SuspendLayout();
-			// 
+			//
 			// keywordList
-			// 
+			//
 			this.keywordList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			resources.ApplyResources(this.keywordList, "keywordList");
+			this.keywordList.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.keywordList.FormattingEnabled = true;
 			this.keywordList.Items.AddRange(new object[] {
-            resources.GetString("keywordList.Items")});
+			"Id"});
+			this.keywordList.Location = new System.Drawing.Point(0, 0);
 			this.keywordList.Name = "keywordList";
+			this.keywordList.Size = new System.Drawing.Size(348, 196);
 			this.keywordList.Sorted = true;
+			this.keywordList.TabIndex = 1;
 			this.keywordList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
-			// 
+			//
 			// KeywordsPropertyEditor
-			// 
+			//
 			this.Controls.Add(this.keywordList);
 			this.Name = "KeywordsPropertyEditor";
 			this.ResumeLayout(false);
 
-        }
-        #endregion
+		}
+		#endregion
 
-        private System.Windows.Forms.CheckedListBox keywordList;
-    }
+		private System.Windows.Forms.CheckedListBox keywordList;
+	}
 }

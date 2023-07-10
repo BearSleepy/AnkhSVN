@@ -35,7 +35,7 @@ namespace Ankh.Commands
 
         protected static bool SaveFile(CommandEventArgs e, ISvnRepositoryItem ri, string toFile)
         {
-            ProgressRunnerResult r = e.GetService<IProgressRunner>().RunModal(CommandStrings.RetrievingFileForComparison,
+            ProgressRunnerResult r = e.GetService<IProgressRunner>().RunModal(Resources.RetrievingFileForComparison,
                 delegate(object sender, ProgressWorkerArgs ee)
                 {
                     using (FileStream fs = File.Create(toFile))

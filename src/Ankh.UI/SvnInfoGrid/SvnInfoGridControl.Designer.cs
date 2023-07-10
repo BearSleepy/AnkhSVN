@@ -2,12 +2,12 @@
 {
 	partial class SvnInfoGridControl
 	{
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -22,34 +22,36 @@
 
 		#region Component Designer generated code
 
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SvnInfoGridControl));
-            this.grid = new Ankh.UI.SvnInfoGrid.InfoPropertyGrid();
-            this.SuspendLayout();
-            // 
-            // grid
-            // 
-            resources.ApplyResources(this.grid, "grid");
-            this.grid.Name = "grid";
-            this.grid.ToolbarVisible = false;
-            // 
-            // SvnInfoGridControl
-            // 
-            resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.grid);
-            this.Name = "SvnInfoGridControl";
-            this.ResumeLayout(false);
+			this.grid = new Ankh.UI.SvnInfoGrid.InfoPropertyGrid();
+			this.SuspendLayout();
+			//
+			// grid
+			//
+			this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.grid.Location = new System.Drawing.Point(0, 0);
+			this.grid.Name = "grid";
+			this.grid.Size = new System.Drawing.Size(150, 150);
+			this.grid.TabIndex = 0;
+			this.grid.ToolbarVisible = false;
+			//
+			// SvnInfoGridControl
+			//
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.grid);
+			this.Name = "SvnInfoGridControl";
+			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-        private Ankh.UI.SvnInfoGrid.InfoPropertyGrid grid;
+		private Ankh.UI.SvnInfoGrid.InfoPropertyGrid grid;
 	}
 }

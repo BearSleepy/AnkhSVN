@@ -45,7 +45,7 @@ namespace Ankh.Commands
                     dirs.Add(i.FullPath);
             }
 
-            e.GetService<IProgressRunner>().RunModal(CommandStrings.UpgradingWorkingCopy,
+            e.GetService<IProgressRunner>().RunModal(Resources.UpgradingWorkingCopy,
                 delegate(object sender, ProgressWorkerArgs a)
                 {
                     HybridCollection<string> done = new HybridCollection<string>(StringComparer.OrdinalIgnoreCase);

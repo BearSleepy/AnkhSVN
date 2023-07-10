@@ -18,109 +18,148 @@ using System.Text;
 
 namespace Ankh.UI
 {
-    partial class ErrorDialog
-    {
-        #region Windows Form Designer generated code
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ErrorDialog));
-            this.messageLabel = new System.Windows.Forms.Label();
-            this.headerLabel = new System.Windows.Forms.Label();
-            this.stackTraceTextBox = new System.Windows.Forms.TextBox();
-            this.okButton = new System.Windows.Forms.Button();
-            this.showStackTraceBtn = new System.Windows.Forms.Button();
-            this.errorReportButton = new System.Windows.Forms.Button();
-            this.whitePanel = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.whitePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // messageLabel
-            // 
-            resources.ApplyResources(this.messageLabel, "messageLabel");
-            this.messageLabel.Name = "messageLabel";
-            // 
-            // headerLabel
-            // 
-            resources.ApplyResources(this.headerLabel, "headerLabel");
-            this.headerLabel.Name = "headerLabel";
-            // 
-            // stackTraceTextBox
-            // 
-            resources.ApplyResources(this.stackTraceTextBox, "stackTraceTextBox");
-            this.stackTraceTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.stackTraceTextBox.Name = "stackTraceTextBox";
-            this.stackTraceTextBox.ReadOnly = true;
-            this.stackTraceTextBox.TabStop = false;
-            // 
-            // okButton
-            // 
-            resources.ApplyResources(this.okButton, "okButton");
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Name = "okButton";
-            // 
-            // showStackTraceBtn
-            // 
-            resources.ApplyResources(this.showStackTraceBtn, "showStackTraceBtn");
-            this.showStackTraceBtn.Name = "showStackTraceBtn";
-            this.showStackTraceBtn.Click += new System.EventHandler(this.showStackTraceBtn_Click);
-            // 
-            // errorReportButton
-            // 
-            resources.ApplyResources(this.errorReportButton, "errorReportButton");
-            this.errorReportButton.DialogResult = System.Windows.Forms.DialogResult.Retry;
-            this.errorReportButton.Name = "errorReportButton";
-            // 
-            // whitePanel
-            // 
-            resources.ApplyResources(this.whitePanel, "whitePanel");
-            this.whitePanel.BackColor = System.Drawing.SystemColors.Window;
-            this.whitePanel.Controls.Add(this.pictureBox1);
-            this.whitePanel.Controls.Add(this.stackTraceTextBox);
-            this.whitePanel.Controls.Add(this.messageLabel);
-            this.whitePanel.Controls.Add(this.headerLabel);
-            this.whitePanel.Name = "whitePanel";
-            // 
-            // pictureBox1
-            // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
-            // 
-            // ErrorDialog
-            // 
-            this.AcceptButton = this.okButton;
-            resources.ApplyResources(this, "$this");
-            this.CancelButton = this.okButton;
-            this.Controls.Add(this.errorReportButton);
-            this.Controls.Add(this.showStackTraceBtn);
-            this.Controls.Add(this.okButton);
-            this.Controls.Add(this.whitePanel);
-            this.Name = "ErrorDialog";
-            this.whitePanel.ResumeLayout(false);
-            this.whitePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
+	partial class ErrorDialog
+	{
+		#region Windows Form Designer generated code
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			this.messageLabel = new System.Windows.Forms.Label();
+			this.headerLabel = new System.Windows.Forms.Label();
+			this.stackTraceTextBox = new System.Windows.Forms.TextBox();
+			this.okButton = new System.Windows.Forms.Button();
+			this.showStackTraceBtn = new System.Windows.Forms.Button();
+			this.errorReportButton = new System.Windows.Forms.Button();
+			this.whitePanel = new System.Windows.Forms.Panel();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.whitePanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.SuspendLayout();
+			//
+			// messageLabel
+			//
+			this.messageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.messageLabel.Location = new System.Drawing.Point(50, 54);
+			this.messageLabel.Name = "messageLabel";
+			this.messageLabel.Size = new System.Drawing.Size(567, 88);
+			this.messageLabel.TabIndex = 1;
+			//
+			// headerLabel
+			//
+			this.headerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.headerLabel.Location = new System.Drawing.Point(50, 12);
+			this.headerLabel.Name = "headerLabel";
+			this.headerLabel.Size = new System.Drawing.Size(569, 32);
+			this.headerLabel.TabIndex = 0;
+			this.headerLabel.Text = "An error occurred";
+			//
+			// stackTraceTextBox
+			//
+			this.stackTraceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.stackTraceTextBox.BackColor = System.Drawing.SystemColors.Window;
+			this.stackTraceTextBox.Location = new System.Drawing.Point(53, 156);
+			this.stackTraceTextBox.Multiline = true;
+			this.stackTraceTextBox.Name = "stackTraceTextBox";
+			this.stackTraceTextBox.ReadOnly = true;
+			this.stackTraceTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+			this.stackTraceTextBox.Size = new System.Drawing.Size(564, 1);
+			this.stackTraceTextBox.TabIndex = 2;
+			this.stackTraceTextBox.TabStop = false;
+			this.stackTraceTextBox.Visible = false;
+			//
+			// okButton
+			//
+			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.Location = new System.Drawing.Point(544, 179);
+			this.okButton.Name = "okButton";
+			this.okButton.Size = new System.Drawing.Size(75, 23);
+			this.okButton.TabIndex = 3;
+			this.okButton.Text = "OK";
+			//
+			// showStackTraceBtn
+			//
+			this.showStackTraceBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.showStackTraceBtn.Location = new System.Drawing.Point(12, 179);
+			this.showStackTraceBtn.Name = "showStackTraceBtn";
+			this.showStackTraceBtn.Size = new System.Drawing.Size(75, 23);
+			this.showStackTraceBtn.TabIndex = 1;
+			this.showStackTraceBtn.Text = "&Stack trace";
+			this.showStackTraceBtn.Click += new System.EventHandler(this.showStackTraceBtn_Click);
+			//
+			// errorReportButton
+			//
+			this.errorReportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.errorReportButton.DialogResult = System.Windows.Forms.DialogResult.Retry;
+			this.errorReportButton.Enabled = false;
+			this.errorReportButton.Location = new System.Drawing.Point(423, 179);
+			this.errorReportButton.Name = "errorReportButton";
+			this.errorReportButton.Size = new System.Drawing.Size(112, 23);
+			this.errorReportButton.TabIndex = 2;
+			this.errorReportButton.Text = "Send error &report...";
+			this.errorReportButton.Visible = false;
+			//
+			// whitePanel
+			//
+			this.whitePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.whitePanel.BackColor = System.Drawing.SystemColors.Window;
+			this.whitePanel.Controls.Add(this.pictureBox1);
+			this.whitePanel.Controls.Add(this.stackTraceTextBox);
+			this.whitePanel.Controls.Add(this.messageLabel);
+			this.whitePanel.Controls.Add(this.headerLabel);
+			this.whitePanel.Location = new System.Drawing.Point(0, 0);
+			this.whitePanel.Name = "whitePanel";
+			this.whitePanel.Size = new System.Drawing.Size(631, 173);
+			this.whitePanel.TabIndex = 0;
+			//
+			// pictureBox1
+			//
+			this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(32, 32);
+			this.pictureBox1.TabIndex = 4;
+			this.pictureBox1.TabStop = false;
+			//
+			// ErrorDialog
+			//
+			this.AcceptButton = this.okButton;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.CancelButton = this.okButton;
+			this.ClientSize = new System.Drawing.Size(631, 210);
+			this.Controls.Add(this.errorReportButton);
+			this.Controls.Add(this.showStackTraceBtn);
+			this.Controls.Add(this.okButton);
+			this.Controls.Add(this.whitePanel);
+			this.Name = "ErrorDialog";
+			this.Text = "AnkhSVN Exception";
+			this.whitePanel.ResumeLayout(false);
+			this.whitePanel.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			this.ResumeLayout(false);
 
-        }
-        #endregion
+		}
+		#endregion
 
-        private System.Windows.Forms.Label messageLabel;
-        private System.Windows.Forms.Label headerLabel;
-        private System.Windows.Forms.TextBox stackTraceTextBox;
-        private System.Windows.Forms.Button showStackTraceBtn;
-        private System.Windows.Forms.Button okButton;
-        private System.Windows.Forms.Button errorReportButton;
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.Container components = null;
-        private System.Windows.Forms.Panel whitePanel;
-        private System.Windows.Forms.PictureBox pictureBox1;
-    }
+		private System.Windows.Forms.Label messageLabel;
+		private System.Windows.Forms.Label headerLabel;
+		private System.Windows.Forms.TextBox stackTraceTextBox;
+		private System.Windows.Forms.Button showStackTraceBtn;
+		private System.Windows.Forms.Button okButton;
+		private System.Windows.Forms.Button errorReportButton;
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.Container components = null;
+		private System.Windows.Forms.Panel whitePanel;
+		private System.Windows.Forms.PictureBox pictureBox1;
+	}
 }

@@ -24,26 +24,26 @@ using Ankh.UI;
 
 namespace Ankh.Scc.SccUI
 {
-    public partial class SccQuerySaveReadonlyDialog : VSDialogForm
-    {
-        string _file;
+	public partial class SccQuerySaveReadonlyDialog : VSDialogForm
+	{
+		string _file;
 
-        public SccQuerySaveReadonlyDialog()
-        {
-            InitializeComponent();
-        }
+		public SccQuerySaveReadonlyDialog()
+		{
+			InitializeComponent();
+		}
 
-        public string File
-        {
-            get { return _file; }
-            set { _file = value; }
-        }
+		public string File
+		{
+			get { return _file; }
+			set { _file = value; }
+		}
 
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
 
-            lblFile.Text = string.Format(SccManagementResources.ReadonlyFileXCannotBeSaved, Path.GetFileName(File));
-        }
-    }
+			lblFile.Text = string.Format(Resources.ReadonlyFileXCannotBeSaved, Path.GetFileName(File));
+		}
+	}
 }

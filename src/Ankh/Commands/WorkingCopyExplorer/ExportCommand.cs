@@ -19,41 +19,41 @@ using Ankh.UI.Commands;
 
 namespace Ankh.Commands.WorkingCopyExplorer
 {
-    /// <summary>
-    /// Command to export a Subversion repository or local folder.
-    /// </summary>
-    [SvnCommand(AnkhCommand.Export, HideWhenDisabled = false)]
-    class ExportCommand : CommandBase
-    {
-        public override void OnUpdate(CommandUpdateEventArgs e)
-        {
-            SvnItem i = EnumTools.GetSingle(e.Selection.GetSelectedSvnItems(false));
+	/// <summary>
+	/// Command to export a Subversion repository or local folder.
+	/// </summary>
+	[SvnCommand(AnkhCommand.Export, HideWhenDisabled = false)]
+	class ExportCommand : CommandBase
+	{
+		public override void OnUpdate(CommandUpdateEventArgs e)
+		{
+			SvnItem i = EnumTools.GetSingle(e.Selection.GetSelectedSvnItems(false));
 
-            if (i == null || !i.IsVersioned)
-                e.Enabled = false;
-        }
-        public override void OnExecute(CommandEventArgs e)
-        {
-            using (ExportDialog dlg = new ExportDialog(e.Context))
-            {
-                dlg.OriginPath = EnumTools.GetSingle(e.Selection.GetSelectedSvnItems(false)).FullPath;
+			if (i == null || !i.IsVersioned)
+				e.Enabled = false;
+		}
+		public override void OnExecute(CommandEventArgs e)
+		{
+			using (ExportDialog dlg = new ExportDialog(e.Context))
+			{
+				dlg.OriginPath = EnumTools.GetSingle(e.Selection.GetSelectedSvnItems(false)).FullPath;
 
-                if (dlg.ShowDialog(e.Context) != DialogResult.OK)
-                    return;
+				if (dlg.ShowDialog(e.Context) != DialogResult.OK)
+					return;
 
-                SvnDepth depth = dlg.NonRecursive ? SvnDepth.Empty : SvnDepth.Infinity;
+				SvnDepth depth = dlg.NonRecursive ? SvnDepth.Empty : SvnDepth.Infinity;
 
-                e.GetService<IProgressRunner>().RunModal(CommandStrings.Exporting,
-                    delegate(object sender, ProgressWorkerArgs wa)
-                    {
-                        SvnExportArgs args = new SvnExportArgs();
-                        args.Depth = depth;
-                        args.Revision = dlg.Revision;
-                        args.Overwrite = true;
+				e.GetService<IProgressRunner>().RunModal(Resources.Exporting,
+					delegate(object sender, ProgressWorkerArgs wa)
+					{
+						SvnExportArgs args = new SvnExportArgs();
+						args.Depth = depth;
+						args.Revision = dlg.Revision;
+						args.Overwrite = true;
 
-                        wa.Client.Export(dlg.ExportSource, dlg.LocalPath, args);
-                    });
-            }
-        }
-    }
+						wa.Client.Export(dlg.ExportSource, dlg.LocalPath, args);
+					});
+			}
+		}
+	}
 }

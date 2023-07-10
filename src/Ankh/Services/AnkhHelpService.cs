@@ -23,67 +23,73 @@ using System.Windows.Forms;
 
 namespace Ankh.Services
 {
-    [GlobalService(typeof(IAnkhHelpService))]
-    class AnkhHelpService : AnkhService, IAnkhHelpService
-    {
-        public AnkhHelpService(IAnkhServiceProvider context)
-            : base(context)
-        {
-        }
-        #region IAnkhDialogHelpService Members
+	[GlobalService(typeof(IAnkhHelpService))]
+	class AnkhHelpService : AnkhService, IAnkhHelpService
+	{
+		public AnkhHelpService(IAnkhServiceProvider context)
+			: base(context)
+		{
+		}
+		#region IAnkhDialogHelpService Members
 
-        public void RunHelp(VSDialogForm form)
-        {
-            UriBuilder ub = new UriBuilder("http://svc.ankhsvn.net/svc/go/");
-            ub.Query = string.Format("t=dlgHelp&v={0}&l={1}&dt={2}", GetService<IAnkhPackage>().PackageVersion, CultureInfo.CurrentUICulture.LCID, Uri.EscapeUriString(form.DialogHelpTypeName));
+		public void RunHelp(VSDialogForm form)
+		{
+			UriBuilder ub = new UriBuilder("http://svc.ankhsvn.net/svc/go/");
+			ub.Query = string.Format("t=dlgHelp&v={0}&l={1}&dt={2}",
+				GetService<IAnkhPackage>().Version,
+				CultureInfo.CurrentUICulture.LCID,
+				Uri.EscapeUriString(form.DialogHelpTypeName));
 
-            try
-            {
-                bool showHelpInBrowser = true;
-                IVsHelpSystem help = GetService<IVsHelpSystem>(typeof(SVsHelpService));
-                if (help != null)
-                    showHelpInBrowser = !VSErr.Succeeded(help.DisplayTopicFromURL(ub.Uri.AbsoluteUri, (XCastUInt32)(uint)VHS_COMMAND.VHS_Default));
+			try
+			{
+				bool showHelpInBrowser = true;
+				IVsHelpSystem help = GetService<IVsHelpSystem>(typeof(SVsHelpService));
+				if (help != null)
+					showHelpInBrowser = !VSErr.Succeeded(help.DisplayTopicFromURL(ub.Uri.AbsoluteUri, (XCastUInt32)(uint)VHS_COMMAND.VHS_Default));
 
-                if (showHelpInBrowser)
-                    Help.ShowHelp(form, ub.Uri.AbsoluteUri);
-            }
-            catch (Exception ex)
-            {
-                IAnkhErrorHandler eh = GetService<IAnkhErrorHandler>();
+				if (showHelpInBrowser)
+					Help.ShowHelp(form, ub.Uri.AbsoluteUri);
+			}
+			catch (Exception ex)
+			{
+				IAnkhErrorHandler eh = GetService<IAnkhErrorHandler>();
 
-                if (eh != null && eh.IsEnabled(ex))
-                    eh.OnError(ex);
-                else
-                    throw;
-            }
-        }
+				if (eh != null && eh.IsEnabled(ex))
+					eh.OnError(ex);
+				else
+					throw;
+			}
+		}
 
-        public void RunHelp(IAnkhControlWithHelp control)
-        {
-            UriBuilder ub = new UriBuilder("http://svc.ankhsvn.net/svc/go/");
-            ub.Query = string.Format("t=ctrlHelp&v={0}&l={1}&dt={2}", GetService<IAnkhPackage>().PackageVersion, CultureInfo.CurrentUICulture.LCID, Uri.EscapeUriString(control.DialogHelpTypeName));
+		public void RunHelp(IAnkhControlWithHelp control)
+		{
+			UriBuilder ub = new UriBuilder("http://svc.ankhsvn.net/svc/go/");
+			ub.Query = string.Format("t=ctrlHelp&v={0}&l={1}&dt={2}",
+				GetService<IAnkhPackage>().Version,
+				CultureInfo.CurrentUICulture.LCID,
+				Uri.EscapeUriString(control.DialogHelpTypeName));
 
-            try
-            {
-                bool showHelpInBrowser = true;
-                IVsHelpSystem help = GetService<IVsHelpSystem>(typeof(SVsHelpService));
-                if (help != null)
-                    showHelpInBrowser = !VSErr.Succeeded(help.DisplayTopicFromURL(ub.Uri.AbsoluteUri, (XCastUInt32)(uint)VHS_COMMAND.VHS_Default));
+			try
+			{
+				bool showHelpInBrowser = true;
+				IVsHelpSystem help = GetService<IVsHelpSystem>(typeof(SVsHelpService));
+				if (help != null)
+					showHelpInBrowser = !VSErr.Succeeded(help.DisplayTopicFromURL(ub.Uri.AbsoluteUri, (XCastUInt32)(uint)VHS_COMMAND.VHS_Default));
 
-                if (showHelpInBrowser)
-                    Help.ShowHelp(control.Control, ub.Uri.AbsoluteUri);
-            }
-            catch (Exception ex)
-            {
-                IAnkhErrorHandler eh = GetService<IAnkhErrorHandler>();
+				if (showHelpInBrowser)
+					Help.ShowHelp(control.Control, ub.Uri.AbsoluteUri);
+			}
+			catch (Exception ex)
+			{
+				IAnkhErrorHandler eh = GetService<IAnkhErrorHandler>();
 
-                if (eh != null && eh.IsEnabled(ex))
-                    eh.OnError(ex);
-                else
-                    throw;
-            }
-        }
+				if (eh != null && eh.IsEnabled(ex))
+					eh.OnError(ex);
+				else
+					throw;
+			}
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

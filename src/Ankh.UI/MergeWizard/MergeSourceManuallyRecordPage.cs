@@ -18,30 +18,30 @@ using Ankh.UI.WizardFramework;
 
 namespace Ankh.UI.MergeWizard
 {
-    public partial class MergeSourceManuallyRecordPage : MergeSourceBasePage
-    {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public MergeSourceManuallyRecordPage()
-        {
-            IsPageComplete = false;
-            Text = MergeStrings.MergeSourceHeaderTitle;
-            Description = MergeStrings.MergeSourceManuallyRecordPageHeaderMessage;
-            InitializeComponent();
-        }
+	public partial class MergeSourceManuallyRecordPage : MergeSourceBasePage
+	{
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		public MergeSourceManuallyRecordPage()
+		{
+			IsPageComplete = false;
+			Text = ResourcesMerge.MergeSourceHeaderTitle;
+			Description = ResourcesMerge.MergeSourceManuallyRecordPageHeaderMessage;
+			InitializeComponent();
+		}
 
-        /// <see cref="Ankh.UI.MergeWizard.MergeSourceBasePage" />
-        internal override MergeWizard.MergeType MergeType
-        {
-            get { return MergeWizard.MergeType.ManuallyRecord; }
-        }
+		/// <see cref="Ankh.UI.MergeWizard.MergeSourceBasePage" />
+		internal override MergeWizard.MergeType MergeType
+		{
+			get { return MergeWizard.MergeType.ManuallyRecord; }
+		}
 
-        protected override void OnPageChanging(WizardPageChangingEventArgs e)
-        {
-            base.OnPageChanging(e);
+		protected override void OnPageChanging(WizardPageChangingEventArgs e)
+		{
+			base.OnPageChanging(e);
 
-            Wizard.LogMode = Ankh.UI.SvnLog.LogMode.MergesEligible;
-        }
-    }
+			Wizard.LogMode = Ankh.UI.SvnLog.LogMode.MergesEligible;
+		}
+	}
 }

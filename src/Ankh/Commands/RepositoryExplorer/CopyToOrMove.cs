@@ -130,7 +130,7 @@ namespace Ankh.Commands.RepositoryExplorer
 
             // TODO: BH: Make sure the 2 attempts actually make sense
 
-            e.GetService<IProgressRunner>().RunModal(isMove ? CommandStrings.Moving : CommandStrings.Copying,
+            e.GetService<IProgressRunner>().RunModal(isMove ? Resources.Moving : Resources.Copying,
                 delegate(object snd, ProgressWorkerArgs a)
                 {
                     if (isMove)

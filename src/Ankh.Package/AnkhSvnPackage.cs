@@ -153,7 +153,9 @@ namespace Ankh.VSPackage
 		void InitializeRuntime()
 		{
 			_runtime = new AnkhRuntime(this);
+#if AS_BUILD_REPLACED
 			_runtime.PreLoad();
+#endif // AS_BUILD_REPLACED
 
 			IServiceContainer container = GetService<IServiceContainer>();
 			container.AddService(typeof(IAnkhPackage), this, true);

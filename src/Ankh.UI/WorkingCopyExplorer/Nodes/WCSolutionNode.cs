@@ -20,81 +20,81 @@ using System.IO;
 
 namespace Ankh.UI.WorkingCopyExplorer.Nodes
 {
-    class WCSolutionNode : WCFileSystemNode
-    {
-        readonly int _imageIndex;
-        public WCSolutionNode(IAnkhServiceProvider context, SvnItem item)
-            : base(context, null, item)
-        {
-            string file = Context.GetService<IAnkhSolutionSettings>().SolutionFilename;
+	class WCSolutionNode : WCFileSystemNode
+	{
+		readonly int _imageIndex;
+		public WCSolutionNode(IAnkhServiceProvider context, SvnItem item)
+			: base(context, null, item)
+		{
+			string file = Context.GetService<IAnkhSolutionSettings>().SolutionFilename;
 
-            IFileIconMapper iconMapper = context.GetService<IFileIconMapper>();
+			IFileIconMapper iconMapper = context.GetService<IFileIconMapper>();
 
-            if (string.IsNullOrEmpty(file))
-                _imageIndex = iconMapper.GetIconForExtension(".sln");
-            else
-                _imageIndex = iconMapper.GetIcon(file);
-        }
+			if (string.IsNullOrEmpty(file))
+				_imageIndex = iconMapper.GetIconForExtension(".sln");
+			else
+				_imageIndex = iconMapper.GetIcon(file);
+		}
 
-        public override string Title
-        {
-            get 
-            { 
-                string file = Context.GetService<IAnkhSolutionSettings>().SolutionFilename;
+		public override string Title
+		{
+			get
+			{
+				string file = Context.GetService<IAnkhSolutionSettings>().SolutionFilename;
 
-                if (file != null)
-                    file = Path.GetFileNameWithoutExtension(file);
+				if (file != null)
+					file = Path.GetFileNameWithoutExtension(file);
 
-                return string.Format(WCStrings.SolutionX, file); 
-            }
-        }
+				return string.Format(Resources.SolutionX, file);
+			}
+		}
 
-        IEnumerable<SvnItem> UpdateRoots
-        {
-            get
-            {
-                ISvnSolutionLayout pls = Context.GetService<ISvnSolutionLayout>();
-                foreach (SvnItem item in pls.GetUpdateRoots(null))
-                    yield return item;
-            }
-        }
+		IEnumerable<SvnItem> UpdateRoots
+		{
+			get
+			{
+				ISvnSolutionLayout pls = Context.GetService<ISvnSolutionLayout>();
+				foreach (SvnItem item in pls.GetUpdateRoots(null))
+					yield return item;
+			}
+		}
 
-        public override IEnumerable<WCTreeNode> GetChildren()
-        {
-            foreach(SvnItem item in UpdateRoots)
-            {
-                yield return new WCDirectoryNode(Context, this, item);
-            }
-        }
+		public override IEnumerable<WCTreeNode> GetChildren()
+		{
+			foreach(SvnItem item in UpdateRoots)
+			{
+				yield return new WCDirectoryNode(Context, this, item);
+			}
+		}
 
-        public override bool IsContainer
-        {
-            get
-            {
-                return true;
-            }
-        }
+		public override bool IsContainer
+		{
+			get
+			{
+				return true;
+			}
+		}
 
-        protected override void RefreshCore(bool rescan)
-        {
+		protected override void RefreshCore(bool rescan)
+		{
 //            throw new NotImplementedException();
-        }
+		}
 
-        public override int ImageIndex
-        {
-            get { return _imageIndex; }
-        }
+		public override int ImageIndex
+		{
+			get { return _imageIndex; }
+		}
 
-        internal override bool ContainsDescendant(string path)
-        {
-            SvnItem needle = StatusCache[path];
+		internal override bool ContainsDescendant(string path)
+		{
+			SvnItem needle = StatusCache[path];
 
-            foreach (SvnItem item in UpdateRoots)
-            {
-                if (needle.IsBelowPath(item))
-                    return true;
-            }
-            return false;
-        }
-    }
+			foreach (SvnItem item in UpdateRoots)
+			{
+				if (needle.IsBelowPath(item))
+					return true;
+			}
+			return false;
+		}
+	}
 }

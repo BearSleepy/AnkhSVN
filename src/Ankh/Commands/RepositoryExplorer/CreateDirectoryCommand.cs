@@ -62,7 +62,7 @@ namespace Ankh.Commands.RepositoryExplorer
 
                 ProgressRunnerResult prResult =
                     e.GetService<IProgressRunner>().RunModal(
-                    CommandStrings.CreatingDirectories,
+                    Resources.CreatingDirectories,
                     delegate(object sender, ProgressWorkerArgs ee)
                     {
                         SvnCreateDirectoryArgs args = new SvnCreateDirectoryArgs();

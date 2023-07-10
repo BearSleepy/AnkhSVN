@@ -136,11 +136,6 @@
     <Compile Include="SccUI\SccFilesystemWarningDialog.Designer.cs">
       <DependentUpon>SccFilesystemWarningDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="SccUI\SccManagementResources.Designer.cs">
-      <DependentUpon>SccManagementResources.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="SccUI\SccQuerySaveReadonlyDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,36 +210,42 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SccUI\ChangeSolutionRoot.resx">
+    <None Include="SccUI\ChangeSolutionRoot.resx">
       <DependentUpon>ChangeSolutionRoot.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccUI\ChangeSourceControl.resx">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SccUI\ChangeSourceControl.resx">
       <DependentUpon>ChangeSourceControl.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccUI\SccEditReadOnlyFileDialog.resx">
+    </None>
+    <None Include="SccUI\SccEditReadOnlyFileDialog.resx">
       <DependentUpon>SccEditReadOnlyFileDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccUI\SccFilesystemWarningDialog.resx">
-      <DependentUpon>SccFilesystemWarningDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccUI\SccManagementResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SccManagementResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccUI\SccQuerySaveReadonlyDialog.resx">
+    </None>
+    <None Include="SccUI\SccFilesystemWarningDialog.resx">
+      <DependentUpon>SccFilesystemWarningDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SccUI\SccQuerySaveReadonlyDialog.resx">
       <DependentUpon>SccQuerySaveReadonlyDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\ConnectButton.png" />
+    <Content Include="Resources\DisconnectButton.png" />
+    <Content Include="Resources\RefreshButton.png" />
+    <None Include="Resources\WarningImage.png" />
   </ItemGroup>
   <PropertyGroup>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)tools\Ankh-Common.6.defines.targets" />
   <PropertyGroup>
-    <DefineConstants>$(DefineConstants);$(FaReleaseDefines);$(FaDefineConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);$(FaReleaseDefines)</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '17.0'">$(DefineConstants);VS_17_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '15.0'">$(DefineConstants);VS_15_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '12.0'">$(DefineConstants);VS_12_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '11.0'">$(DefineConstants);VS_11_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '10.0'">$(DefineConstants);VS_10_ENV</DefineConstants>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!--

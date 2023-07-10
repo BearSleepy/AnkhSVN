@@ -19,119 +19,119 @@ using Ankh.UI.WizardFramework;
 
 namespace Ankh.UI.MergeWizard
 {
-    internal class MergeUtils
-    {
-        public static readonly WizardMessage INVALID_FROM_REVISION = new WizardMessage(MergeStrings.InvalidFromRevision,
-            WizardMessage.MessageType.Error);
-        public static readonly WizardMessage INVALID_TO_REVISION = new WizardMessage(MergeStrings.InvalidToRevision,
-            WizardMessage.MessageType.Error);
-        public static readonly WizardMessage INVALID_FROM_URL = new WizardMessage(MergeStrings.InvalidFromUrl,
-            WizardMessage.MessageType.Error);
-        public static readonly WizardMessage INVALID_TO_URL = new WizardMessage(MergeStrings.InvalidToUrl,
-            WizardMessage.MessageType.Error);
-        public static readonly WizardMessage NO_FROM_URL = new WizardMessage(MergeStrings.NoFromUrl,
-            WizardMessage.MessageType.Error);
+	internal class MergeUtils
+	{
+		public static readonly WizardMessage INVALID_FROM_REVISION = new WizardMessage(ResourcesMerge.InvalidFromRevision,
+			WizardMessage.MessageType.Error);
+		public static readonly WizardMessage INVALID_TO_REVISION = new WizardMessage(ResourcesMerge.InvalidToRevision,
+			WizardMessage.MessageType.Error);
+		public static readonly WizardMessage INVALID_FROM_URL = new WizardMessage(ResourcesMerge.InvalidFromUrl,
+			WizardMessage.MessageType.Error);
+		public static readonly WizardMessage INVALID_TO_URL = new WizardMessage(ResourcesMerge.InvalidToUrl,
+			WizardMessage.MessageType.Error);
+		public static readonly WizardMessage NO_FROM_URL = new WizardMessage(ResourcesMerge.NoFromUrl,
+			WizardMessage.MessageType.Error);
 
-        private IAnkhServiceProvider _context;
-        private Dictionary<SvnDepth, string> _mergeDepths;
-        ISvnClientPool _pool;
+		private IAnkhServiceProvider _context;
+		private Dictionary<SvnDepth, string> _mergeDepths;
+		ISvnClientPool _pool;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        public MergeUtils(IAnkhServiceProvider context)
-        {
-            Context = context;
-            _pool = Context.GetService<ISvnClientPool>();
-            _pool?.EnsureClient();
-        }
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="context">The context.</param>
+		public MergeUtils(IAnkhServiceProvider context)
+		{
+			Context = context;
+			_pool = Context.GetService<ISvnClientPool>();
+			_pool?.EnsureClient();
+		}
 
-        /// <summary>
-        /// Returns a key/value pairing of <code>SharpSvn.SvnDepth</code> as the key
-        /// and a string description of the depth key.
-        /// </summary>
-        public Dictionary<SvnDepth, string> MergeDepths
-        {
-            get
-            {
-                if (_mergeDepths == null)
-                {
-                    _mergeDepths = new Dictionary<SvnDepth, string>();
+		/// <summary>
+		/// Returns a key/value pairing of <code>SharpSvn.SvnDepth</code> as the key
+		/// and a string description of the depth key.
+		/// </summary>
+		public Dictionary<SvnDepth, string> MergeDepths
+		{
+			get
+			{
+				if (_mergeDepths == null)
+				{
+					_mergeDepths = new Dictionary<SvnDepth, string>();
 
-                    _mergeDepths.Add(SvnDepth.Unknown, MergeStrings.SvnDepthUnknown);
-                    _mergeDepths.Add(SvnDepth.Infinity, MergeStrings.SvnDepthInfinity);
-                    _mergeDepths.Add(SvnDepth.Children, MergeStrings.SvnDepthChildren);
-                    _mergeDepths.Add(SvnDepth.Files, MergeStrings.SvnDepthFiles);
-                    _mergeDepths.Add(SvnDepth.Empty, MergeStrings.SvnDepthEmpty);
-                }
+					_mergeDepths.Add(SvnDepth.Unknown, ResourcesMerge.SvnDepthUnknown);
+					_mergeDepths.Add(SvnDepth.Infinity, ResourcesMerge.SvnDepthInfinity);
+					_mergeDepths.Add(SvnDepth.Children, ResourcesMerge.SvnDepthChildren);
+					_mergeDepths.Add(SvnDepth.Files, ResourcesMerge.SvnDepthFiles);
+					_mergeDepths.Add(SvnDepth.Empty, ResourcesMerge.SvnDepthEmpty);
+				}
 
-                return _mergeDepths;
-            }
-        }
+				return _mergeDepths;
+			}
+		}
 
-        /// <summary>
-        /// Returns a list of strings for the suggested merge sources.
-        /// </summary>
-        internal SvnMergeSourcesCollection GetSuggestedMergeSources(SvnItem target)
-        {
-            using (SvnClient client = GetClient())
-            {
-                SvnMergeSourcesCollection mergeSources = null;
-                SvnGetSuggestedMergeSourcesArgs args = new SvnGetSuggestedMergeSourcesArgs();
+		/// <summary>
+		/// Returns a list of strings for the suggested merge sources.
+		/// </summary>
+		internal SvnMergeSourcesCollection GetSuggestedMergeSources(SvnItem target)
+		{
+			using (SvnClient client = GetClient())
+			{
+				SvnMergeSourcesCollection mergeSources = null;
+				SvnGetSuggestedMergeSourcesArgs args = new SvnGetSuggestedMergeSourcesArgs();
 
-                args.ThrowOnError = false;
+				args.ThrowOnError = false;
 
-                client.GetSuggestedMergeSources(target.FullPath, args, out mergeSources);
+				client.GetSuggestedMergeSources(target.FullPath, args, out mergeSources);
 
-                return mergeSources ?? new SvnMergeSourcesCollection();
-            }
-        }
-        
-    
-        internal SvnMergeItemCollection GetAppliedMerges(SvnItem target)
-        {
-            using (SvnClient client = GetClient())
-            {
-                SvnGetAppliedMergeInfoArgs args = new SvnGetAppliedMergeInfoArgs();
-                SvnAppliedMergeInfo mergeInfo;
+				return mergeSources ?? new SvnMergeSourcesCollection();
+			}
+		}
 
-                args.ThrowOnError = false;
 
-                if (!client.GetAppliedMergeInfo(target.Uri, args, out mergeInfo))
-                    return null;
+		internal SvnMergeItemCollection GetAppliedMerges(SvnItem target)
+		{
+			using (SvnClient client = GetClient())
+			{
+				SvnGetAppliedMergeInfoArgs args = new SvnGetAppliedMergeInfoArgs();
+				SvnAppliedMergeInfo mergeInfo;
 
-                return mergeInfo.AppliedMerges;
-            }
-        }
+				args.ThrowOnError = false;
 
-        /// <summary>
-        /// Returns an instance of <code>SharpSvn.SvnClient</code> from the pool.
-        /// </summary>
-        public SvnClient GetClient()
-        {
-            if (_pool != null)
-                return _pool.GetClient();
-            else
-                return new SvnClient();
-        }
+				if (!client.GetAppliedMergeInfo(target.Uri, args, out mergeInfo))
+					return null;
 
-        public SvnWorkingCopyClient GetWcClient()
-        {
-            if(_pool != null)
-                return _pool.GetWcClient();
-            else
-                return new SvnWorkingCopyClient();
-        }
+				return mergeInfo.AppliedMerges;
+			}
+		}
 
-        /// <summary>
-        /// Gets or sets the context.
-        /// </summary>
-        /// <value>The context.</value>
-        public IAnkhServiceProvider Context
-        {
-            get { return _context; }
-            set { _context = value; }
-        }
-    }
+		/// <summary>
+		/// Returns an instance of <code>SharpSvn.SvnClient</code> from the pool.
+		/// </summary>
+		public SvnClient GetClient()
+		{
+			if (_pool != null)
+				return _pool.GetClient();
+			else
+				return new SvnClient();
+		}
+
+		public SvnWorkingCopyClient GetWcClient()
+		{
+			if(_pool != null)
+				return _pool.GetWcClient();
+			else
+				return new SvnWorkingCopyClient();
+		}
+
+		/// <summary>
+		/// Gets or sets the context.
+		/// </summary>
+		/// <value>The context.</value>
+		public IAnkhServiceProvider Context
+		{
+			get { return _context; }
+			set { _context = value; }
+		}
+	}
 }

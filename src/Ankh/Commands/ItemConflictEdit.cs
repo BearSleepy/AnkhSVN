@@ -19,97 +19,97 @@ using Ankh.UI;
 
 namespace Ankh.Commands
 {
-    [SvnCommand(AnkhCommand.ItemConflictEdit)]
-    [SvnCommand(AnkhCommand.DocumentConflictEdit)]
-    [SvnCommand(AnkhCommand.ItemConflictEditVisualStudio)]
-    class ItemConflictEdit : CommandBase
-    {
-        public override void OnUpdate(CommandUpdateEventArgs e)
-        {
-            if (e.Command == AnkhCommand.DocumentConflictEdit)
-            {
-                SvnItem item = e.Selection.ActiveDocumentSvnItem;
+	[SvnCommand(AnkhCommand.ItemConflictEdit)]
+	[SvnCommand(AnkhCommand.DocumentConflictEdit)]
+	[SvnCommand(AnkhCommand.ItemConflictEditVisualStudio)]
+	class ItemConflictEdit : CommandBase
+	{
+		public override void OnUpdate(CommandUpdateEventArgs e)
+		{
+			if (e.Command == AnkhCommand.DocumentConflictEdit)
+			{
+				SvnItem item = e.Selection.ActiveDocumentSvnItem;
 
-                if (item != null && item.IsConflicted)
-                    return;
-            }
-            else
-                foreach (SvnItem item in e.Selection.GetSelectedSvnItems(false))
-                {
-                    if (item.IsConflicted && item.Status.LocalTextStatus == SvnStatus.Conflicted)
-                        return;
-                }
+				if (item != null && item.IsConflicted)
+					return;
+			}
+			else
+				foreach (SvnItem item in e.Selection.GetSelectedSvnItems(false))
+				{
+					if (item.IsConflicted && item.Status.LocalTextStatus == SvnStatus.Conflicted)
+						return;
+				}
 
-            e.Enabled = false;
-        }
+			e.Enabled = false;
+		}
 
-        public override void OnExecute(CommandEventArgs e)
-        {
-            // TODO: Choose which conflict to edit if we have more than one!
-            SvnItem conflict = null;
+		public override void OnExecute(CommandEventArgs e)
+		{
+			// TODO: Choose which conflict to edit if we have more than one!
+			SvnItem conflict = null;
 
-            if (e.Command == AnkhCommand.DocumentConflictEdit)
-            {
-                conflict = e.Selection.ActiveDocumentSvnItem;
+			if (e.Command == AnkhCommand.DocumentConflictEdit)
+			{
+				conflict = e.Selection.ActiveDocumentSvnItem;
 
-                if (conflict == null || !conflict.IsConflicted)
-                    return;
-            }
-            else
-                foreach (SvnItem item in e.Selection.GetSelectedSvnItems(false))
-                {
-                    if (item.IsConflicted)
-                    {
-                        conflict = item;
-                        break;
-                    }
-                }
+				if (conflict == null || !conflict.IsConflicted)
+					return;
+			}
+			else
+				foreach (SvnItem item in e.Selection.GetSelectedSvnItems(false))
+				{
+					if (item.IsConflicted)
+					{
+						conflict = item;
+						break;
+					}
+				}
 
-            if (conflict == null)
-                return;
+			if (conflict == null)
+				return;
 
-            conflict.MarkDirty();
-            if (conflict.Status.LocalTextStatus != SvnStatus.Conflicted)
-            {
-                AnkhMessageBox mb = new AnkhMessageBox(e.Context);
+			conflict.MarkDirty();
+			if (conflict.Status.LocalTextStatus != SvnStatus.Conflicted)
+			{
+				AnkhMessageBox mb = new AnkhMessageBox(e.Context);
 
-                mb.Show(string.Format(CommandStrings.TheConflictInXIsAlreadyResolved, conflict.FullPath), CommandStrings.EditConflictTitle, 
-                    System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
-                return;
-            }            
+				mb.Show(string.Format(Resources.TheConflictInXIsAlreadyResolved, conflict.FullPath), Resources.EditConflictTitle,
+					System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+				return;
+			}
 
-            SvnInfoEventArgs conflictInfo = null;
+			SvnInfoEventArgs conflictInfo = null;
 
-            bool ok = false;
-            ProgressRunnerResult r = e.GetService<IProgressRunner>().RunModal(CommandStrings.RetrievingConflictDetails,
-                delegate(object sender, ProgressWorkerArgs a)
-                {
-                    ok = a.Client.GetInfo(conflict.FullPath, out conflictInfo);
-                });
+			bool ok = false;
+			ProgressRunnerResult r = e.GetService<IProgressRunner>().RunModal(Resources.RetrievingConflictDetails,
+				delegate(object sender, ProgressWorkerArgs a)
+				{
+					ok = a.Client.GetInfo(conflict.FullPath, out conflictInfo);
+				});
 
-            if (!ok || !r.Succeeded || conflictInfo == null)
-                return;
+			if (!ok || !r.Succeeded || conflictInfo == null)
+				return;
 
-            AnkhMergeArgs da = new AnkhMergeArgs();
-            string dir = conflict.Directory;
+			AnkhMergeArgs da = new AnkhMergeArgs();
+			string dir = conflict.Directory;
 
-            da.BaseFile = Path.Combine(dir, conflictInfo.ConflictOld ?? conflictInfo.ConflictNew);
-            da.TheirsFile = Path.Combine(dir, conflictInfo.ConflictNew ?? conflictInfo.ConflictOld);
+			da.BaseFile = Path.Combine(dir, conflictInfo.ConflictOld ?? conflictInfo.ConflictNew);
+			da.TheirsFile = Path.Combine(dir, conflictInfo.ConflictNew ?? conflictInfo.ConflictOld);
 
-            if (!string.IsNullOrEmpty(conflictInfo.ConflictWork))
-                da.MineFile = Path.Combine(dir, conflictInfo.ConflictWork);
-            else
-                da.MineFile = conflict.FullPath;
+			if (!string.IsNullOrEmpty(conflictInfo.ConflictWork))
+				da.MineFile = Path.Combine(dir, conflictInfo.ConflictWork);
+			else
+				da.MineFile = conflict.FullPath;
 
-            da.MergedFile = conflict.FullPath;
+			da.MergedFile = conflict.FullPath;
 
-            da.BaseTitle = "Base";
-            da.TheirsTitle = "Theirs";
-            da.MineTitle = "Mine";
-            da.MergedTitle = conflict.Name;
-            
+			da.BaseTitle = "Base";
+			da.TheirsTitle = "Theirs";
+			da.MineTitle = "Mine";
+			da.MergedTitle = conflict.Name;
 
-            e.GetService<IAnkhDiffHandler>().RunMerge(da);
-        }
-    }
+
+			e.GetService<IAnkhDiffHandler>().RunMerge(da);
+		}
+	}
 }

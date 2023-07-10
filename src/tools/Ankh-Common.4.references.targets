@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ItemGroup Condition="'$(VisualStudioVersion)' &gt;= '15.0'">
 		<Reference Include="SharpSvn">
@@ -9,5 +9,18 @@
 			<HintPath>$(LocalReferences_)\SharpSvn\SharpSvn.UI.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
+	</ItemGroup>
+	<!-- separate due to embedded reference in SharpSvn.dll -->
+	<ItemGroup Condition="'$(VisualStudioVersion)' &gt;= '15.0' And $(PacakgeReferences_)">
+		<Content Include="$(LocalReferences_)\SharpSvn\SharpSvn.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>$(OutputDir)\SharpSvn.dll</Link>
+			<IncludeInVSIX>True</IncludeInVSIX>
+		</Content>
+		<Content Include="$(LocalReferences_)\SharpSvn\SharpSvn.UI.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>$(OutputDir)\SharpSvn.UI.dll</Link>
+			<IncludeInVSIX>True</IncludeInVSIX>
+		</Content>
 	</ItemGroup>
 </Project>

@@ -83,7 +83,7 @@ namespace Ankh.Commands.RepositoryExplorer
             try
             {
                 Uri itemUri = SvnTools.GetNormalizedUri(item.Origin.Uri);
-                e.GetService<IProgressRunner>().RunModal(CommandStrings.RenamingNodes,
+                e.GetService<IProgressRunner>().RunModal(Resources.RenamingNodes,
                     delegate(object sender, ProgressWorkerArgs we)
                     {
                         SvnMoveArgs ma = new SvnMoveArgs();

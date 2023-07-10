@@ -14,35 +14,34 @@
 
 namespace Ankh.UI.Commands
 {
-    partial class UpdateDialog
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class UpdateDialog
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateDialog));
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			this.projectRootLabel = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.projectRootBox = new System.Windows.Forms.TextBox();
@@ -54,73 +53,113 @@ namespace Ankh.UI.Commands
 			this.cancelButton = new System.Windows.Forms.Button();
 			this.makeDepthInfinity = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
-			// 
+			//
 			// projectRootLabel
-			// 
-			resources.ApplyResources(this.projectRootLabel, "projectRootLabel");
+			//
+			this.projectRootLabel.AutoSize = true;
+			this.projectRootLabel.Location = new System.Drawing.Point(12, 9);
 			this.projectRootLabel.Name = "projectRootLabel";
-			// 
+			this.projectRootLabel.Size = new System.Drawing.Size(69, 13);
+			this.projectRootLabel.TabIndex = 6;
+			this.projectRootLabel.Text = "&Project Root:";
+			//
 			// label4
-			// 
-			resources.ApplyResources(this.label4, "label4");
+			//
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(12, 35);
 			this.label4.Name = "label4";
-			// 
+			this.label4.Size = new System.Drawing.Size(23, 13);
+			this.label4.TabIndex = 8;
+			this.label4.Text = "&Url:";
+			//
 			// projectRootBox
-			// 
-			resources.ApplyResources(this.projectRootBox, "projectRootBox");
+			//
+			this.projectRootBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.projectRootBox.Location = new System.Drawing.Point(87, 6);
 			this.projectRootBox.Name = "projectRootBox";
 			this.projectRootBox.ReadOnly = true;
-			// 
+			this.projectRootBox.Size = new System.Drawing.Size(379, 20);
+			this.projectRootBox.TabIndex = 7;
+			//
 			// urlBox
-			// 
-			resources.ApplyResources(this.urlBox, "urlBox");
+			//
+			this.urlBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.urlBox.Location = new System.Drawing.Point(87, 32);
 			this.urlBox.Name = "urlBox";
 			this.urlBox.ReadOnly = true;
-			// 
+			this.urlBox.Size = new System.Drawing.Size(379, 20);
+			this.urlBox.TabIndex = 9;
+			//
 			// versionBox
-			// 
-			resources.ApplyResources(this.versionBox, "versionBox");
+			//
+			this.versionBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.versionBox.Location = new System.Drawing.Point(87, 58);
 			this.versionBox.Name = "versionBox";
+			this.versionBox.Size = new System.Drawing.Size(379, 25);
 			this.versionBox.SvnOrigin = null;
-			// 
+			this.versionBox.TabIndex = 0;
+			//
 			// ignoreExternals
-			// 
-			resources.ApplyResources(this.ignoreExternals, "ignoreExternals");
+			//
+			this.ignoreExternals.AutoSize = true;
+			this.ignoreExternals.Location = new System.Drawing.Point(87, 93);
 			this.ignoreExternals.Name = "ignoreExternals";
+			this.ignoreExternals.Size = new System.Drawing.Size(102, 17);
+			this.ignoreExternals.TabIndex = 1;
+			this.ignoreExternals.Text = "Ignore E&xternals";
 			this.ignoreExternals.UseVisualStyleBackColor = true;
-			// 
+			//
 			// allowObstructions
-			// 
-			resources.ApplyResources(this.allowObstructions, "allowObstructions");
+			//
+			this.allowObstructions.AutoSize = true;
+			this.allowObstructions.Location = new System.Drawing.Point(87, 116);
 			this.allowObstructions.Name = "allowObstructions";
+			this.allowObstructions.Size = new System.Drawing.Size(176, 17);
+			this.allowObstructions.TabIndex = 2;
+			this.allowObstructions.Text = "Allow Unversioned O&bstructions";
 			this.allowObstructions.UseVisualStyleBackColor = true;
-			// 
+			//
 			// okButton
-			// 
-			resources.ApplyResources(this.okButton, "okButton");
+			//
+			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.Location = new System.Drawing.Point(310, 161);
 			this.okButton.Name = "okButton";
+			this.okButton.Size = new System.Drawing.Size(75, 23);
+			this.okButton.TabIndex = 4;
+			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
-			// 
+			//
 			// cancelButton
-			// 
-			resources.ApplyResources(this.cancelButton, "cancelButton");
+			//
+			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.Location = new System.Drawing.Point(391, 161);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.Size = new System.Drawing.Size(75, 23);
+			this.cancelButton.TabIndex = 5;
+			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
-			// 
+			//
 			// makeDepthInfinity
-			// 
-			resources.ApplyResources(this.makeDepthInfinity, "makeDepthInfinity");
+			//
+			this.makeDepthInfinity.AutoSize = true;
+			this.makeDepthInfinity.Location = new System.Drawing.Point(87, 139);
 			this.makeDepthInfinity.Name = "makeDepthInfinity";
+			this.makeDepthInfinity.Size = new System.Drawing.Size(141, 17);
+			this.makeDepthInfinity.TabIndex = 3;
+			this.makeDepthInfinity.Text = "Retrieve Exc&luded Items";
 			this.makeDepthInfinity.UseVisualStyleBackColor = true;
-			// 
+			//
 			// UpdateDialog
-			// 
+			//
 			this.AcceptButton = this.okButton;
-			resources.ApplyResources(this, "$this");
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.CancelButton = this.cancelButton;
+			this.ClientSize = new System.Drawing.Size(478, 196);
 			this.Controls.Add(this.makeDepthInfinity);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.okButton);
@@ -132,22 +171,23 @@ namespace Ankh.UI.Commands
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.projectRootLabel);
 			this.Name = "UpdateDialog";
+			this.Text = "Update Solution";
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.Label projectRootLabel;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox projectRootBox;
-        private System.Windows.Forms.TextBox urlBox;
-        private Ankh.UI.PathSelector.VersionSelector versionBox;
-        private System.Windows.Forms.CheckBox ignoreExternals;
-        private System.Windows.Forms.CheckBox allowObstructions;
-        private System.Windows.Forms.Button okButton;
-        private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.CheckBox makeDepthInfinity;
-    }
+		private System.Windows.Forms.Label projectRootLabel;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TextBox projectRootBox;
+		private System.Windows.Forms.TextBox urlBox;
+		private Ankh.UI.PathSelector.VersionSelector versionBox;
+		private System.Windows.Forms.CheckBox ignoreExternals;
+		private System.Windows.Forms.CheckBox allowObstructions;
+		private System.Windows.Forms.Button okButton;
+		private System.Windows.Forms.Button cancelButton;
+		private System.Windows.Forms.CheckBox makeDepthInfinity;
+	}
 }

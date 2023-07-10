@@ -1,20 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <Import Project="$(SourceCommonBase_)\Build.VCS_Thirdparty.2.targets" Condition="Exists('$(SourceCommonBase_)\Build.VCS_Thirdparty.2.targets')" />
+	<Import Project="$(SourceCommonBase_)\Build.VCS_Thirdparty.2.targets" Condition="Exists('$(SourceCommonBase_)\Build.VCS_Thirdparty.2.targets')" />
 
 
-  <PropertyGroup Condition="!Exists('$(SourceCommonBase_)\Build.VCS_Thirdparty.1.targets')">
+	<PropertyGroup Condition="!Exists('$(SourceCommonBase_)\Build.VCS_Thirdparty.2.targets')">
 
-    <ConfigurationPlatform_>$(Configuration)$(PlatformSuffix_)</ConfigurationPlatform_>
+		<SourcePlatDir_ Condition="'$(VisualStudioVersion)' == '17.0'">2022</SourcePlatDir_>
 
-    <IntermediateOutputPath>obj$(PlatformSuffix_)\$(Configuration)\</IntermediateOutputPath>
-    <OutputPath>bin$(PlatformSuffix_)\$(Configuration)\</OutputPath>
+		<ConfigurationPlatform_>$(Configuration)$(PlatformSuffix_)</ConfigurationPlatform_>
 
-  </PropertyGroup>
+		<IntermediateOutputPath>obj$(PlatformSuffix_)\$(Configuration)\</IntermediateOutputPath>
+		<OutputPath>bin$(PlatformSuffix_)\$(Configuration)\</OutputPath>
 
-  
-  <PropertyGroup>
+	</PropertyGroup>
+
+	<PropertyGroup>
 		<PlatformTarget Condition="'$(VisualStudioVersion)' &lt; '17.0'">x86</PlatformTarget>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Platform)' == 'x64'">
@@ -23,6 +24,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
+		<PacakgeReferences_>False</PacakgeReferences_>
 		<LocalReferences_>$(LocalReferenceBase_)</LocalReferences_>
 	</PropertyGroup>
 

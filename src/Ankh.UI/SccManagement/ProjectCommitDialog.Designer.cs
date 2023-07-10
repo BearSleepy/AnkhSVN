@@ -14,161 +14,212 @@
 
 namespace Ankh.UI.SccManagement
 {
-    partial class ProjectCommitDialog
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class ProjectCommitDialog
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectCommitDialog));
-            this.splitContainer1 = new Ankh.UI.VSSelectionControls.SmartSplitContainer(this.components);
-            this.pendingList = new Ankh.UI.PendingChanges.Commits.PendingCommitsView(this.components);
-            this.issueNumberBox = new System.Windows.Forms.TextBox();
-            this.issueLabel = new System.Windows.Forms.Label();
-            this.logMessage = new Ankh.UI.PendingChanges.LogMessageEditor(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.keepLocksBox = new System.Windows.Forms.CheckBox();
-            this.keepChangelistsBox = new System.Windows.Forms.CheckBox();
-            this.cancelButton = new System.Windows.Forms.Button();
-            this.okButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // splitContainer1
-            // 
-            resources.ApplyResources(this.splitContainer1, "splitContainer1");
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.pendingList);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.issueNumberBox);
-            this.splitContainer1.Panel2.Controls.Add(this.issueLabel);
-            this.splitContainer1.Panel2.Controls.Add(this.logMessage);
-            this.splitContainer1.Panel2.Controls.Add(this.label1);
-            // 
-            // pendingList
-            // 
-            this.pendingList.AllowColumnReorder = true;
-            this.pendingList.CheckBoxes = true;
-            resources.ApplyResources(this.pendingList, "pendingList");
-            this.pendingList.HideSelection = false;
-            this.pendingList.Name = "pendingList";
-            this.pendingList.ShowSelectAllCheckBox = true;
-            this.pendingList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.pendingList_ItemChecked);
-            // 
-            // issueNumberBox
-            // 
-            resources.ApplyResources(this.issueNumberBox, "issueNumberBox");
-            this.issueNumberBox.Name = "issueNumberBox";
-            this.issueNumberBox.TextChanged += new System.EventHandler(this.issueNumberBox_TextChanged);
-            this.issueNumberBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.issueNumberBox_KeyPress);
-            // 
-            // issueLabel
-            // 
-            resources.ApplyResources(this.issueLabel, "issueLabel");
-            this.issueLabel.Name = "issueLabel";
-            // 
-            // logMessage
-            // 
-            resources.ApplyResources(this.logMessage, "logMessage");
-            this.logMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.logMessage.Name = "logMessage";
-            this.logMessage.PendingChangeUI = this.pendingList;
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // keepLocksBox
-            // 
-            resources.ApplyResources(this.keepLocksBox, "keepLocksBox");
-            this.keepLocksBox.Name = "keepLocksBox";
-            this.keepLocksBox.UseVisualStyleBackColor = true;
-            // 
-            // keepChangelistsBox
-            // 
-            resources.ApplyResources(this.keepChangelistsBox, "keepChangelistsBox");
-            this.keepChangelistsBox.Name = "keepChangelistsBox";
-            this.keepChangelistsBox.UseVisualStyleBackColor = true;
-            // 
-            // cancelButton
-            // 
-            resources.ApplyResources(this.cancelButton, "cancelButton");
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.UseVisualStyleBackColor = true;
-            // 
-            // okButton
-            // 
-            resources.ApplyResources(this.okButton, "okButton");
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.Name = "okButton";
-            this.okButton.UseVisualStyleBackColor = true;
-            // 
-            // ProjectCommitDialog
-            // 
-            this.AcceptButton = this.okButton;
-            resources.ApplyResources(this, "$this");
-            this.CancelButton = this.cancelButton;
-            this.Controls.Add(this.okButton);
-            this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.keepChangelistsBox);
-            this.Controls.Add(this.keepLocksBox);
-            this.Controls.Add(this.splitContainer1);
-            this.EnableTheming = true;
-            this.Name = "ProjectCommitDialog";
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			this.components = new System.ComponentModel.Container();
+			this.splitContainer1 = new Ankh.UI.VSSelectionControls.SmartSplitContainer(this.components);
+			this.pendingList = new Ankh.UI.PendingChanges.Commits.PendingCommitsView(this.components);
+			this.issueNumberBox = new System.Windows.Forms.TextBox();
+			this.issueLabel = new System.Windows.Forms.Label();
+			this.logMessage = new Ankh.UI.PendingChanges.LogMessageEditor(this.components);
+			this.label1 = new System.Windows.Forms.Label();
+			this.keepLocksBox = new System.Windows.Forms.CheckBox();
+			this.keepChangelistsBox = new System.Windows.Forms.CheckBox();
+			this.cancelButton = new System.Windows.Forms.Button();
+			this.okButton = new System.Windows.Forms.Button();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
+			this.SuspendLayout();
+			//
+			// splitContainer1
+			//
+			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.splitContainer1.Location = new System.Drawing.Point(12, 12);
+			this.splitContainer1.Name = "splitContainer1";
+			this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+			//
+			// splitContainer1.Panel1
+			//
+			this.splitContainer1.Panel1.Controls.Add(this.pendingList);
+			//
+			// splitContainer1.Panel2
+			//
+			this.splitContainer1.Panel2.Controls.Add(this.issueNumberBox);
+			this.splitContainer1.Panel2.Controls.Add(this.issueLabel);
+			this.splitContainer1.Panel2.Controls.Add(this.logMessage);
+			this.splitContainer1.Panel2.Controls.Add(this.label1);
+			this.splitContainer1.Size = new System.Drawing.Size(600, 336);
+			this.splitContainer1.SplitterDistance = 185;
+			this.splitContainer1.TabIndex = 0;
+			//
+			// pendingList
+			//
+			this.pendingList.AllowColumnReorder = true;
+			this.pendingList.CheckBoxes = true;
+			this.pendingList.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pendingList.HideSelection = false;
+			this.pendingList.Location = new System.Drawing.Point(0, 0);
+			this.pendingList.Name = "pendingList";
+			this.pendingList.ShowSelectAllCheckBox = true;
+			this.pendingList.Size = new System.Drawing.Size(600, 185);
+			this.pendingList.TabIndex = 0;
+			this.pendingList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.pendingList_ItemChecked);
+			//
+			// issueNumberBox
+			//
+			this.issueNumberBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.issueNumberBox.Enabled = false;
+			this.issueNumberBox.Location = new System.Drawing.Point(500, 0);
+			this.issueNumberBox.Name = "issueNumberBox";
+			this.issueNumberBox.Size = new System.Drawing.Size(100, 20);
+			this.issueNumberBox.TabIndex = 3;
+			this.issueNumberBox.Visible = false;
+			this.issueNumberBox.TextChanged += new System.EventHandler(this.issueNumberBox_TextChanged);
+			this.issueNumberBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.issueNumberBox_KeyPress);
+			//
+			// issueLabel
+			//
+			this.issueLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.issueLabel.Enabled = false;
+			this.issueLabel.Location = new System.Drawing.Point(388, 3);
+			this.issueLabel.Name = "issueLabel";
+			this.issueLabel.Size = new System.Drawing.Size(106, 17);
+			this.issueLabel.TabIndex = 2;
+			this.issueLabel.Text = "&Bug/Issue:";
+			this.issueLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+			this.issueLabel.Visible = false;
+			//
+			// logMessage
+			//
+			this.logMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.logMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.logMessage.Location = new System.Drawing.Point(0, 23);
+			this.logMessage.Name = "logMessage";
+			this.logMessage.PendingChangeUI = this.pendingList;
+			this.logMessage.Size = new System.Drawing.Size(600, 124);
+			this.logMessage.TabIndex = 1;
+			//
+			// label1
+			//
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(-3, 7);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(74, 13);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Log &Message:";
+			//
+			// keepLocksBox
+			//
+			this.keepLocksBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.keepLocksBox.AutoSize = true;
+			this.keepLocksBox.Location = new System.Drawing.Point(12, 354);
+			this.keepLocksBox.Name = "keepLocksBox";
+			this.keepLocksBox.Size = new System.Drawing.Size(83, 17);
+			this.keepLocksBox.TabIndex = 1;
+			this.keepLocksBox.Text = "Keep &Locks";
+			this.keepLocksBox.UseVisualStyleBackColor = true;
+			//
+			// keepChangelistsBox
+			//
+			this.keepChangelistsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.keepChangelistsBox.AutoSize = true;
+			this.keepChangelistsBox.Location = new System.Drawing.Point(12, 371);
+			this.keepChangelistsBox.Name = "keepChangelistsBox";
+			this.keepChangelistsBox.Size = new System.Drawing.Size(108, 17);
+			this.keepChangelistsBox.TabIndex = 2;
+			this.keepChangelistsBox.Text = "Keep &Changelists";
+			this.keepChangelistsBox.UseVisualStyleBackColor = true;
+			//
+			// cancelButton
+			//
+			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.Location = new System.Drawing.Point(537, 365);
+			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.Size = new System.Drawing.Size(75, 23);
+			this.cancelButton.TabIndex = 4;
+			this.cancelButton.Text = "Cancel";
+			this.cancelButton.UseVisualStyleBackColor = true;
+			//
+			// okButton
+			//
+			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.Enabled = false;
+			this.okButton.Location = new System.Drawing.Point(456, 365);
+			this.okButton.Name = "okButton";
+			this.okButton.Size = new System.Drawing.Size(75, 23);
+			this.okButton.TabIndex = 3;
+			this.okButton.Text = "OK";
+			this.okButton.UseVisualStyleBackColor = true;
+			//
+			// ProjectCommitDialog
+			//
+			this.AcceptButton = this.okButton;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.CancelButton = this.cancelButton;
+			this.ClientSize = new System.Drawing.Size(624, 400);
+			this.Controls.Add(this.okButton);
+			this.Controls.Add(this.cancelButton);
+			this.Controls.Add(this.keepChangelistsBox);
+			this.Controls.Add(this.keepLocksBox);
+			this.Controls.Add(this.splitContainer1);
+			this.EnableTheming = true;
+			this.Name = "ProjectCommitDialog";
+			this.Text = "Commit to Subversion";
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			this.splitContainer1.Panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			this.splitContainer1.ResumeLayout(false);
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private Ankh.UI.VSSelectionControls.SmartSplitContainer splitContainer1;
-        private Ankh.UI.PendingChanges.Commits.PendingCommitsView pendingList;
-        private Ankh.UI.PendingChanges.LogMessageEditor logMessage;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox issueNumberBox;
-        private System.Windows.Forms.Label issueLabel;
-        private System.Windows.Forms.CheckBox keepLocksBox;
-        private System.Windows.Forms.CheckBox keepChangelistsBox;
-        private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.Button okButton;
-    }
+		private Ankh.UI.VSSelectionControls.SmartSplitContainer splitContainer1;
+		private Ankh.UI.PendingChanges.Commits.PendingCommitsView pendingList;
+		private Ankh.UI.PendingChanges.LogMessageEditor logMessage;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.TextBox issueNumberBox;
+		private System.Windows.Forms.Label issueLabel;
+		private System.Windows.Forms.CheckBox keepLocksBox;
+		private System.Windows.Forms.CheckBox keepChangelistsBox;
+		private System.Windows.Forms.Button cancelButton;
+		private System.Windows.Forms.Button okButton;
+	}
 }

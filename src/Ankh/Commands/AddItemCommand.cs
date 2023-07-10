@@ -21,94 +21,94 @@ using Ankh.Scc;
 
 namespace Ankh.Commands
 {
-    /// <summary>
-    /// Command to add selected items to the working copy.
-    /// </summary>
-    [SvnCommand(AnkhCommand.AddItem, ArgumentDefinition = "d")]
-    class AddItemCommand : CommandBase
-    {
-        public override void OnUpdate(CommandUpdateEventArgs e)
-        {
-            foreach (SvnItem item in e.Selection.GetSelectedSvnItems(true))
-            {
-                if (item.IsVersioned || !item.IsVersionable)
-                    continue;
+	/// <summary>
+	/// Command to add selected items to the working copy.
+	/// </summary>
+	[SvnCommand(AnkhCommand.AddItem, ArgumentDefinition = "d")]
+	class AddItemCommand : CommandBase
+	{
+		public override void OnUpdate(CommandUpdateEventArgs e)
+		{
+			foreach (SvnItem item in e.Selection.GetSelectedSvnItems(true))
+			{
+				if (item.IsVersioned || !item.IsVersionable)
+					continue;
 
-                SvnDirectory dir = item.ParentDirectory;
-                if (dir != null && !dir.NeedsWorkingCopyUpgrade)
-                    return; // We found an add item
-            }
+				SvnDirectory dir = item.ParentDirectory;
+				if (dir != null && !dir.NeedsWorkingCopyUpgrade)
+					return; // We found an add item
+			}
 
-            e.Enabled = false;
-        }
+			e.Enabled = false;
+		}
 
-        public override void OnExecute(CommandEventArgs e)
-        {
-            string argumentFile = e.Argument as string;
-            List<SvnItem> selection = new List<SvnItem>();
+		public override void OnExecute(CommandEventArgs e)
+		{
+			string argumentFile = e.Argument as string;
+			List<SvnItem> selection = new List<SvnItem>();
 
-            if (string.IsNullOrEmpty(argumentFile))
-            {
-                if (e.ShouldPrompt(true))
-                {
-                    selection.AddRange(e.Selection.GetSelectedSvnItems(true));
+			if (string.IsNullOrEmpty(argumentFile))
+			{
+				if (e.ShouldPrompt(true))
+				{
+					selection.AddRange(e.Selection.GetSelectedSvnItems(true));
 
-                    using (PendingChangeSelector pcs = new PendingChangeSelector())
-                    {
-                        pcs.Text = CommandStrings.AddDialogTitle;
+					using (PendingChangeSelector pcs = new PendingChangeSelector())
+					{
+						pcs.Text = Resources.AddDialogTitle;
 
-                        pcs.PreserveWindowPlacement = true;
+						pcs.PreserveWindowPlacement = true;
 
-                        pcs.LoadItems(selection,
-                                      delegate(SvnItem item) { return !item.IsVersioned && item.IsVersionable; },
-                                      delegate(SvnItem item) 
-                                      {
-                                          if (item.IsIgnored)
-                                              return false;
-                                          else if (item.IsSccExcluded)
-                                              return false;
-                                          return item.InSolution;
-                                      });
+						pcs.LoadItems(selection,
+									  delegate(SvnItem item) { return !item.IsVersioned && item.IsVersionable; },
+									  delegate(SvnItem item)
+									  {
+										  if (item.IsIgnored)
+											  return false;
+										  else if (item.IsSccExcluded)
+											  return false;
+										  return item.InSolution;
+									  });
 
-                        if (pcs.ShowDialog(e.Context) != DialogResult.OK)
-                            return;
+						if (pcs.ShowDialog(e.Context) != DialogResult.OK)
+							return;
 
-                        selection.Clear();
-                        selection.AddRange(pcs.GetSelectedItems());
-                    }
-                }
-                else
-                {
-                    foreach (SvnItem item in e.Selection.GetSelectedSvnItems(true))
-                    {
-                        if (!item.IsVersioned && item.IsVersionable && !item.IsIgnored && item.InSolution)
-                            selection.Add(item);
-                    }
-                }
-            }
-            else
-            {
-                selection.Add(e.GetService<ISvnStatusCache>()[argumentFile]);
-            }
+						selection.Clear();
+						selection.AddRange(pcs.GetSelectedItems());
+					}
+				}
+				else
+				{
+					foreach (SvnItem item in e.Selection.GetSelectedSvnItems(true))
+					{
+						if (!item.IsVersioned && item.IsVersionable && !item.IsIgnored && item.InSolution)
+							selection.Add(item);
+					}
+				}
+			}
+			else
+			{
+				selection.Add(e.GetService<ISvnStatusCache>()[argumentFile]);
+			}
 
-            ICollection<string> paths = SvnItem.GetPaths(selection);
-            IAnkhOpenDocumentTracker documentTracker = e.GetService<IAnkhOpenDocumentTracker>();
-            documentTracker.SaveDocuments(paths); // Make sure all files are saved before updating/merging!
+			ICollection<string> paths = SvnItem.GetPaths(selection);
+			IAnkhOpenDocumentTracker documentTracker = e.GetService<IAnkhOpenDocumentTracker>();
+			documentTracker.SaveDocuments(paths); // Make sure all files are saved before updating/merging!
 
-            using (DocumentLock lck = documentTracker.LockDocuments(paths, DocumentLockType.NoReload))
-            using (lck.MonitorChangesForReload())
-                e.GetService<IProgressRunner>().RunModal(CommandStrings.AddTaskDialogTitle,
-                    delegate(object sender, ProgressWorkerArgs ee)
-                    {
-                        SvnAddArgs args = new SvnAddArgs();
-                        args.Depth = SvnDepth.Empty;
-                        args.AddParents = true;
+			using (DocumentLock lck = documentTracker.LockDocuments(paths, DocumentLockType.NoReload))
+			using (lck.MonitorChangesForReload())
+				e.GetService<IProgressRunner>().RunModal(Resources.AddTaskDialogTitle,
+					delegate(object sender, ProgressWorkerArgs ee)
+					{
+						SvnAddArgs args = new SvnAddArgs();
+						args.Depth = SvnDepth.Empty;
+						args.AddParents = true;
 
-                        foreach (SvnItem item in selection)
-                        {
-                            ee.Client.Add(item.FullPath, args);
-                        }
-                    });
-        }
-    }
+						foreach (SvnItem item in selection)
+						{
+							ee.Client.Add(item.FullPath, args);
+						}
+					});
+		}
+	}
 }

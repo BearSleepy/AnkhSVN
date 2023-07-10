@@ -64,15 +64,21 @@
     <Compile Include="AnkhToolBar.cs" />
     <Compile Include="AnkhToolWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VSErr.cs" />
+    <Compile Include="VSVersion.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Ankh.Ids.snk" />
   </ItemGroup>
   <PropertyGroup>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)tools\Ankh-Common.6.defines.targets" />
   <PropertyGroup>
-    <DefineConstants>$(DefineConstants);$(FaReleaseDefines);$(FaDefineConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);$(FaReleaseDefines)</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '17.0'">$(DefineConstants);VS_17_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '15.0'">$(DefineConstants);VS_15_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '12.0'">$(DefineConstants);VS_12_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '11.0'">$(DefineConstants);VS_11_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '10.0'">$(DefineConstants);VS_10_ENV</DefineConstants>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!--

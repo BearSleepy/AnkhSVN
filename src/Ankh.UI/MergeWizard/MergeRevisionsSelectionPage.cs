@@ -24,213 +24,213 @@ using Ankh.UI.WizardFramework;
 
 namespace Ankh.UI.MergeWizard
 {
-    public partial class MergeRevisionsSelectionPage : BaseWizardPage, ILogControl
-    {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public MergeRevisionsSelectionPage()
-        {
-            IsPageComplete = false;
+	public partial class MergeRevisionsSelectionPage : BaseWizardPage, ILogControl
+	{
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		public MergeRevisionsSelectionPage()
+		{
+			IsPageComplete = false;
 
-            Text = MergeStrings.MergeRevisionsSelectionPageTitle;
-            this.Message = new WizardMessage(MergeStrings.MergeRevisionsSelectionPageMessage);
+			Text = ResourcesMerge.MergeRevisionsSelectionPageTitle;
+			this.Message = new WizardMessage(ResourcesMerge.MergeRevisionsSelectionPageMessage);
 
-            SelectionChanged += new EventHandler<EventArgs>(MergeRevisionsSelectionPage_SelectionChanged);
-            InitializeComponent();
+			SelectionChanged += new EventHandler<EventArgs>(MergeRevisionsSelectionPage_SelectionChanged);
+			InitializeComponent();
 
-            logToolControl1.SelectionChanged += new EventHandler(logToolControl1_SelectionChanged);
+			logToolControl1.SelectionChanged += new EventHandler(logToolControl1_SelectionChanged);
 
-            logToolControl1.StopOnCopy = true;
-        }
+			logToolControl1.StopOnCopy = true;
+		}
 
-        /// <summary>
-        /// Returns an array of revisions, in numerical order, to be merged.
-        /// </summary>
-        public IEnumerable<SvnRevisionRange> MergeRevisions
-        {
-            get
-            {
-                ISvnLogItem start = null;
-                ISvnLogItem end = null;
-                int previousIndex = -1;
-                List<ISvnLogItem> logitems = new List<ISvnLogItem>(SelectedRevisions);
-                logitems.Sort(delegate(ISvnLogItem a, ISvnLogItem b) { return a.Index.CompareTo(b.Index); });
+		/// <summary>
+		/// Returns an array of revisions, in numerical order, to be merged.
+		/// </summary>
+		public IEnumerable<SvnRevisionRange> MergeRevisions
+		{
+			get
+			{
+				ISvnLogItem start = null;
+				ISvnLogItem end = null;
+				int previousIndex = -1;
+				List<ISvnLogItem> logitems = new List<ISvnLogItem>(SelectedRevisions);
+				logitems.Sort(delegate(ISvnLogItem a, ISvnLogItem b) { return a.Index.CompareTo(b.Index); });
 
-                foreach (ISvnLogItem item in logitems)
-                {
-                    if (start == null)
-                    {
-                        start = item;
-                        end = item;
-                    }
-                    else if (previousIndex + 1 == item.Index)
-                    {
-                        // range is still contiguous, move end ptr
-                        end = item;
-                    }
-                    else
-                    {
-                        // The start of a new range because it's no longer contiguous
-                        // return the previous range and start a new one
-                        yield return new SvnRevisionRange(start.Revision - 1, end.Revision);
+				foreach (ISvnLogItem item in logitems)
+				{
+					if (start == null)
+					{
+						start = item;
+						end = item;
+					}
+					else if (previousIndex + 1 == item.Index)
+					{
+						// range is still contiguous, move end ptr
+						end = item;
+					}
+					else
+					{
+						// The start of a new range because it's no longer contiguous
+						// return the previous range and start a new one
+						yield return new SvnRevisionRange(start.Revision - 1, end.Revision);
 
-                        start = item;
-                        end = item;
-                    }
+						start = item;
+						end = item;
+					}
 
-                    previousIndex = item.Index;
-                }
+					previousIndex = item.Index;
+				}
 
-                // The loop doesn't handle the last range
-                if (start != null && end != null)
-                {
-                    yield return new SvnRevisionRange(start.Revision - 1, end.Revision);
-                }
-            }
-        }
+				// The loop doesn't handle the last range
+				if (start != null && end != null)
+				{
+					yield return new SvnRevisionRange(start.Revision - 1, end.Revision);
+				}
+			}
+		}
 
-        void MergeRevisionsSelectionPage_SelectionChanged(object sender, EventArgs e)
-        {
-            IsPageComplete = SelectedRevisions.Count > 0;
+		void MergeRevisionsSelectionPage_SelectionChanged(object sender, EventArgs e)
+		{
+			IsPageComplete = SelectedRevisions.Count > 0;
 
-            if (IsPageComplete)
-                Wizard.MergeRevisions = MergeRevisions;
-            else
-                Wizard.MergeRevisions = null;
-        }
+			if (IsPageComplete)
+				Wizard.MergeRevisions = MergeRevisions;
+			else
+				Wizard.MergeRevisions = null;
+		}
 
-        protected override void OnPageChanged(EventArgs e)
-        {
-            base.OnPageChanged(e);
-        }
+		protected override void OnPageChanged(EventArgs e)
+		{
+			base.OnPageChanged(e);
+		}
 
-        public IList<Ankh.Scc.ISvnLogItem> SelectedRevisions
-        {
-            get
-            {
-                return logToolControl1.SelectedItems;
-            }
-        }
+		public IList<Ankh.Scc.ISvnLogItem> SelectedRevisions
+		{
+			get
+			{
+				return logToolControl1.SelectedItems;
+			}
+		}
 
-        protected override void OnContextChanged(EventArgs e)
-        {
-            logToolControl1.Context = Context;
-        }
+		protected override void OnContextChanged(EventArgs e)
+		{
+			logToolControl1.Context = Context;
+		}
 
-        public event EventHandler<EventArgs> SelectionChanged;
+		public event EventHandler<EventArgs> SelectionChanged;
 
-        void logToolControl1_SelectionChanged(object sender, EventArgs e)
-        {
-            OnSelectionChanged(EventArgs.Empty);
-        }
+		void logToolControl1_SelectionChanged(object sender, EventArgs e)
+		{
+			OnSelectionChanged(EventArgs.Empty);
+		}
 
-        void OnSelectionChanged(EventArgs e)
-        {
-            if (SelectionChanged != null)
-                SelectionChanged(this, e);
-        }
+		void OnSelectionChanged(EventArgs e)
+		{
+			if (SelectionChanged != null)
+				SelectionChanged(this, e);
+		}
 
-        /// <summary>
-        /// Gets or sets the merge source.
-        /// </summary>
-        /// <value>The merge source.</value>
-        public SvnOrigin MergeSource
-        {
-            get { return Wizard.MergeSource; }
-        }
+		/// <summary>
+		/// Gets or sets the merge source.
+		/// </summary>
+		/// <value>The merge source.</value>
+		public SvnOrigin MergeSource
+		{
+			get { return Wizard.MergeSource; }
+		}
 
-        public SvnOrigin MergeTarget
-        {
-            get { return new SvnOrigin(Wizard.MergeTarget); }
-        }
+		public SvnOrigin MergeTarget
+		{
+			get { return new SvnOrigin(Wizard.MergeTarget); }
+		}
 
-        protected void PopulateUI()
-        {
-            switch (Wizard.LogMode)
-            {
-                case LogMode.MergesEligible:
-                    logToolControl1.IncludeMergedRevisions = false;
-                    logToolControl1.StartMergesEligible(Context, MergeTarget, MergeSource.Target);
-                    break;
-                case LogMode.MergesMerged:
-                    logToolControl1.IncludeMergedRevisions = true;
-                    logToolControl1.StartMergesMerged(Context, MergeTarget, MergeSource.Target);
-                    break;
-                case LogMode.Log:
-                    logToolControl1.StartLog(new SvnOrigin[] { new SvnOrigin(Context, MergeSource.Target, MergeTarget.RepositoryRoot) }, null, null);
-                    break;
-            }
-        }
+		protected void PopulateUI()
+		{
+			switch (Wizard.LogMode)
+			{
+				case LogMode.MergesEligible:
+					logToolControl1.IncludeMergedRevisions = false;
+					logToolControl1.StartMergesEligible(Context, MergeTarget, MergeSource.Target);
+					break;
+				case LogMode.MergesMerged:
+					logToolControl1.IncludeMergedRevisions = true;
+					logToolControl1.StartMergesMerged(Context, MergeTarget, MergeSource.Target);
+					break;
+				case LogMode.Log:
+					logToolControl1.StartLog(new SvnOrigin[] { new SvnOrigin(Context, MergeSource.Target, MergeTarget.RepositoryRoot) }, null, null);
+					break;
+			}
+		}
 
-        private void WizardDialog_PageChangeEvent(object sender, EventArgs e)
-        {
-            if (Wizard.CurrentPage == this)
-            {
-                PopulateUI();
-            }
-        }
+		private void WizardDialog_PageChangeEvent(object sender, EventArgs e)
+		{
+			if (Wizard.CurrentPage == this)
+			{
+				PopulateUI();
+			}
+		}
 
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
 
-            Wizard.PageChanged += new EventHandler(WizardDialog_PageChangeEvent);
-        }
+			Wizard.PageChanged += new EventHandler(WizardDialog_PageChangeEvent);
+		}
 
-        private void logToolControl1_BatchFinished(object sender, BatchFinishedEventArgs e)
-        {
-            if (e.TotalCount == 0)
-            {
-                Message = new WizardMessage(MergeStrings.NoLogItems, WizardMessage.MessageType.Error);
-            }
-            else
-            {
-                Message = new WizardMessage("", WizardMessage.MessageType.None);
-            }
-        }
+		private void logToolControl1_BatchFinished(object sender, BatchFinishedEventArgs e)
+		{
+			if (e.TotalCount == 0)
+			{
+				Message = new WizardMessage(ResourcesMerge.NoLogItems, WizardMessage.MessageType.Error);
+			}
+			else
+			{
+				Message = new WizardMessage("", WizardMessage.MessageType.None);
+			}
+		}
 
-        #region ILogControl Members
+		#region ILogControl Members
 
-        bool ILogControl.ShowChangedPaths
-        {
-            get { return logToolControl1.ShowChangedPaths; }
-            set { logToolControl1.ShowChangedPaths = value; }
-        }
+		bool ILogControl.ShowChangedPaths
+		{
+			get { return logToolControl1.ShowChangedPaths; }
+			set { logToolControl1.ShowChangedPaths = value; }
+		}
 
-        bool ILogControl.ShowLogMessage
-        {
-            get { return logToolControl1.ShowLogMessage; }
-            set { logToolControl1.ShowLogMessage = value; }
-        }
+		bool ILogControl.ShowLogMessage
+		{
+			get { return logToolControl1.ShowLogMessage; }
+			set { logToolControl1.ShowLogMessage = value; }
+		}
 
-        bool ILogControl.StopOnCopy
-        {
-            get { return logToolControl1.StopOnCopy; }
-            set { logToolControl1.StopOnCopy = value; }
-        }
+		bool ILogControl.StopOnCopy
+		{
+			get { return logToolControl1.StopOnCopy; }
+			set { logToolControl1.StopOnCopy = value; }
+		}
 
-        bool ILogControl.IncludeMergedRevisions
-        {
-            get { return logToolControl1.IncludeMergedRevisions; }
-            set { logToolControl1.IncludeMergedRevisions = value; }
-        }
+		bool ILogControl.IncludeMergedRevisions
+		{
+			get { return logToolControl1.IncludeMergedRevisions; }
+			set { logToolControl1.IncludeMergedRevisions = value; }
+		}
 
-        void ILogControl.FetchAll()
-        {
-            logToolControl1.FetchAll();
-        }
+		void ILogControl.FetchAll()
+		{
+			logToolControl1.FetchAll();
+		}
 
-        void ILogControl.Restart()
-        {
-            logToolControl1.Restart();
-        }
+		void ILogControl.Restart()
+		{
+			logToolControl1.Restart();
+		}
 
-        IList<SvnOrigin> ILogControl.Origins
-        {
-            get { return new SvnOrigin[] { MergeSource }; }
-        }
+		IList<SvnOrigin> ILogControl.Origins
+		{
+			get { return new SvnOrigin[] { MergeSource }; }
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

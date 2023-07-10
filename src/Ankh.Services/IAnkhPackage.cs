@@ -21,45 +21,46 @@ using Microsoft.Win32;
 
 namespace Ankh.UI
 {
-    public enum FrameCloseMode
-    {
-        NoSave = Microsoft.VisualStudio.Shell.Interop.__FRAMECLOSE.FRAMECLOSE_NoSave,
-        SaveIfDirty = Microsoft.VisualStudio.Shell.Interop.__FRAMECLOSE.FRAMECLOSE_SaveIfDirty,
-        PromptSave = Microsoft.VisualStudio.Shell.Interop.__FRAMECLOSE.FRAMECLOSE_PromptSave,
-    }
-    /// <summary>
-    /// Public api of the ankh package as used by other components
-    /// </summary>
-    public interface IAnkhPackage : IAnkhServiceProvider, System.ComponentModel.Design.IServiceContainer, IAnkhQueryService
-    {
-        /// <summary>
-        /// Gets the package version. The assembly version of Ankh.Package.dll
-        /// </summary>
-        /// <value>The package version.</value>
-        Version PackageVersion { get; }
+	public enum FrameCloseMode
+	{
+		NoSave = Microsoft.VisualStudio.Shell.Interop.__FRAMECLOSE.FRAMECLOSE_NoSave,
+		SaveIfDirty = Microsoft.VisualStudio.Shell.Interop.__FRAMECLOSE.FRAMECLOSE_SaveIfDirty,
+		PromptSave = Microsoft.VisualStudio.Shell.Interop.__FRAMECLOSE.FRAMECLOSE_PromptSave,
+	}
+	/// <summary>
+	/// Public api of the ankh package as used by other components
+	/// </summary>
+	public interface IAnkhPackage : IAnkhServiceProvider, System.ComponentModel.Design.IServiceContainer, IAnkhQueryService
+	{
+		/// <summary>
+		/// Gets the package version. The assembly version of Ankh.Package.dll
+		/// </summary>
+		/// <value>The package version.</value>
+		Version PackageVersion { get; }
+		string Version { get; }
 
-        void ShowToolWindow(AnkhToolWindow window);
-        void ShowToolWindow(AnkhToolWindow window, int id, bool create);
+		void ShowToolWindow(AnkhToolWindow window);
+		void ShowToolWindow(AnkhToolWindow window, int id, bool create);
 
-        void CloseToolWindow(AnkhToolWindow toolWindow, int id, FrameCloseMode close);
+		void CloseToolWindow(AnkhToolWindow toolWindow, int id, FrameCloseMode close);
 
-        void RegisterIdleProcessor(IAnkhIdleProcessor processor);
-        void UnregisterIdleProcessor(IAnkhIdleProcessor processor);
+		void RegisterIdleProcessor(IAnkhIdleProcessor processor);
+		void UnregisterIdleProcessor(IAnkhIdleProcessor processor);
 
-        AmbientProperties AmbientProperties { get; }
+		AmbientProperties AmbientProperties { get; }
 
-        // Summary:
-        //     Gets the root registry key of the current Visual Studio registry hive.
-        //
-        // Returns:
-        //     The root Microsoft.Win32.RegistryKey of the Visual Studio registry hive.
-        RegistryKey ApplicationRegistryRoot { get; }
+		// Summary:
+		//     Gets the root registry key of the current Visual Studio registry hive.
+		//
+		// Returns:
+		//     The root Microsoft.Win32.RegistryKey of the Visual Studio registry hive.
+		RegistryKey ApplicationRegistryRoot { get; }
 
 		/// <summary>
-		/// Gets a registry key that can be used to store user data. 
+		/// Gets a registry key that can be used to store user data.
 		/// </summary>
 		RegistryKey UserRegistryRoot { get; }
 
-        bool ForceLoadUserSettings(string streamName);
-    }
+		bool ForceLoadUserSettings(string streamName);
+	}
 }

@@ -21,89 +21,89 @@ using Ankh.VS;
 
 namespace Ankh.UI.PendingChanges.Conflicts
 {
-    class ConflictListItem : SmartListViewItem
-    {
-        readonly PendingChange _change;
-        public ConflictListItem(ConflictListView view, PendingChange change)
-            : base(view)
-        {
-            if (change == null)
-                throw new ArgumentNullException("change");
+	class ConflictListItem : SmartListViewItem
+	{
+		readonly PendingChange _change;
+		public ConflictListItem(ConflictListView view, PendingChange change)
+			: base(view)
+		{
+			if (change == null)
+				throw new ArgumentNullException("change");
 
-            _change = change;
-            RefreshText(view.Context);
-        }
+			_change = change;
+			RefreshText(view.Context);
+		}
 
-        internal PendingChange PendingChange
-        {
-            get { return _change; }
-        }
+		internal PendingChange PendingChange
+		{
+			get { return _change; }
+		}
 
-        public void RefreshText(IAnkhServiceProvider context)
-        {
-            if (context == null)
-                throw new ArgumentNullException("context");
+		public void RefreshText(IAnkhServiceProvider context)
+		{
+			if (context == null)
+				throw new ArgumentNullException("context");
 
-            ISvnStatusCache cache = context.GetService<ISvnStatusCache>();
+			ISvnStatusCache cache = context.GetService<ISvnStatusCache>();
 
-            ImageIndex = PendingChange.IconIndex;
-            SvnItem item = cache[FullPath];
+			ImageIndex = PendingChange.IconIndex;
+			SvnItem item = cache[FullPath];
 
-            if (item == null)
-                throw new InvalidOperationException(); // Item no longer valued
-            PendingChangeStatus pcs = PendingChange.Change ?? new PendingChangeStatus(PendingChangeKind.None);
+			if (item == null)
+				throw new InvalidOperationException(); // Item no longer valued
+			PendingChangeStatus pcs = PendingChange.Change ?? new PendingChangeStatus(PendingChangeKind.None);
 
-            SetValues(
-                pcs.PendingCommitText,
-                PendingChange.ChangeList,
-                GetDirectory(item),
-                PendingChange.FullPath,
-                item.IsLocked ? PCResources.LockedValue : "", // Locked
-                SafeDate(item.Modified), // Modified
-                PendingChange.Name,
-                PendingChange.RelativePath,
-                PendingChange.Project,
-                context.GetService<IFileIconMapper>().GetFileType(item),
-                SafeWorkingCopy(item));
-        }
+			SetValues(
+				pcs.PendingCommitText,
+				PendingChange.ChangeList,
+				GetDirectory(item),
+				PendingChange.FullPath,
+				item.IsLocked ? Resources.LockedValue : "", // Locked
+				SafeDate(item.Modified), // Modified
+				PendingChange.Name,
+				PendingChange.RelativePath,
+				PendingChange.Project,
+				context.GetService<IFileIconMapper>().GetFileType(item),
+				SafeWorkingCopy(item));
+		}
 
-        private string SafeDate(DateTime dateTime)
-        {
-            if (dateTime.Ticks == 0 || dateTime.Ticks == 1)
-                return "";
+		private string SafeDate(DateTime dateTime)
+		{
+			if (dateTime.Ticks == 0 || dateTime.Ticks == 1)
+				return "";
 
-            DateTime n = dateTime.ToLocalTime();
+			DateTime n = dateTime.ToLocalTime();
 
-            if (n < DateTime.Now - new TimeSpan(24, 0, 0))
-                return n.ToString("d");
-            else
-                return n.ToString("T");
-        }
+			if (n < DateTime.Now - new TimeSpan(24, 0, 0))
+				return n.ToString("d");
+			else
+				return n.ToString("T");
+		}
 
-        private string GetDirectory(SvnItem svnItem)
-        {
-            if (svnItem.IsDirectory)
-                return svnItem.FullPath;
-            else
-                return svnItem.Directory;
-        }
+		private string GetDirectory(SvnItem svnItem)
+		{
+			if (svnItem.IsDirectory)
+				return svnItem.FullPath;
+			else
+				return svnItem.Directory;
+		}
 
-        static string SafeWorkingCopy(SvnItem svnItem)
-        {
-            SvnWorkingCopy wc = svnItem.WorkingCopy;
-            if (wc == null)
-                return "";
+		static string SafeWorkingCopy(SvnItem svnItem)
+		{
+			SvnWorkingCopy wc = svnItem.WorkingCopy;
+			if (wc == null)
+				return "";
 
-            return wc.FullPath;
-        }
+			return wc.FullPath;
+		}
 
-        /// <summary>
-        /// Gets the full path.
-        /// </summary>
-        /// <value>The full path.</value>
-        public string FullPath
-        {
-            get { return _change.FullPath; }
-        }
-    }
+		/// <summary>
+		/// Gets the full path.
+		/// </summary>
+		/// <value>The full path.</value>
+		public string FullPath
+		{
+			get { return _change.FullPath; }
+		}
+	}
 }

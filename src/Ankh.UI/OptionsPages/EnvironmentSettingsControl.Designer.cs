@@ -14,171 +14,225 @@
 
 namespace Ankh.UI.OptionsPages
 {
-    partial class EnvironmentSettingsControl
-    {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class EnvironmentSettingsControl
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Component Designer generated code
+		#region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EnvironmentSettingsControl));
-            this.authenticationEdit = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.proxyEdit = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.clientSideHooks = new System.Windows.Forms.CheckBox();
-            this.interactiveMergeOnConflict = new System.Windows.Forms.CheckBox();
-            this.autoAddFiles = new System.Windows.Forms.CheckBox();
-            this.flashWindowAfterOperation = new System.Windows.Forms.CheckBox();
-            this.autoLockFiles = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pcDefaultDoubleClick = new System.Windows.Forms.ComboBox();
-            this.preferPutty = new System.Windows.Forms.CheckBox();
-            this.groupBox1.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // authenticationEdit
-            // 
-            resources.ApplyResources(this.authenticationEdit, "authenticationEdit");
-            this.authenticationEdit.Name = "authenticationEdit";
-            this.authenticationEdit.UseVisualStyleBackColor = true;
-            this.authenticationEdit.Click += new System.EventHandler(this.authenticationEdit_Click);
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            // 
-            // proxyEdit
-            // 
-            resources.ApplyResources(this.proxyEdit, "proxyEdit");
-            this.proxyEdit.Name = "proxyEdit";
-            this.proxyEdit.UseVisualStyleBackColor = true;
-            this.proxyEdit.Click += new System.EventHandler(this.proxyEdit_Click);
-            // 
-            // groupBox1
-            // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Controls.Add(this.preferPutty);
-            this.groupBox1.Controls.Add(this.clientSideHooks);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.proxyEdit);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.authenticationEdit);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
-            // 
-            // clientSideHooks
-            // 
-            resources.ApplyResources(this.clientSideHooks, "clientSideHooks");
-            this.clientSideHooks.Name = "clientSideHooks";
-            this.clientSideHooks.UseVisualStyleBackColor = true;
-            // 
-            // interactiveMergeOnConflict
-            // 
-            resources.ApplyResources(this.interactiveMergeOnConflict, "interactiveMergeOnConflict");
-            this.interactiveMergeOnConflict.Name = "interactiveMergeOnConflict";
-            this.interactiveMergeOnConflict.UseVisualStyleBackColor = true;
-            // 
-            // autoAddFiles
-            // 
-            resources.ApplyResources(this.autoAddFiles, "autoAddFiles");
-            this.autoAddFiles.Name = "autoAddFiles";
-            this.autoAddFiles.UseVisualStyleBackColor = true;
-            // 
-            // flashWindowAfterOperation
-            // 
-            resources.ApplyResources(this.flashWindowAfterOperation, "flashWindowAfterOperation");
-            this.flashWindowAfterOperation.Name = "flashWindowAfterOperation";
-            this.flashWindowAfterOperation.UseVisualStyleBackColor = true;
-            // 
-            // autoLockFiles
-            // 
-            resources.ApplyResources(this.autoLockFiles, "autoLockFiles");
-            this.autoLockFiles.Name = "autoLockFiles";
-            this.autoLockFiles.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            // 
-            // pcDefaultDoubleClick
-            // 
-            resources.ApplyResources(this.pcDefaultDoubleClick, "pcDefaultDoubleClick");
-            this.pcDefaultDoubleClick.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.pcDefaultDoubleClick.FormattingEnabled = true;
-            this.pcDefaultDoubleClick.Items.AddRange(new object[] {
-            resources.GetString("pcDefaultDoubleClick.Items"),
-            resources.GetString("pcDefaultDoubleClick.Items1")});
-            this.pcDefaultDoubleClick.Name = "pcDefaultDoubleClick";
-            // 
-            // preferPutty
-            // 
-            resources.ApplyResources(this.preferPutty, "preferPutty");
-            this.preferPutty.Name = "preferPutty";
-            this.preferPutty.UseVisualStyleBackColor = true;
-            // 
-            // EnvironmentSettingsControl
-            // 
-            resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.autoAddFiles);
-            this.Controls.Add(this.autoLockFiles);
-            this.Controls.Add(this.interactiveMergeOnConflict);
-            this.Controls.Add(this.flashWindowAfterOperation);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.pcDefaultDoubleClick);
-            this.Name = "EnvironmentSettingsControl";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			this.authenticationEdit = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
+			this.proxyEdit = new System.Windows.Forms.Button();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.preferPutty = new System.Windows.Forms.CheckBox();
+			this.clientSideHooks = new System.Windows.Forms.CheckBox();
+			this.interactiveMergeOnConflict = new System.Windows.Forms.CheckBox();
+			this.autoAddFiles = new System.Windows.Forms.CheckBox();
+			this.flashWindowAfterOperation = new System.Windows.Forms.CheckBox();
+			this.autoLockFiles = new System.Windows.Forms.CheckBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.pcDefaultDoubleClick = new System.Windows.Forms.ComboBox();
+			this.groupBox1.SuspendLayout();
+			this.SuspendLayout();
+			//
+			// authenticationEdit
+			//
+			this.authenticationEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.authenticationEdit.Location = new System.Drawing.Point(319, 51);
+			this.authenticationEdit.Name = "authenticationEdit";
+			this.authenticationEdit.Size = new System.Drawing.Size(75, 23);
+			this.authenticationEdit.TabIndex = 3;
+			this.authenticationEdit.Text = "Edit";
+			this.authenticationEdit.UseVisualStyleBackColor = true;
+			this.authenticationEdit.Click += new System.EventHandler(this.authenticationEdit_Click);
+			//
+			// label1
+			//
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(6, 56);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(112, 13);
+			this.label1.TabIndex = 2;
+			this.label1.Text = "Au&thentication Cache:";
+			//
+			// label2
+			//
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(6, 23);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(77, 13);
+			this.label2.TabIndex = 0;
+			this.label2.Text = "&Proxy Settings:";
+			//
+			// proxyEdit
+			//
+			this.proxyEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.proxyEdit.Location = new System.Drawing.Point(319, 18);
+			this.proxyEdit.Name = "proxyEdit";
+			this.proxyEdit.Size = new System.Drawing.Size(75, 23);
+			this.proxyEdit.TabIndex = 1;
+			this.proxyEdit.Text = "Edit";
+			this.proxyEdit.UseVisualStyleBackColor = true;
+			this.proxyEdit.Click += new System.EventHandler(this.proxyEdit_Click);
+			//
+			// groupBox1
+			//
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.preferPutty);
+			this.groupBox1.Controls.Add(this.clientSideHooks);
+			this.groupBox1.Controls.Add(this.label2);
+			this.groupBox1.Controls.Add(this.proxyEdit);
+			this.groupBox1.Controls.Add(this.label1);
+			this.groupBox1.Controls.Add(this.authenticationEdit);
+			this.groupBox1.Location = new System.Drawing.Point(0, 131);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(400, 137);
+			this.groupBox1.TabIndex = 4;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "Subversion User Settings";
+			//
+			// preferPutty
+			//
+			this.preferPutty.AutoSize = true;
+			this.preferPutty.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.preferPutty.Location = new System.Drawing.Point(9, 108);
+			this.preferPutty.Name = "preferPutty";
+			this.preferPutty.Size = new System.Drawing.Size(246, 17);
+			this.preferPutty.TabIndex = 5;
+			this.preferPutty.Text = "Prefer &Putty Plink over LibSSH2 for svn+ssh://";
+			this.preferPutty.UseVisualStyleBackColor = true;
+			//
+			// clientSideHooks
+			//
+			this.clientSideHooks.AutoSize = true;
+			this.clientSideHooks.Location = new System.Drawing.Point(9, 85);
+			this.clientSideHooks.Name = "clientSideHooks";
+			this.clientSideHooks.Size = new System.Drawing.Size(146, 17);
+			this.clientSideHooks.TabIndex = 4;
+			this.clientSideHooks.Text = "Enable &Client-Side Hooks";
+			this.clientSideHooks.UseVisualStyleBackColor = true;
+			//
+			// interactiveMergeOnConflict
+			//
+			this.interactiveMergeOnConflict.AutoSize = true;
+			this.interactiveMergeOnConflict.Location = new System.Drawing.Point(0, 43);
+			this.interactiveMergeOnConflict.Name = "interactiveMergeOnConflict";
+			this.interactiveMergeOnConflict.Size = new System.Drawing.Size(218, 17);
+			this.interactiveMergeOnConflict.TabIndex = 2;
+			this.interactiveMergeOnConflict.Text = "Start Interactive Merge on &Conflict (Beta)";
+			this.interactiveMergeOnConflict.UseVisualStyleBackColor = true;
+			//
+			// autoAddFiles
+			//
+			this.autoAddFiles.AutoSize = true;
+			this.autoAddFiles.Location = new System.Drawing.Point(0, 5);
+			this.autoAddFiles.Name = "autoAddFiles";
+			this.autoAddFiles.Size = new System.Drawing.Size(192, 17);
+			this.autoAddFiles.TabIndex = 0;
+			this.autoAddFiles.Text = "Directly &add new files to subversion";
+			this.autoAddFiles.UseVisualStyleBackColor = true;
+			//
+			// flashWindowAfterOperation
+			//
+			this.flashWindowAfterOperation.AutoSize = true;
+			this.flashWindowAfterOperation.Location = new System.Drawing.Point(0, 63);
+			this.flashWindowAfterOperation.Name = "flashWindowAfterOperation";
+			this.flashWindowAfterOperation.Size = new System.Drawing.Size(261, 17);
+			this.flashWindowAfterOperation.TabIndex = 3;
+			this.flashWindowAfterOperation.Text = "&Flash title bar when a lengthy operation completes";
+			this.flashWindowAfterOperation.UseVisualStyleBackColor = true;
+			//
+			// autoLockFiles
+			//
+			this.autoLockFiles.AutoSize = true;
+			this.autoLockFiles.Location = new System.Drawing.Point(0, 24);
+			this.autoLockFiles.Name = "autoLockFiles";
+			this.autoLockFiles.Size = new System.Drawing.Size(306, 17);
+			this.autoLockFiles.TabIndex = 1;
+			this.autoLockFiles.Text = "Automatically &lock files on change without user confirmation";
+			this.autoLockFiles.UseVisualStyleBackColor = true;
+			//
+			// label3
+			//
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(19, 88);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(238, 13);
+			this.label3.TabIndex = 5;
+			this.label3.Text = "When &double clicking items in Pending Changes:";
+			//
+			// pcDefaultDoubleClick
+			//
+			this.pcDefaultDoubleClick.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.pcDefaultDoubleClick.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.pcDefaultDoubleClick.FormattingEnabled = true;
+			this.pcDefaultDoubleClick.Items.AddRange(new object[] {
+			"Open the file in Visual Studio",
+			"Show changes in the current diff tool"});
+			this.pcDefaultDoubleClick.Location = new System.Drawing.Point(19, 104);
+			this.pcDefaultDoubleClick.Name = "pcDefaultDoubleClick";
+			this.pcDefaultDoubleClick.Size = new System.Drawing.Size(339, 21);
+			this.pcDefaultDoubleClick.TabIndex = 6;
+			//
+			// EnvironmentSettingsControl
+			//
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.autoAddFiles);
+			this.Controls.Add(this.autoLockFiles);
+			this.Controls.Add(this.interactiveMergeOnConflict);
+			this.Controls.Add(this.flashWindowAfterOperation);
+			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.label3);
+			this.Controls.Add(this.pcDefaultDoubleClick);
+			this.Margin = new System.Windows.Forms.Padding(0);
+			this.Name = "EnvironmentSettingsControl";
+			this.groupBox1.ResumeLayout(false);
+			this.groupBox1.PerformLayout();
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.Button authenticationEdit;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button proxyEdit;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox interactiveMergeOnConflict;
-        private System.Windows.Forms.CheckBox autoAddFiles;
-        private System.Windows.Forms.CheckBox flashWindowAfterOperation;
-        private System.Windows.Forms.CheckBox autoLockFiles;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox pcDefaultDoubleClick;
-        private System.Windows.Forms.CheckBox clientSideHooks;
-        private System.Windows.Forms.CheckBox preferPutty;
-    }
+		private System.Windows.Forms.Button authenticationEdit;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Button proxyEdit;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.CheckBox interactiveMergeOnConflict;
+		private System.Windows.Forms.CheckBox autoAddFiles;
+		private System.Windows.Forms.CheckBox flashWindowAfterOperation;
+		private System.Windows.Forms.CheckBox autoLockFiles;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.ComboBox pcDefaultDoubleClick;
+		private System.Windows.Forms.CheckBox clientSideHooks;
+		private System.Windows.Forms.CheckBox preferPutty;
+	}
 }

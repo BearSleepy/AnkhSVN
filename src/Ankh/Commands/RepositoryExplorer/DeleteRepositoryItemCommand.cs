@@ -70,7 +70,7 @@ namespace Ankh.Commands.RepositoryExplorer
 
             try
             {
-                e.GetService<IProgressRunner>().RunModal(CommandStrings.Deleting,
+                e.GetService<IProgressRunner>().RunModal(Resources.Deleting,
                     delegate(object sender, ProgressWorkerArgs a)
                     {
                         SvnDeleteArgs da = new SvnDeleteArgs();

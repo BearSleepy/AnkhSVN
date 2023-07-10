@@ -163,7 +163,6 @@
     <Compile Include="UI\VSWpfDialogBase.cs" />
     <Compile Include="UI\WithDPIAwareness.cs" />
     <Compile Include="VSAssemblies.cs" />
-    <Compile Include="VSErr.cs" />
     <Compile Include="VSItemId.cs" />
     <Compile Include="VS\IAnkhGlobalCommandHook.cs" />
     <Compile Include="VS\TextMarker.cs" />
@@ -207,8 +206,8 @@
     <Compile Include="Scc\Svn\ISvnLogItem.cs" />
     <Compile Include="Scc\Svn\ISvnRepositoryItem.cs" />
     <Compile Include="Scc\PendingChangeKind.cs" />
-    <Compile Include="Scc\PendingChangeText.Designer.cs">
-      <DependentUpon>PendingChangeText.resx</DependentUpon>
+    <Compile Include="Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -234,7 +233,6 @@
     <Compile Include="UI\VSTextEditor.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="VSVersion.cs" />
     <Compile Include="VS\ComStreamWrapper.cs" />
     <Compile Include="VS\IAnkhDialogOwner.cs" />
     <Compile Include="ContextServices\IAnkhErrorHandler.cs" />
@@ -282,9 +280,9 @@
     <Compile Include="Scc\Engine\SccItem.LongPath.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Scc\PendingChangeText.resx">
+    <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>PendingChangeText.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\VSEditorControl.resx">
@@ -295,9 +293,13 @@
   </ItemGroup>
   <PropertyGroup>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)tools\Ankh-Common.6.defines.targets" />
   <PropertyGroup>
-    <DefineConstants>$(DefineConstants);$(FaReleaseDefines);$(FaDefineConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);$(FaReleaseDefines)</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '17.0'">$(DefineConstants);VS_17_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '15.0'">$(DefineConstants);VS_15_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '12.0'">$(DefineConstants);VS_12_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '11.0'">$(DefineConstants);VS_11_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '10.0'">$(DefineConstants);VS_10_ENV</DefineConstants>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!--

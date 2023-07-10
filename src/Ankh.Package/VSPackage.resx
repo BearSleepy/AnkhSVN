@@ -168,12 +168,6 @@
   <data name="400" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Package.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="701" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\ToolWindows.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="555" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\CtcBitmap.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="501" xml:space="preserve">
     <value>Log Windows (AnkhSVN)</value>
   </data>
@@ -185,5 +179,19 @@
   </data>
   <data name="504" xml:space="preserve">
     <value>Source Control Explorers (AnkhSVN)</value>
+  </data>
+  <data name="701" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ToolWindows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="555" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\CtcBitmap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="204" xml:space="preserve">
+    <value>Open Source Subversion (SVN) Client
+
+AnkhSVN Project, powered by AmpScm, QQn &amp; GitHub
+
+Apache 2.0 licensed. See https://github.com/AmpScm/AnkhSVN and this version https://github.com/FallenWorlds/AnkhSVN</value>
+    <comment>About description</comment>
   </data>
 </root>

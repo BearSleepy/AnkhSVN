@@ -18,35 +18,35 @@ using Ankh.UI.WizardFramework;
 
 namespace Ankh.UI.MergeWizard
 {
-    public partial class MergeSourceReintegratePage : MergeSourceBasePage
-    {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public MergeSourceReintegratePage()
-        {
-            IsPageComplete = false;
-            Text = MergeStrings.MergeSourceHeaderTitle;
-            Description = MergeStrings.MergeSourceReintegratePageHeaderMessage;
-            InitializeComponent();
-        }
+	public partial class MergeSourceReintegratePage : MergeSourceBasePage
+	{
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		public MergeSourceReintegratePage()
+		{
+			IsPageComplete = false;
+			Text = ResourcesMerge.MergeSourceHeaderTitle;
+			Description = ResourcesMerge.MergeSourceReintegratePageHeaderMessage;
+			InitializeComponent();
+		}
 
-        /// <see cref="Ankh.UI.MergeWizard.MergeSourceBasePage" />
-        internal override MergeWizard.MergeType MergeType
-        {
-            get { return MergeWizard.MergeType.Reintegrate; }
-        }
+		/// <see cref="Ankh.UI.MergeWizard.MergeSourceBasePage" />
+		internal override MergeWizard.MergeType MergeType
+		{
+			get { return MergeWizard.MergeType.Reintegrate; }
+		}
 
-        protected override void OnPageChanging(WizardPageChangingEventArgs e)
-        {
-            base.OnPageChanging(e);
+		protected override void OnPageChanging(WizardPageChangingEventArgs e)
+		{
+			base.OnPageChanging(e);
 
-            Wizard.LogMode = Ankh.UI.SvnLog.LogMode.MergesEligible;
-        }
+			Wizard.LogMode = Ankh.UI.SvnLog.LogMode.MergesEligible;
+		}
 
-        internal override ICollection<Uri> GetMergeSources(SvnItem target)
-        {
-            return new List<Uri>();
-        }
-    }
+		internal override ICollection<Uri> GetMergeSources(SvnItem target)
+		{
+			return new List<Uri>();
+		}
+	}
 }

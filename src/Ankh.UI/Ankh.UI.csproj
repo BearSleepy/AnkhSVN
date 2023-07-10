@@ -81,11 +81,6 @@
     <Compile Include="Annotate\AnnotateMarginControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Annotate\AnnotateResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AnnotateResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Annotate\AnnotateSection.cs" />
     <Compile Include="Annotate\AnnotateEditorControl.cs">
       <SubType>UserControl</SubType>
@@ -104,11 +99,6 @@
     </Compile>
     <Compile Include="Commands\CheckoutDialog.Designer.cs">
       <DependentUpon>CheckoutDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Commands\CommandStrings.Designer.cs">
-      <DependentUpon>CommandStrings.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Commands\CreateChangeListDialog.cs">
       <SubType>Form</SubType>
@@ -140,12 +130,6 @@
     <Compile Include="Commands\UpdateDialog.Designer.cs">
       <DependentUpon>UpdateDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\StatusPanelTestForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Controls\StatusPanelTestForm.Designer.cs">
-      <DependentUpon>StatusPanelTestForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\StatusContainer.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -155,11 +139,6 @@
     </Compile>
     <Compile Include="Controls\StatusPanelDesigner.cs" />
     <Compile Include="Controls\StatusPanelMode.cs" />
-    <Compile Include="Controls\StatusPanelResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StatusPanelResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="IssueTracker\IssueSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,11 +221,6 @@
     <Compile Include="OptionsPages\EnvironmentSettingsControl.Designer.cs">
       <DependentUpon>EnvironmentSettingsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="OptionsPages\OptionsResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>OptionsResources.resx</DependentUpon>
-    </Compile>
     <Compile Include="OptionsPages\SvnAuthenticationCacheEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,11 +246,6 @@
       <DependentUpon>DateSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="PathSelector\VersionResolverService.cs" />
-    <Compile Include="PathSelector\VersionStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VersionStrings.resx</DependentUpon>
-    </Compile>
     <Compile Include="PendingChanges\Commands\ConfigureRecentChangesPage.cs" />
     <Compile Include="PendingChanges\Commands\CreatePatch.cs" />
     <Compile Include="PendingChanges\Commits\PendingCommitItemCollection.cs" />
@@ -295,11 +264,6 @@
     </Compile>
     <Compile Include="PendingChanges\LogMessageEditor.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="PendingChanges\PCResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PCResources.resx</DependentUpon>
     </Compile>
     <Compile Include="PendingChanges\PendingActivationPage.cs">
       <SubType>UserControl</SubType>
@@ -322,11 +286,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PropertyEditors\PropertyEditItem.cs" />
-    <Compile Include="PropertyEditors\PropertyEditStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PropertyEditStrings.resx</DependentUpon>
-    </Compile>
     <Compile Include="RepositoryExplorer\Commands\RemoveRepositoryRootCommand.cs" />
     <Compile Include="RepositoryExplorer\Commands\RepositoryBrowseCommand.cs" />
     <Compile Include="RepositoryExplorer\Commands\RepositoryExplorerLocation.cs" />
@@ -359,11 +318,6 @@
     </Compile>
     <Compile Include="RepositoryExplorer\RepositoryWizard\RepositorySelectionWizard.Designer.cs">
       <DependentUpon>RepositorySelectionWizard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RepositoryExplorer\RepositoryWizard\RepositoryWizardResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RepositoryWizardResources.resx</DependentUpon>
     </Compile>
     <Compile Include="RepositoryOpen\ProjectAddInfoDialog.cs">
       <SubType>Form</SubType>
@@ -437,11 +391,6 @@
     </Compile>
     <Compile Include="SvnInfoGrid\Commands\SvnInfoComboCommand.cs" />
     <Compile Include="SvnInfoGrid\Commands\SvnInfoTbCommands.cs" />
-    <Compile Include="SvnInfoGrid\SvnInfoStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SvnInfoStrings.resx</DependentUpon>
-    </Compile>
     <Compile Include="SvnLog\Commands\CompareWithWorkingCopy.cs" />
     <Compile Include="SvnLog\Commands\CopyRevision.cs" />
     <Compile Include="SvnLog\Commands\LogComboBox.cs" />
@@ -546,16 +495,6 @@
       <DependentUpon>MergeTypePage.cs</DependentUpon>
     </Compile>
     <Compile Include="MergeWizard\MergeUtils.cs" />
-    <Compile Include="MergeWizard\MergeStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MergeStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="PropertyEditors\PropertyDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -581,11 +520,6 @@
     <Compile Include="RepositoryExplorer\RepositoryListItem.cs" />
     <Compile Include="RepositoryExplorer\RepositoryListView.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="RepositoryExplorer\RepositoryStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RepositoryStrings.resx</DependentUpon>
     </Compile>
     <Compile Include="RepositoryExplorer\RepositoryTreeNode.cs" />
     <Compile Include="SccManagement\AddToSubversion.cs">
@@ -828,11 +762,6 @@
     <Compile Include="RepositoryExplorer\RepositoryTreeView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SvnLog\LogStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LogStrings.resx</DependentUpon>
-    </Compile>
     <Compile Include="PathSelector\VersionSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -843,491 +772,476 @@
     <Compile Include="WorkingCopyExplorer\Nodes\WCMyComputerNode.cs" />
     <Compile Include="WorkingCopyExplorer\Nodes\WCSolutionNode.cs" />
     <Compile Include="WorkingCopyExplorer\Nodes\WCTreeNode.cs" />
-    <Compile Include="WorkingCopyExplorer\WCStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WCStrings.resx</DependentUpon>
-    </Compile>
     <Compile Include="WorkingCopyExplorer\WorkingCopyExplorerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="WorkingCopyExplorer\WorkingCopyExplorerControl.Designer.cs">
       <DependentUpon>WorkingCopyExplorerControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Commands\AnnotateDialog.resx">
+    <None Include="MergeWizard\MergeWizard.resx">
+      <DependentUpon>MergeWizard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Commands\AnnotateDialog.resx">
       <DependentUpon>AnnotateDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Commands\CheckoutDialog.resx">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Commands\CheckoutDialog.resx">
       <DependentUpon>CheckoutDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Commands\CommandStrings.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>CommandStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Commands\CreateChangeListDialog.resx">
+    </None>
+    <None Include="Commands\CreateChangeListDialog.resx">
       <DependentUpon>CreateChangeListDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Commands\ExportDialog.resx">
+    </None>
+    <None Include="Commands\ExportDialog.resx">
       <DependentUpon>ExportDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Commands\RecentMessageDialog.resx">
+    </None>
+    <None Include="Commands\RecentMessageDialog.resx">
       <DependentUpon>RecentMessageDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Commands\SwitchDialog.resx">
+    </None>
+    <None Include="Commands\SwitchDialog.resx">
       <DependentUpon>SwitchDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Commands\UpdateDialog.resx">
+    </None>
+    <None Include="Commands\UpdateDialog.resx">
       <DependentUpon>UpdateDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OptionsPages\AddAdvancedMergeUserTool.resx">
+    </None>
+    <None Include="OptionsPages\AddAdvancedMergeUserTool.resx">
       <DependentUpon>AddAdvancedMergeUserTool.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OptionsPages\AddAdvancedDiffUserTool.resx">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="OptionsPages\AddAdvancedDiffUserTool.resx">
       <DependentUpon>AddAdvancedDiffUserTool.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OptionsPages\AdvancedDiffUserToolSettingsControl.resx">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="OptionsPages\AdvancedDiffUserToolSettingsControl.resx">
       <DependentUpon>AdvancedDiffUserToolSettingsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OptionsPages\AdvancedMergeUserToolSettingsControl.resx">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="OptionsPages\AdvancedMergeUserToolSettingsControl.resx">
       <DependentUpon>AdvancedMergeUserToolSettingsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepositoryExplorer\AddRepositoryRootDialog.resx">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RepositoryExplorer\AddRepositoryRootDialog.resx">
       <DependentUpon>AddRepositoryRootDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ErrorDialog.resx">
+    </None>
+    <None Include="ErrorDialog.resx">
       <DependentUpon>ErrorDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepositoryOpen\ProjectAddInfoDialog.resx">
+    </None>
+    <None Include="RepositoryOpen\ProjectAddInfoDialog.resx">
       <DependentUpon>ProjectAddInfoDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccManagement\LockDialog.resx">
+    </None>
+    <None Include="SccManagement\LockDialog.resx">
       <DependentUpon>LockDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PathSelector\CommonFileSelectorDialog.resx">
+    </None>
+    <None Include="PathSelector\CommonFileSelectorDialog.resx">
       <DependentUpon>CommonFileSelectorDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProgressDialog.resx">
+    </None>
+    <None Include="ProgressDialog.resx">
       <DependentUpon>ProgressDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyEditors\PropertyEditorDialog.resx">
+    </None>
+    <None Include="PropertyEditors\PropertyEditorDialog.resx">
       <DependentUpon>PropertyEditorDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepositoryExplorer\RepositoryTreeView.resx">
+    </None>
+    <None Include="RepositoryExplorer\RepositoryTreeView.resx">
       <DependentUpon>RepositoryTreeView.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PathSelector\VersionSelector.resx">
+    </None>
+    <None Include="PathSelector\VersionSelector.resx">
       <DependentUpon>VersionSelector.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
+    </None>
     <None Include="Ankh.UI.snk" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Annotate\AnnotateEditorControl.resx">
+    <None Include="Annotate\AnnotateEditorControl.resx">
       <DependentUpon>AnnotateEditorControl.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\StatusPanelTestForm.resx">
-      <DependentUpon>StatusPanelTestForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\Dialogs\MergeConflictHandlerDialog.resx">
+    </None>
+    <None Include="MergeWizard\Dialogs\MergeConflictHandlerDialog.resx">
       <DependentUpon>MergeConflictHandlerDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\MergeResultsDialog.resx">
+    </None>
+    <None Include="MergeWizard\MergeResultsDialog.resx">
       <DependentUpon>MergeResultsDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\WizardFramework\Wizard.resx">
+    </None>
+    <None Include="MergeWizard\WizardFramework\Wizard.resx">
       <DependentUpon>Wizard.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OptionsPages\EnvironmentSettingsControl.resx">
+    </None>
+    <None Include="OptionsPages\EnvironmentSettingsControl.resx">
       <DependentUpon>EnvironmentSettingsControl.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OptionsPages\OptionsResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>OptionsResources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OptionsPages\SvnAuthenticationCacheEditor.resx">
+    </None>
+    <None Include="OptionsPages\SvnAuthenticationCacheEditor.resx">
       <DependentUpon>SvnAuthenticationCacheEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OptionsPages\SvnProxyEditor.resx">
+    </None>
+    <None Include="OptionsPages\SvnProxyEditor.resx">
       <DependentUpon>SvnProxyEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PathSelector\RevisionSelector.resx">
+    </None>
+    <None Include="PathSelector\RevisionSelector.resx">
       <DependentUpon>RevisionSelector.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PathSelector\DateSelector.resx">
+    </None>
+    <None Include="PathSelector\DateSelector.resx">
       <DependentUpon>DateSelector.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PathSelector\VersionStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>VersionStrings.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PendingChanges\PCResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>PCResources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyEditors\NeedsLockPropertyEditor.resx">
+    </None>
+    <None Include="PropertyEditors\NeedsLockPropertyEditor.resx">
       <DependentUpon>NeedsLockPropertyEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyEditors\PropertyEditStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>PropertyEditStrings.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepositoryExplorer\Dialogs\ConfirmDeleteDialog.resx">
+    </None>
+    <None Include="RepositoryExplorer\Dialogs\ConfirmDeleteDialog.resx">
       <DependentUpon>ConfirmDeleteDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepositoryExplorer\Dialogs\RenameDialog.resx">
+    </None>
+    <None Include="RepositoryExplorer\Dialogs\RenameDialog.resx">
       <DependentUpon>RenameDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccManagement\AddProjectToSubversion.resx">
+    </None>
+    <None Include="SccManagement\AddProjectToSubversion.resx">
       <DependentUpon>AddProjectToSubversion.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccManagement\CopyToDialog.resx">
+    </None>
+    <None Include="SccManagement\CopyToDialog.resx">
       <DependentUpon>CopyToDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccManagement\CreateBranchDialog.resx">
+    </None>
+    <None Include="SccManagement\CreateBranchDialog.resx">
       <DependentUpon>CreateBranchDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccManagement\CreateDirectoryDialog.resx">
+    </None>
+    <None Include="SccManagement\CreateDirectoryDialog.resx">
       <DependentUpon>CreateDirectoryDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PathSelector\PendingChangeSelector.resx">
+    </None>
+    <None Include="PathSelector\PendingChangeSelector.resx">
       <DependentUpon>PendingChangeSelector.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccManagement\MultiWorkingCopyCommit.resx">
+    </None>
+    <None Include="SccManagement\MultiWorkingCopyCommit.resx">
       <DependentUpon>MultiWorkingCopyCommit.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccManagement\ProjectCommitDialog.resx">
+    </None>
+    <None Include="SccManagement\ProjectCommitDialog.resx">
       <DependentUpon>ProjectCommitDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccManagement\UpdateAvailableDialog.resx">
+    </None>
+    <None Include="SccManagement\UpdateAvailableDialog.resx">
       <DependentUpon>UpdateAvailableDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SvnLog\LogViewerDialog.resx">
+    </None>
+    <None Include="SvnLog\LogViewerDialog.resx">
       <DependentUpon>LogViewerDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\MergeBestPracticesPage.resx">
+    </None>
+    <None Include="MergeWizard\MergeBestPracticesPage.resx">
       <DependentUpon>MergeBestPracticesPage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\MergeOptionsPage.resx">
+    </None>
+    <None Include="MergeWizard\MergeOptionsPage.resx">
       <DependentUpon>MergeOptionsPage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\MergeRevisionsSelectionPage.resx">
+    </None>
+    <None Include="MergeWizard\MergeRevisionsSelectionPage.resx">
       <DependentUpon>MergeRevisionsSelectionPage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\MergeSourceBasePage.resx">
+    </None>
+    <None Include="MergeWizard\MergeSourceBasePage.resx">
       <DependentUpon>MergeSourceBasePage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\MergeSourceManuallyRecordPage.resx">
+    </None>
+    <None Include="MergeWizard\MergeSourceManuallyRecordPage.resx">
       <DependentUpon>MergeSourceManuallyRecordPage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\MergeSourceManuallyRemovePage.resx">
+    </None>
+    <None Include="MergeWizard\MergeSourceManuallyRemovePage.resx">
       <DependentUpon>MergeSourceManuallyRemovePage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\MergeSourceRangeOfRevisionsPage.resx">
+    </None>
+    <None Include="MergeWizard\MergeSourceRangeOfRevisionsPage.resx">
       <DependentUpon>MergeSourceRangeOfRevisionsPage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\MergeSourceReintegratePage.resx">
+    </None>
+    <None Include="MergeWizard\MergeSourceReintegratePage.resx">
       <DependentUpon>MergeSourceReintegratePage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\MergeSourceTwoDifferentTreesPage.resx">
+    </None>
+    <None Include="MergeWizard\MergeSourceTwoDifferentTreesPage.resx">
       <DependentUpon>MergeSourceTwoDifferentTreesPage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\MergeSummaryPage.resx">
+    </None>
+    <None Include="MergeWizard\MergeSummaryPage.resx">
       <DependentUpon>MergeSummaryPage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\MergeTypePage.resx">
+    </None>
+    <None Include="MergeWizard\MergeTypePage.resx">
       <DependentUpon>MergeTypePage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\MergeStrings.resx">
-      <SubType>Designer</SubType>
-      <LastGenOutput>MergeStrings.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PendingChanges\RecentChangesPage.resx">
+    </None>
+    <None Include="PendingChanges\RecentChangesPage.resx">
       <DependentUpon>RecentChangesPage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyEditors\PropertyDialog.resx">
+    </None>
+    <None Include="PropertyEditors\PropertyDialog.resx">
       <DependentUpon>PropertyDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepositoryExplorer\RepositoryFolderBrowserDialog.resx">
+    </None>
+    <None Include="RepositoryExplorer\RepositoryFolderBrowserDialog.resx">
       <DependentUpon>RepositoryFolderBrowserDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepositoryExplorer\RepositoryStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>RepositoryStrings.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccManagement\AddToSubversion.resx">
+    </None>
+    <None Include="SccManagement\AddToSubversion.resx">
       <DependentUpon>AddToSubversion.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SvnLog\EditLogMessageDialog.resx">
+    </None>
+    <None Include="SvnLog\EditLogMessageDialog.resx">
       <DependentUpon>EditLogMessageDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SvnLog\LogToolWindowControl.resx">
+    </None>
+    <None Include="SvnLog\LogToolWindowControl.resx">
       <DependentUpon>LogToolWindowControl.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WorkingCopyExplorer\AddWorkingCopyExplorerRootDialog.resx">
+    </None>
+    <None Include="WorkingCopyExplorer\AddWorkingCopyExplorerRootDialog.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AddWorkingCopyExplorerRootDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OptionsPages\UserToolSettingsControl.resx">
+    </None>
+    <None Include="OptionsPages\UserToolSettingsControl.resx">
       <DependentUpon>UserToolSettingsControl.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OptionsPages\ToolArgumentDialog.resx">
+    </None>
+    <None Include="OptionsPages\ToolArgumentDialog.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ToolArgumentDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PendingChanges\PendingCommitsPage.resx">
+    </None>
+    <None Include="PendingChanges\PendingCommitsPage.resx">
       <DependentUpon>PendingCommitsPage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PendingChanges\PendingChangesPage.resx">
+    </None>
+    <None Include="PendingChanges\PendingChangesPage.resx">
       <DependentUpon>PendingChangesPage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PendingChanges\PendingChangesToolControl.resx">
+    </None>
+    <None Include="PendingChanges\PendingChangesToolControl.resx">
       <DependentUpon>PendingChangesToolControl.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PendingChanges\PendingConflictsPage.resx">
+    </None>
+    <None Include="PendingChanges\PendingConflictsPage.resx">
       <DependentUpon>PendingConflictsPage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PendingChanges\PendingIssuesPage.resx">
+    </None>
+    <None Include="PendingChanges\PendingIssuesPage.resx">
       <DependentUpon>PendingIssuesPage.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyEditors\EolStylePropertyEditor.resx">
+    </None>
+    <None Include="PropertyEditors\EolStylePropertyEditor.resx">
       <DependentUpon>EolStylePropertyEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyEditors\ExecutablePropertyEditor.resx">
+    </None>
+    <None Include="PropertyEditors\ExecutablePropertyEditor.resx">
       <DependentUpon>ExecutablePropertyEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyEditors\ExternalsPropertyEditor.resx">
+    </None>
+    <None Include="PropertyEditors\ExternalsPropertyEditor.resx">
       <DependentUpon>ExternalsPropertyEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyEditors\IgnorePropertyEditor.resx">
+    </None>
+    <None Include="PropertyEditors\IgnorePropertyEditor.resx">
       <DependentUpon>IgnorePropertyEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyEditors\KeywordsPropertyEditor.resx">
+    </None>
+    <None Include="PropertyEditors\KeywordsPropertyEditor.resx">
       <DependentUpon>KeywordsPropertyEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyEditors\MimeTypePropertyEditor.resx">
+    </None>
+    <None Include="PropertyEditors\MimeTypePropertyEditor.resx">
       <DependentUpon>MimeTypePropertyEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertyEditors\PlainPropertyEditor.resx">
+    </None>
+    <None Include="PropertyEditors\PlainPropertyEditor.resx">
       <DependentUpon>PlainPropertyEditor.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepositoryExplorer\RepositoryExplorerControl.resx">
+    </None>
+    <None Include="RepositoryExplorer\RepositoryExplorerControl.resx">
       <DependentUpon>RepositoryExplorerControl.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepositoryOpen\CheckoutProject.resx">
+    </None>
+    <None Include="RepositoryOpen\CheckoutProject.resx">
       <DependentUpon>CheckoutProject.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepositoryOpen\RepositoryOpenDialog.resx">
+    </None>
+    <None Include="RepositoryOpen\RepositoryOpenDialog.resx">
       <DependentUpon>RepositoryOpenDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SvnLog\LogStrings.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>LogStrings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SvnLog\LogControl.resx">
+    </None>
+    <None Include="SvnLog\LogControl.resx">
       <DependentUpon>LogControl.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WorkingCopyExplorer\WCStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>WCStrings.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WorkingCopyExplorer\WorkingCopyExplorerControl.resx">
+    </None>
+    <None Include="WorkingCopyExplorer\WorkingCopyExplorerControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>WorkingCopyExplorerControl.cs</DependentUpon>
-    </EmbeddedResource>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="PendingChanges\Resources\SourceFiles.pdn" />
-    <None Include="Resources\TabSourceFiles.png" />
+    <None Include="Resources\SourceFiles.pdn" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\TabItems.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TabNotes.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Controls\Status.Ok.png" />
-    <None Include="Resources\BrowseRefresh.png" />
-    <None Include="Resources\BrowseUp.png" />
-    <None Include="Resources\disconnectButton.Image.png" />
-    <None Include="Resources\connectButton.Image.png" />
-    <None Include="Resources\refreshButton.Image.png" />
-    <None Include="Controls\Status.Error.png" />
-    <None Include="Controls\Status.Warning.png" />
-    <EmbeddedResource Include="Annotate\AnnotateResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AnnotateResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\StatusPanelResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>StatusPanelResources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="IssueTracker\IssueSelector.resx">
-      <DependentUpon>IssueSelector.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="IssueTracker\IssueTrackerConfigDialog.resx">
-      <DependentUpon>IssueTrackerConfigDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\BaseWizardPage.resx">
-      <DependentUpon>BaseWizardPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MergeWizard\MergeWizard.resx">
-      <DependentUpon>MergeWizard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PendingChanges\ConfigureRecentChangesPageDialog.resx">
-      <DependentUpon>ConfigureRecentChangesPageDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PendingChanges\PendingActivationPage.resx">
-      <DependentUpon>PendingActivationPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepositoryExplorer\RepositoryWizard\RepositoryProviderPage.resx">
-      <DependentUpon>RepositoryProviderPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepositoryExplorer\RepositoryWizard\RepositorySelectionPage.resx">
-      <DependentUpon>RepositorySelectionPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepositoryExplorer\RepositoryWizard\RepositorySelectionWizard.resx">
-      <DependentUpon>RepositorySelectionWizard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RepositoryExplorer\RepositoryWizard\RepositoryWizardResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>RepositoryWizardResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccManagement\ItemUpdateDialog.resx">
-      <DependentUpon>ItemUpdateDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SccManagement\ItemCompareDialog.resx">
-      <DependentUpon>ItemCompareDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SvnInfoGrid\SvnInfoGridControl.resx">
-      <DependentUpon>SvnInfoGridControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SvnInfoGrid\SvnInfoStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SvnInfoStrings.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <None Include="Controls\Status.Suggestion.png" />
-    <Content Include="Controls\Status.Exclamation.png" />
-    <Content Include="MergeWizard\images\Error.png" />
-    <Content Include="MergeWizard\images\ManuallyRecord.png" />
-    <None Include="MergeWizard\images\MergeWizardHeader.png" />
-    <None Include="MergeWizard\images\MergeWizard.ico" />
-    <Content Include="MergeWizard\images\RangeOfRevisions.png" />
-    <Content Include="MergeWizard\images\ReintegrateABranch.png" />
-    <Content Include="MergeWizard\images\Success.png" />
-    <Content Include="MergeWizard\images\TwoDifferentTrees.png" />
-    <Content Include="MergeWizard\images\ManuallyRemove.png" />
-    <None Include="Resources\folderCloseButton.Image.png" />
-    <None Include="Resources\Busy.gif" />
-    <Content Include="MergeWizard\images\help.gif" />
-    <Content Include="MergeWizard\images\message_error.gif" />
-    <Content Include="MergeWizard\images\message_info.gif" />
-    <Content Include="MergeWizard\images\message_warning.gif" />
-    <None Include="PendingChanges\Resources\SourceFiles.png" />
-    <None Include="PendingChanges\Resources\ConflictsOld.png" />
-    <None Include="PendingChanges\Resources\IssuesOld.png" />
-    <None Include="PendingChanges\Resources\RecentChangesOld.png" />
-    <None Include="PendingChanges\Resources\SourceFilesOld.png" />
-    <None Include="PendingChanges\Resources\Conflicts.png" />
-    <None Include="PendingChanges\Resources\Issues.png" />
-    <None Include="PendingChanges\Resources\RecentChanges.png" />
-    <Content Include="PropertyEditors\Images\Properties.ico" />
-    <Content Include="Resources\cloudforge.png" />
+    <None Include="Resources\VersionButton.png" />
+    <None Include="Resources\AddWorldButton.png" />
+    <None Include="Resources\DirUpButton.png" />
+    <None Include="Resources\RefreshButton.png" />
+    <Content Include="Resources\Plus.png" />
     <Content Include="Resources\RepositoryWizardHeader.gif" />
-    <Content Include="Resources\TabConflicts.png" />
-    <None Include="SvnLog\Plus.png" />
+    <None Include="Resources\Status.Ok.png" />
+    <None Include="Resources\Status.Error.png" />
+    <None Include="Resources\Status.Warning.png" />
+    <None Include="IssueTracker\IssueSelector.resx">
+      <DependentUpon>IssueSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="IssueTracker\IssueTrackerConfigDialog.resx">
+      <DependentUpon>IssueTrackerConfigDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MergeWizard\BaseWizardPage.resx">
+      <DependentUpon>BaseWizardPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PendingChanges\ConfigureRecentChangesPageDialog.resx">
+      <DependentUpon>ConfigureRecentChangesPageDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PendingChanges\PendingActivationPage.resx">
+      <DependentUpon>PendingActivationPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RepositoryExplorer\RepositoryWizard\RepositoryProviderPage.resx">
+      <DependentUpon>RepositoryProviderPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RepositoryExplorer\RepositoryWizard\RepositorySelectionPage.resx">
+      <DependentUpon>RepositorySelectionPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="RepositoryExplorer\RepositoryWizard\RepositorySelectionWizard.resx">
+      <DependentUpon>RepositorySelectionWizard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SccManagement\ItemUpdateDialog.resx">
+      <DependentUpon>ItemUpdateDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SccManagement\ItemCompareDialog.resx">
+      <DependentUpon>ItemCompareDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SvnInfoGrid\SvnInfoGridControl.resx">
+      <DependentUpon>SvnInfoGridControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\Status.Suggestion.png" />
+    <None Include="Resources\Status.Exclamation.png" />
+    <None Include="Resources-2010\Conflicts.png" />
+    <None Include="Resources-2010\Issues.png" />
+    <None Include="Resources-2010\RecentChanges.png" />
+    <None Include="Resources-2010\SourceFiles.png" />
+    <Content Include="Resources\Merge\Error.png" />
+    <Content Include="Resources\Merge\BPCheck.png" />
+    <Content Include="Resources\Merge\ManuallyRecord.png" />
+    <None Include="Resources\Merge\MergeWizardHeader.png" />
+    <None Include="Resources\Merge\MergeWizard.ico" />
+    <Content Include="Resources\Merge\RangeOfRevisions.png" />
+    <Content Include="Resources\Merge\ReintegrateABranch.png" />
+    <Content Include="Resources\Merge\Success.png" />
+    <Content Include="Resources\Merge\TwoDifferentTrees.png" />
+    <Content Include="Resources\Merge\ManuallyRemove.png" />
+    <None Include="Resources\Busy.gif" />
+    <Content Include="Resources\Merge\help.gif" />
+    <Content Include="Resources\Merge\ErrorIcon.gif" />
+    <Content Include="Resources\Merge\InfoIcon.gif" />
+    <Content Include="Resources\Merge\WarningIcon.gif" />
+    <None Include="Resources\SourceFiles.png" />
+    <None Include="Resources\Conflicts.png" />
+    <None Include="Resources\Issues.png" />
+    <None Include="Resources\RecentChanges.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="ResourcesMergeImage.Designer.cs">
+      <DependentUpon>ResourcesMergeImage.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ResourcesMerge.Designer.cs">
+      <DependentUpon>ResourcesMerge.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourcesMergeImage.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesMergeImage.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResourcesMerge.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesMerge.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources-2010.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources-2010.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources-2010.Designer.cs">
+      <DependentUpon>Resources-2010.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </None>
+  </ItemGroup>
+  <ItemGroup Condition="'$(VisualStudioVersion)' &lt; '11.0'">
+    <Compile Include="Resources-2010.Designer.cs">
+      <InProject>false</InProject>
+    </Compile>
+    <EmbeddedResource Include="Resources-2010.resx">
+      <InProject>false</InProject>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)tools\Ankh-Common.6.defines.targets" />
   <PropertyGroup>
-    <DefineConstants>$(DefineConstants);$(FaReleaseDefines);$(FaDefineConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);$(FaReleaseDefines)</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '17.0'">$(DefineConstants);VS_17_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '15.0'">$(DefineConstants);VS_15_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '12.0'">$(DefineConstants);VS_12_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '11.0'">$(DefineConstants);VS_11_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '10.0'">$(DefineConstants);VS_10_ENV</DefineConstants>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!--

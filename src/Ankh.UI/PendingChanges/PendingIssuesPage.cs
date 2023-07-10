@@ -19,97 +19,100 @@ using Ankh.ExtensionPoints.IssueTracker;
 
 namespace Ankh.UI.PendingChanges
 {
-    partial class PendingIssuesPage : PendingChangesPage
-    {
-        public PendingIssuesPage()
-        {
-            InitializeComponent();
-        }
+	partial class PendingIssuesPage : PendingChangesPage
+	{
+		public PendingIssuesPage()
+		{
+			InitializeComponent();
+		}
 
-        protected override Type PageType
-        {
-            get
-            {
-                return typeof(PendingIssuesPage);
-            }
-        }
+		protected override Type PageType
+		{
+			get
+			{
+				return typeof(PendingIssuesPage);
+			}
+		}
 
-        IAnkhIssueService _issueService;
+		IAnkhIssueService _issueService;
 
-        IAnkhIssueService IssueService
-        {
-            get { return _issueService ?? (_issueService = ((Context != null) ? Context.GetService<IAnkhIssueService>() : null)); }
-        }
+		IAnkhIssueService IssueService
+		{
+			get { return _issueService ?? (_issueService = ((Context != null) ? Context.GetService<IAnkhIssueService>() : null)); }
+		}
 
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
+		protected override void OnLoad(EventArgs e)
+		{
+			base.OnLoad(e);
 
-            if (IssueService != null)
-            {
-                RefreshPageContents();
-                IssueService.IssueRepositoryChanged += new EventHandler(issueService_IssueRepositoryChanged);
-            }
-        }
+			if (IssueService != null)
+			{
+				RefreshPageContents();
+				IssueService.IssueRepositoryChanged += new EventHandler(issueService_IssueRepositoryChanged);
+			}
+		}
 
-        public override void OnThemeChanged(EventArgs e)
-        {
-            base.OnThemeChanged(e);
+		public override void OnThemeChanged(EventArgs e)
+		{
+			base.OnThemeChanged(e);
 
-            if (VSVersion.VS2012OrLater)
-                pleaseConfigureLabel.BorderStyle = BorderStyle.None;
-        }
+#if VS_11_ENV
+			pleaseConfigureLabel.BorderStyle = BorderStyle.None;
+#endif // VS_11_ENV
+		}
 
-        void issueService_IssueRepositoryChanged(object sender, EventArgs e)
-        {
-            RefreshPageContents();
-        }
+		void issueService_IssueRepositoryChanged(object sender, EventArgs e)
+		{
+			RefreshPageContents();
+		}
 
-        public void RefreshPageContents()
-        {
-            Controls.Clear();
+		public void RefreshPageContents()
+		{
+			Controls.Clear();
 
-            if (IssueService != null)
-            {
-                IssueRepository repository = IssueService.CurrentIssueRepository;
-                IWin32Window window = null;
+			if (IssueService != null)
+			{
+				IssueRepository repository = IssueService.CurrentIssueRepository;
+				IWin32Window window = null;
 
-                if (repository != null
-                    && (window = repository.Window) != null)
-                {
-                    Control control = Control.FromHandle(window.Handle);
-                    if (control != null)
-                    {
-                        control.Dock = DockStyle.Fill;
-                        Controls.Add(control);
+				if (repository != null
+					&& (window = repository.Window) != null)
+				{
+					Control control = Control.FromHandle(window.Handle);
+					if (control != null)
+					{
+						control.Dock = DockStyle.Fill;
+						Controls.Add(control);
 
-                        if (VSVersion.VS2012OrLater && Context != null)
-                        {
-                            IWinFormsThemingService wts = Context.GetService<IWinFormsThemingService>();
+#if VS_11_ENV
+						if (Context != null)
+						{
+							IWinFormsThemingService wts = Context.GetService<IWinFormsThemingService>();
 
-                            if (wts != null)
-                                wts.ThemeRecursive(control, false);
-                        }
-                        return;
-                    }
-                }
-            }
-            Controls.Add(pleaseConfigureLabel);
-        }
+							if (wts != null)
+								wts.ThemeRecursive(control, false);
+						}
+#endif // VS_11_ENV
+						return;
+					}
+				}
+			}
+			Controls.Add(pleaseConfigureLabel);
+		}
 
-        protected override void OnFontChanged(EventArgs e)
-        {
-            base.OnFontChanged(e);
+		protected override void OnFontChanged(EventArgs e)
+		{
+			base.OnFontChanged(e);
 
-            pleaseConfigureLabel.Font = new Font(Font, FontStyle.Bold);
-        }
+			pleaseConfigureLabel.Font = new Font(Font, FontStyle.Bold);
+		}
 
-        private void pleaseConfigureLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            IAnkhHelpService help = Context.GetService<IAnkhHelpService>();
-            
-            if (help != null)
-                help.RunHelp(this);
-        }
-    }
+		private void pleaseConfigureLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			IAnkhHelpService help = Context.GetService<IAnkhHelpService>();
+
+			if (help != null)
+				help.RunHelp(this);
+		}
+	}
 }

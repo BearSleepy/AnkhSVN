@@ -138,10 +138,10 @@
     <Compile Include="Selection\SelectionContext.SelectionItem.cs">
       <DependentUpon>SelectionContext.cs</DependentUpon>
     </Compile>
-    <Compile Include="SolutionExplorer\SolutionExplorerStrings.Designer.cs">
+    <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SolutionExplorerStrings.resx</DependentUpon>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="TextEditor\TextEditorFactory.cs" />
     <Compile Include="TextEditor\TheVSTextEditor.cs">
@@ -149,22 +149,26 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="SolutionExplorer\StatusGlyphs7.bmp" />
-    <EmbeddedResource Include="SolutionExplorer\StatusGlyphs8.bmp" />
-    <EmbeddedResource Include="SolutionExplorer\SolutionExplorerStrings.resx">
+    <None Include="Resources\StatusGlyphs7.bmp" />
+    <None Include="Resources\StatusGlyphs8.bmp" />
+    <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SolutionExplorerStrings.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="SolutionExplorer\UpDnListView.png" />
+    <None Include="Resources\UpDnListView.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
   </ItemGroup>
   <PropertyGroup>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)tools\Ankh-Common.6.defines.targets" />
   <PropertyGroup>
-    <DefineConstants>$(DefineConstants);$(FaReleaseDefines);$(FaDefineConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);$(FaReleaseDefines)</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '17.0'">$(DefineConstants);VS_17_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '15.0'">$(DefineConstants);VS_15_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '12.0'">$(DefineConstants);VS_12_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '11.0'">$(DefineConstants);VS_11_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '10.0'">$(DefineConstants);VS_10_ENV</DefineConstants>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!--

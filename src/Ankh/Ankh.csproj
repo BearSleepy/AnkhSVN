@@ -82,13 +82,11 @@
     <Compile Include="Services\RepositoryProvider\ScmRepositoryProviderProxy.cs" />
     <Compile Include="Services\TempDirManager.cs" />
     <Compile Include="Services\TempFileManager.cs" />
-    <EmbeddedResource Include="Services\ServiceStrings.resx">
+    <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ServiceStrings.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="..\.editorconfig">
-      <Link>.editorconfig</Link>
-    </None>
     <None Include="Ankh.snk" />
     <Compile Include="Commands\ApplyPatch.cs" />
     <Compile Include="Commands\ItemAddToPending.cs">
@@ -110,26 +108,16 @@
     <Compile Include="Services\IssueTracker\IssueRepositoryConnectorProxy.cs" />
     <Compile Include="Services\IssueTracker\IssueRepositorySettingsProxy.cs" />
     <Compile Include="Services\MigrationService.cs" />
-    <Compile Include="Services\PendingChanges\PccStrings.Designer.cs">
+    <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PccStrings.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Services\ServiceStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServiceStrings.resx</DependentUpon>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\SolutionSettings.Commit.cs">
       <DependentUpon>SolutionSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Commands\BranchSolutionCommand.cs" />
     <Compile Include="Commands\CheckForUpdates.cs" />
-    <Compile Include="Commands\CommandStrings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CommandStrings.resx</DependentUpon>
-    </Compile>
     <Compile Include="Commands\ItemEditPropertiesCommand.cs" />
     <Compile Include="Commands\ItemConflictEdit.cs" />
     <Compile Include="Commands\ItemIgnore.cs" />
@@ -224,22 +212,16 @@
     <Compile Include="Services\SolutionSettings.IssueRepository.cs">
       <DependentUpon>SolutionSettings.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Commands\CommandStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>CommandStrings.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Services\PendingChanges\PccStrings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>PccStrings.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)tools\Ankh-Common.6.defines.targets" />
   <PropertyGroup>
-    <DefineConstants>$(DefineConstants);$(FaReleaseDefines);$(FaDefineConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);$(FaReleaseDefines)</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '17.0'">$(DefineConstants);VS_17_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '15.0'">$(DefineConstants);VS_15_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '12.0'">$(DefineConstants);VS_12_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '11.0'">$(DefineConstants);VS_11_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '10.0'">$(DefineConstants);VS_10_ENV</DefineConstants>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!--

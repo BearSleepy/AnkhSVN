@@ -18,123 +18,123 @@ using System.Text;
 
 namespace Ankh.Scc
 {
-    
-    public class PendingChangeStatus : IEquatable<PendingChangeStatus>
-    {
-        readonly PendingChangeKind _state;
-        string _text;
-                
-        public PendingChangeStatus(PendingChangeKind state)
-        {
-            _state = state;
-        }
 
-        public override string ToString()
-        {
-            return Text;
-        }
+	public class PendingChangeStatus : IEquatable<PendingChangeStatus>
+	{
+		readonly PendingChangeKind _state;
+		string _text;
 
-        /// <summary>
-        /// Gets the text as shown in the property browser
-        /// </summary>
-        public string Text
-        {
-            get { return _text ?? (_text = GetText()); }
-        }
+		public PendingChangeStatus(PendingChangeKind state)
+		{
+			_state = state;
+		}
 
-        private string GetText()
-        {
-            switch (State)
-            {
-                case PendingChangeKind.New:
-                    return PendingChangeText.StateNew;
-                case PendingChangeKind.Added:
-                    return PendingChangeText.StateAdded;
-                case PendingChangeKind.Copied:
-                    return PendingChangeText.StateCopied;
-                case PendingChangeKind.Deleted:
-                    return PendingChangeText.StateDeleted;
-                case PendingChangeKind.Replaced:
-                    return PendingChangeText.StateReplaced;
-                case PendingChangeKind.Missing:
-                    return PendingChangeText.StateMissing;
-                case PendingChangeKind.Modified:
-                    return PendingChangeText.StateModified;
-                case PendingChangeKind.EditorDirty:
-                    return PendingChangeText.StateEdited;
-                case PendingChangeKind.PropertyModified:
-                    return PendingChangeText.StatePropertyModified;
-                case PendingChangeKind.DeletedNew:
-                    return PendingChangeText.StateNewOverDeleted;
-                case PendingChangeKind.LockedOnly:
-                    return PendingChangeText.StateLocked;
-                case PendingChangeKind.Incomplete:
-                    return PendingChangeText.StateIncomplete;
-                case PendingChangeKind.WrongCasing:
-                    return PendingChangeText.StateWrongCasing;
-                case PendingChangeKind.Conflicted:
-                    return PendingChangeText.StateConflicted;
-                case PendingChangeKind.TreeConflict:
-                    return PendingChangeText.StateTreeConflicted;
-                case PendingChangeKind.Ignored:
-                    return PendingChangeText.StateIgnored;
-                case PendingChangeKind.ModifiedCopy:
-                    return PendingChangeText.StateModifiedCopy;
-                case PendingChangeKind.Moved:
-                    return PendingChangeText.StateMoved;
-                case PendingChangeKind.ModifiedMove:
-                    return PendingChangeText.StateModifiedMove;
-                default:
-                    return State.ToString();
-            }            
-        }
+		public override string ToString()
+		{
+			return Text;
+		}
 
-        public PendingChangeKind State
-        {
-            get { return _state; }
-        }
+		/// <summary>
+		/// Gets the text as shown in the property browser
+		/// </summary>
+		public string Text
+		{
+			get { return _text ?? (_text = GetText()); }
+		}
 
-        /// <summary>
-        /// Gets the text as shown in the pending commits window
-        /// </summary>
-        public string PendingCommitText
-        {
-            get { return Text; }
-        }
+		private string GetText()
+		{
+			switch (State)
+			{
+				case PendingChangeKind.New:
+					return Resources.StateNew;
+				case PendingChangeKind.Added:
+					return Resources.StateAdded;
+				case PendingChangeKind.Copied:
+					return Resources.StateCopied;
+				case PendingChangeKind.Deleted:
+					return Resources.StateDeleted;
+				case PendingChangeKind.Replaced:
+					return Resources.StateReplaced;
+				case PendingChangeKind.Missing:
+					return Resources.StateMissing;
+				case PendingChangeKind.Modified:
+					return Resources.StateModified;
+				case PendingChangeKind.EditorDirty:
+					return Resources.StateEdited;
+				case PendingChangeKind.PropertyModified:
+					return Resources.StatePropertyModified;
+				case PendingChangeKind.DeletedNew:
+					return Resources.StateNewOverDeleted;
+				case PendingChangeKind.LockedOnly:
+					return Resources.StateLocked;
+				case PendingChangeKind.Incomplete:
+					return Resources.StateIncomplete;
+				case PendingChangeKind.WrongCasing:
+					return Resources.StateWrongCasing;
+				case PendingChangeKind.Conflicted:
+					return Resources.StateConflicted;
+				case PendingChangeKind.TreeConflict:
+					return Resources.StateTreeConflicted;
+				case PendingChangeKind.Ignored:
+					return Resources.StateIgnored;
+				case PendingChangeKind.ModifiedCopy:
+					return Resources.StateModifiedCopy;
+				case PendingChangeKind.Moved:
+					return Resources.StateMoved;
+				case PendingChangeKind.ModifiedMove:
+					return Resources.StateModifiedMove;
+				default:
+					return State.ToString();
+			}
+		}
+
+		public PendingChangeKind State
+		{
+			get { return _state; }
+		}
+
+		/// <summary>
+		/// Gets the text as shown in the pending commits window
+		/// </summary>
+		public string PendingCommitText
+		{
+			get { return Text; }
+		}
 
 
-        /// <summary>
-        /// Gets the text as shown in the WC Explorer
-        /// </summary>
-        /// <value>The explorer text.</value>
-        public string ExplorerText
-        {
-            get { return PendingCommitText; }
-        }
+		/// <summary>
+		/// Gets the text as shown in the WC Explorer
+		/// </summary>
+		/// <value>The explorer text.</value>
+		public string ExplorerText
+		{
+			get { return PendingCommitText; }
+		}
 
-        public override bool Equals(object obj)
-        {
-            if(!(obj is PendingChangeStatus))
-                return false;
+		public override bool Equals(object obj)
+		{
+			if(!(obj is PendingChangeStatus))
+				return false;
 
-            return (PendingChangeStatus)obj == this;
-        }
+			return (PendingChangeStatus)obj == this;
+		}
 
-        public override int GetHashCode()
-        {
-            return _state.GetHashCode();
-        }
+		public override int GetHashCode()
+		{
+			return _state.GetHashCode();
+		}
 
-        #region IEquatable<PendingChangeStatus> Members
+		#region IEquatable<PendingChangeStatus> Members
 
-        public bool Equals(PendingChangeStatus other)
-        {
-            if ((object)other == null)
-                return false;
+		public bool Equals(PendingChangeStatus other)
+		{
+			if ((object)other == null)
+				return false;
 
-            return State == other.State && Text == other.Text; // Todo: Remove text check
-        }
+			return State == other.State && Text == other.Text; // Todo: Remove text check
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

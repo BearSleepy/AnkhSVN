@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnnotateDialog));
 			this.label1 = new System.Windows.Forms.Label();
 			this.targetBox = new System.Windows.Forms.ComboBox();
 			this.browseButton = new System.Windows.Forms.Button();
@@ -45,99 +44,158 @@
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// label1
-			// 
-			resources.ApplyResources(this.label1, "label1");
+			//
+			this.label1.AutoSize = true;
+			this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.label1.Location = new System.Drawing.Point(12, 9);
 			this.label1.Name = "label1";
-			// 
+			this.label1.Size = new System.Drawing.Size(41, 13);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Ta&rget:";
+			//
 			// targetBox
-			// 
-			resources.ApplyResources(this.targetBox, "targetBox");
+			//
+			this.targetBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.targetBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.targetBox.FormatString = "f";
 			this.targetBox.FormattingEnabled = true;
+			this.targetBox.Location = new System.Drawing.Point(15, 25);
 			this.targetBox.Name = "targetBox";
+			this.targetBox.Size = new System.Drawing.Size(394, 21);
+			this.targetBox.TabIndex = 1;
 			this.targetBox.SelectedValueChanged += new System.EventHandler(this.targetBox_SelectedValueChanged);
-			// 
+			//
 			// browseButton
-			// 
-			resources.ApplyResources(this.browseButton, "browseButton");
+			//
+			this.browseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.browseButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.browseButton.Location = new System.Drawing.Point(415, 23);
 			this.browseButton.Name = "browseButton";
+			this.browseButton.Size = new System.Drawing.Size(27, 23);
+			this.browseButton.TabIndex = 2;
+			this.browseButton.Text = "...";
 			this.browseButton.UseVisualStyleBackColor = true;
 			this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
-			// 
+			//
 			// groupBox1
-			// 
-			resources.ApplyResources(this.groupBox1, "groupBox1");
+			//
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.startRevision);
+			this.groupBox1.Location = new System.Drawing.Point(15, 57);
 			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(433, 55);
+			this.groupBox1.TabIndex = 3;
 			this.groupBox1.TabStop = false;
-			// 
+			this.groupBox1.Text = "&From Version:";
+			//
 			// startRevision
-			// 
-			resources.ApplyResources(this.startRevision, "startRevision");
+			//
+			this.startRevision.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.startRevision.Location = new System.Drawing.Point(6, 19);
 			this.startRevision.Name = "startRevision";
+			this.startRevision.Size = new System.Drawing.Size(421, 29);
 			this.startRevision.SvnOrigin = null;
-			// 
+			this.startRevision.TabIndex = 0;
+			//
 			// groupBox2
-			// 
-			resources.ApplyResources(this.groupBox2, "groupBox2");
+			//
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.toRevision);
+			this.groupBox2.Location = new System.Drawing.Point(15, 118);
 			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(433, 55);
+			this.groupBox2.TabIndex = 4;
 			this.groupBox2.TabStop = false;
-			// 
+			this.groupBox2.Text = "&To Version:";
+			//
 			// toRevision
-			// 
-			resources.ApplyResources(this.toRevision, "toRevision");
+			//
+			this.toRevision.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.toRevision.Location = new System.Drawing.Point(6, 19);
 			this.toRevision.Name = "toRevision";
+			this.toRevision.Size = new System.Drawing.Size(421, 29);
 			this.toRevision.SvnOrigin = null;
-			// 
+			this.toRevision.TabIndex = 0;
+			//
 			// label2
-			// 
-			resources.ApplyResources(this.label2, "label2");
+			//
+			this.label2.AutoSize = true;
+			this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.label2.Location = new System.Drawing.Point(18, 188);
 			this.label2.Name = "label2";
-			// 
+			this.label2.Size = new System.Drawing.Size(67, 13);
+			this.label2.TabIndex = 5;
+			this.label2.Text = "&Whitespace:";
+			//
 			// whitespaceBox
-			// 
+			//
 			this.whitespaceBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			resources.ApplyResources(this.whitespaceBox, "whitespaceBox");
+			this.whitespaceBox.Location = new System.Drawing.Point(91, 185);
 			this.whitespaceBox.Name = "whitespaceBox";
-			// 
+			this.whitespaceBox.Size = new System.Drawing.Size(187, 21);
+			this.whitespaceBox.TabIndex = 6;
+			//
 			// ignoreEols
-			// 
-			resources.ApplyResources(this.ignoreEols, "ignoreEols");
+			//
+			this.ignoreEols.AutoSize = true;
 			this.ignoreEols.Checked = true;
 			this.ignoreEols.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.ignoreEols.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.ignoreEols.Location = new System.Drawing.Point(21, 216);
 			this.ignoreEols.Name = "ignoreEols";
+			this.ignoreEols.Size = new System.Drawing.Size(120, 17);
+			this.ignoreEols.TabIndex = 7;
+			this.ignoreEols.Text = "&Ignore Line Endings";
 			this.ignoreEols.UseVisualStyleBackColor = true;
-			// 
+			//
 			// includeMergeInfo
-			// 
-			resources.ApplyResources(this.includeMergeInfo, "includeMergeInfo");
+			//
+			this.includeMergeInfo.AutoSize = true;
+			this.includeMergeInfo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.includeMergeInfo.Location = new System.Drawing.Point(21, 239);
 			this.includeMergeInfo.Name = "includeMergeInfo";
+			this.includeMergeInfo.Size = new System.Drawing.Size(151, 17);
+			this.includeMergeInfo.TabIndex = 8;
+			this.includeMergeInfo.Text = "Retrieve &Mergeinfo (Slow!)";
 			this.includeMergeInfo.UseVisualStyleBackColor = true;
-			// 
+			//
 			// okButton
-			// 
-			resources.ApplyResources(this.okButton, "okButton");
+			//
+			this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.okButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.okButton.Location = new System.Drawing.Point(286, 243);
 			this.okButton.Name = "okButton";
+			this.okButton.Size = new System.Drawing.Size(75, 23);
+			this.okButton.TabIndex = 9;
+			this.okButton.Text = "OK";
 			this.okButton.UseVisualStyleBackColor = true;
-			// 
+			//
 			// cancelButton
-			// 
-			resources.ApplyResources(this.cancelButton, "cancelButton");
+			//
+			this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.cancelButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+			this.cancelButton.Location = new System.Drawing.Point(367, 243);
 			this.cancelButton.Name = "cancelButton";
+			this.cancelButton.Size = new System.Drawing.Size(75, 23);
+			this.cancelButton.TabIndex = 10;
+			this.cancelButton.Text = "Cancel";
 			this.cancelButton.UseVisualStyleBackColor = true;
-			// 
+			//
 			// AnnotateDialog
-			// 
+			//
 			this.AcceptButton = this.okButton;
-			resources.ApplyResources(this, "$this");
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.CancelButton = this.cancelButton;
+			this.ClientSize = new System.Drawing.Size(460, 278);
 			this.Controls.Add(this.cancelButton);
 			this.Controls.Add(this.okButton);
 			this.Controls.Add(this.includeMergeInfo);
@@ -150,6 +208,8 @@
 			this.Controls.Add(this.targetBox);
 			this.Controls.Add(this.label1);
 			this.Name = "AnnotateDialog";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
+			this.Text = "Annotate";
 			this.Load += new System.EventHandler(this.AnnotateDialog_Load);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox2.ResumeLayout(false);

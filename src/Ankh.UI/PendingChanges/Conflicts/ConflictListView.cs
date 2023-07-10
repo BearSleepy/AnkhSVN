@@ -24,124 +24,124 @@ using Ankh.Commands;
 
 namespace Ankh.UI.PendingChanges.Conflicts
 {
-    class ConflictListView : ListViewWithSelection<ConflictListItem>
-    {
-        IAnkhServiceProvider _context;
+	class ConflictListView : ListViewWithSelection<ConflictListItem>
+	{
+		IAnkhServiceProvider _context;
 
-        public ConflictListView()
-        {
-            Initialize();
-        }
+		public ConflictListView()
+		{
+			Initialize();
+		}
 
-        void Initialize()
-        {
-            SmartColumn path = new SmartColumn(this, PCResources.PathColumn, 288, "Path");
-            SmartColumn project = new SmartColumn(this, PCResources.ProjectColumn, 76, "Project");
-            SmartColumn conflictType = new SmartColumn(this, PCResources.ConflictTypeColumn, 92, "ConflictType");
-            SmartColumn conflictDescription = new SmartColumn(this, PCResources.ConflictDescriptionColumn, 288, "ConflictDescription");
+		void Initialize()
+		{
+			SmartColumn path = new SmartColumn(this, Resources.PathColumn, 288, "Path");
+			SmartColumn project = new SmartColumn(this, Resources.ProjectColumn, 76, "Project");
+			SmartColumn conflictType = new SmartColumn(this, Resources.ConflictTypeColumn, 92, "ConflictType");
+			SmartColumn conflictDescription = new SmartColumn(this, Resources.ConflictDescriptionColumn, 288, "ConflictDescription");
 
-            SmartColumn change = new SmartColumn(this, PCResources.ChangeColumn, 76, "Change");
-            SmartColumn fullPath = new SmartColumn(this, PCResources.FullPathColumn, 327, "FullPath");
+			SmartColumn change = new SmartColumn(this, Resources.ChangeColumn, 76, "Change");
+			SmartColumn fullPath = new SmartColumn(this, Resources.FullPathColumn, 327, "FullPath");
 
-            SmartColumn changeList = new SmartColumn(this, PCResources.ChangeListColumn, 76, "ChangeList");
-            SmartColumn folder = new SmartColumn(this, PCResources.FolderColumn, 196, "Folder");
-            SmartColumn locked = new SmartColumn(this, PCResources.LockedColumn, 38, "Locked");
-            SmartColumn modified = new SmartColumn(this, PCResources.ModifiedColumn, 76, "Modified");
-            SmartColumn name = new SmartColumn(this, PCResources.NameColumn, 76, "Name");
-            SmartColumn type = new SmartColumn(this, PCResources.TypeColumn, 76, "Type");
-            SmartColumn workingCopy = new SmartColumn(this, PCResources.WorkingCopyColumn, 76, "WorkingCopy");
+			SmartColumn changeList = new SmartColumn(this, Resources.ChangeListColumn, 76, "ChangeList");
+			SmartColumn folder = new SmartColumn(this, Resources.FolderColumn, 196, "Folder");
+			SmartColumn locked = new SmartColumn(this, Resources.LockedColumn, 38, "Locked");
+			SmartColumn modified = new SmartColumn(this, Resources.ModifiedColumn, 76, "Modified");
+			SmartColumn name = new SmartColumn(this, Resources.NameColumn, 76, "Name");
+			SmartColumn type = new SmartColumn(this, Resources.TypeColumn, 76, "Type");
+			SmartColumn workingCopy = new SmartColumn(this, Resources.WorkingCopyColumn, 76, "WorkingCopy");
 
-            Columns.AddRange(new ColumnHeader[]
-            {
-                path,
-                project,
-                conflictType,
-                conflictDescription,
-            });
+			Columns.AddRange(new ColumnHeader[]
+			{
+				path,
+				project,
+				conflictType,
+				conflictDescription,
+			});
 
-            modified.Sorter = new SortWrapper(
-                delegate(ConflictListItem x, ConflictListItem y)
-                {
-                    return x.PendingChange.SvnItem.Modified.CompareTo(y.PendingChange.SvnItem.Modified);
-                });
+			modified.Sorter = new SortWrapper(
+				delegate(ConflictListItem x, ConflictListItem y)
+				{
+					return x.PendingChange.SvnItem.Modified.CompareTo(y.PendingChange.SvnItem.Modified);
+				});
 
-            change.Groupable = true;
-            changeList.Groupable = true;
-            folder.Groupable = true;
-            locked.Groupable = true;
-            project.Groupable = true;
-            type.Groupable = true;
-            workingCopy.Groupable = true;
+			change.Groupable = true;
+			changeList.Groupable = true;
+			folder.Groupable = true;
+			locked.Groupable = true;
+			project.Groupable = true;
+			type.Groupable = true;
+			workingCopy.Groupable = true;
 
-            path.Hideable = false;
+			path.Hideable = false;
 
-            AllColumns.Add(change);
-            AllColumns.Add(changeList);
-            AllColumns.Add(conflictType);
-            AllColumns.Add(conflictDescription);
-            AllColumns.Add(folder);
-            AllColumns.Add(fullPath);
-            AllColumns.Add(locked);
-            AllColumns.Add(modified);
-            AllColumns.Add(name);
-            AllColumns.Add(path);
-            AllColumns.Add(project);
-            AllColumns.Add(type);
-            AllColumns.Add(workingCopy);
+			AllColumns.Add(change);
+			AllColumns.Add(changeList);
+			AllColumns.Add(conflictType);
+			AllColumns.Add(conflictDescription);
+			AllColumns.Add(folder);
+			AllColumns.Add(fullPath);
+			AllColumns.Add(locked);
+			AllColumns.Add(modified);
+			AllColumns.Add(name);
+			AllColumns.Add(path);
+			AllColumns.Add(project);
+			AllColumns.Add(type);
+			AllColumns.Add(workingCopy);
 
-            SortColumns.Add(path);
+			SortColumns.Add(path);
 
-            FinalSortColumn = path;
-        }
+			FinalSortColumn = path;
+		}
 
-        public IAnkhServiceProvider Context
-        {
-            get { return _context; }
-            set
-            {
-                _context = value;
-                SelectionPublishServiceProvider = value;
-                if (value != null)
-                {
-                    IFileIconMapper mapper = value.GetService<IFileIconMapper>();
-                    SmallImageList = mapper.ImageList;
-                }
-            }
-        }
+		public IAnkhServiceProvider Context
+		{
+			get { return _context; }
+			set
+			{
+				_context = value;
+				SelectionPublishServiceProvider = value;
+				if (value != null)
+				{
+					IFileIconMapper mapper = value.GetService<IFileIconMapper>();
+					SmallImageList = mapper.ImageList;
+				}
+			}
+		}
 
-        protected override string GetCanonicalName(ConflictListItem item)
-        {
-            return item.PendingChange.FullPath;
-        }
+		protected override string GetCanonicalName(ConflictListItem item)
+		{
+			return item.PendingChange.FullPath;
+		}
 
-        public override void OnShowContextMenu(MouseEventArgs e)
-        {
-            base.OnShowContextMenu(e);
+		public override void OnShowContextMenu(MouseEventArgs e)
+		{
+			base.OnShowContextMenu(e);
 
-            Point p = e.Location;
-            bool showSort = false;
-            if (p != new Point(-1, -1))
-            {
-                // Mouse context menu
-                if (PointToClient(p).Y < HeaderHeight)
-                    showSort = true;
-            }
-            else
-            {
-                ListViewItem fi = FocusedItem;
+			Point p = e.Location;
+			bool showSort = false;
+			if (p != new Point(-1, -1))
+			{
+				// Mouse context menu
+				if (PointToClient(p).Y < HeaderHeight)
+					showSort = true;
+			}
+			else
+			{
+				ListViewItem fi = FocusedItem;
 
-                if (fi != null)
-                    p = PointToScreen(fi.Position);
-            }
+				if (fi != null)
+					p = PointToScreen(fi.Position);
+			}
 
-            IAnkhCommandService mcs = Context.GetService<IAnkhCommandService>();
-            if (mcs != null)
-            {
-                if (showSort)
-                    mcs.ShowContextMenu(AnkhCommandMenu.PendingCommitsHeaderContextMenu, p);
-                else
-                    mcs.ShowContextMenu(AnkhCommandMenu.PendingCommitsContextMenu, p);
-            }
-        }
-    }
+			IAnkhCommandService mcs = Context.GetService<IAnkhCommandService>();
+			if (mcs != null)
+			{
+				if (showSort)
+					mcs.ShowContextMenu(AnkhCommandMenu.PendingCommitsHeaderContextMenu, p);
+				else
+					mcs.ShowContextMenu(AnkhCommandMenu.PendingCommitsContextMenu, p);
+			}
+		}
+	}
 }

@@ -14,57 +14,60 @@
 
 namespace Ankh.UI.SvnLog
 {
-    sealed partial class LogToolWindowControl
-    {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	sealed partial class LogToolWindowControl
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Component Designer generated code
+		#region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogToolWindowControl));
-            this.logControl = new Ankh.UI.SvnLog.LogControl(this.components);
-            this.SuspendLayout();
-            // 
-            // logControl
-            // 
-            resources.ApplyResources(this.logControl, "logControl");
-            this.logControl.Mode = Ankh.UI.SvnLog.LogMode.Log;
-            this.logControl.Name = "logControl";
-            // 
-            // LogToolWindowControl
-            // 
-            resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.logControl);
-            this.Name = "LogToolWindowControl";
-            this.ResumeLayout(false);
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			this.components = new System.ComponentModel.Container();
+			this.logControl = new Ankh.UI.SvnLog.LogControl(this.components);
+			this.SuspendLayout();
+			//
+			// logControl
+			//
+			this.logControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.logControl.Location = new System.Drawing.Point(0, 0);
+			this.logControl.Mode = Ankh.UI.SvnLog.LogMode.Log;
+			this.logControl.Name = "logControl";
+			this.logControl.Size = new System.Drawing.Size(531, 309);
+			this.logControl.TabIndex = 0;
+			//
+			// LogToolWindowControl
+			//
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.logControl);
+			this.Name = "LogToolWindowControl";
+			this.Size = new System.Drawing.Size(531, 309);
+			this.ResumeLayout(false);
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private LogControl logControl;
-    }
+		private LogControl logControl;
+	}
 }
