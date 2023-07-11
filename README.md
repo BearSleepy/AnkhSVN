@@ -3,8 +3,7 @@
 Primarily intended to share a working stripped down AnkhSVN build setup, and a
 working visx extention with the latest changes.
 
-This version AnkhSVN is capable of generating extention assests that are compatible
-with all current and past versions and editions of Visual Studio 2022.
+This version of AnkhSVN is compatible with all current and past versions and editions of Visual Studio 2022.
 
 The rationale currently is explained in src/tools/*.props.targets
 
