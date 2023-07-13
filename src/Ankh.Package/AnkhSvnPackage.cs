@@ -81,7 +81,6 @@ namespace Ankh.VSPackage
 		, IAnkhPackage, IAnkhQueryService, IAnkhStaticServiceRegistry
 	{
 		private AnkhRuntime _runtime;
-		readonly Dictionary<Type, object> _staticServices = new Dictionary<Type, object>();
 
 		/// <summary>
 		/// Default constructor of the package.
@@ -95,20 +94,52 @@ namespace Ankh.VSPackage
 			// This function is executed async, so don't initialize here.
 		}
 
-#if ASYNC
-		protected async override System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+		/// <summary>
+		/// Initialization of the package; this method is called right after the package is sited, so this is the place
+		/// where you can put all the initialization code that rely on services provided by VisualStudio.
+		/// </summary>
+		void InitializeSync()
 		{
-			await base.InitializeAsync(cancellationToken, progress);
-
-			await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-
 			if (InCommandLineMode)
 				return; // Do nothing; speed up devenv /setup by not loading all our modules!
 
-			InitializeRuntime(); // Moved to function of their own to speed up devenv /setup
+			_runtime = new AnkhRuntime(this);
+
+			IServiceContainer container = GetService<IServiceContainer>();
+			container.AddService(typeof(IAnkhPackage), this, true);
+			container.AddService(typeof(IAnkhQueryService), this, true);
+
+			_runtime.AddModule(new AnkhModule(_runtime));
+			_runtime.AddModule(new AnkhSccModule(_runtime));
+			_runtime.AddModule(new AnkhVSModule(_runtime));
+			_runtime.AddModule(new AnkhUIModule(_runtime));
+
+			RegisterEditors();
+
+			NotifyLoaded(false);
+
+			_runtime.Start();
+
+			NotifyLoaded(true);
+			
 			RegisterAsOleComponent();
 		}
+		
+#if ASYNC
+		protected async override System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+		{
+			await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
 
+			InitializeSync();			// Takes code out of the state machine
+		}
+#else // ASYNC
+		protected override void Initialize()
+		{
+			InitializeSync();
+		}		
+#endif // ASYNC
+
+#if ASYNC
 		protected override object GetService(Type serviceType)
 		{
 			if (_staticServices.TryGetValue(serviceType, out var v))
@@ -132,48 +163,19 @@ namespace Ankh.VSPackage
 			}
 		}
 
-#else // ASYNC
-		/// <summary>
-		/// Initialization of the package; this method is called right after the package is sited, so this is the place
-		/// where you can put all the initialization code that rely on services provided by VisualStudio.
-		/// </summary>
-		protected override void Initialize()
-		{
-			if (InCommandLineMode)
-				return; // Do nothing; speed up devenv /setup by not loading all our modules!
-
-			InitializeRuntime(); // Moved to function of their own to speed up devenv /setup
-			RegisterAsOleComponent();
-		}
+		readonly Dictionary<Type, object> _staticServices = new Dictionary<Type, object>();
 #endif // ASYNC
+
+		void IAnkhStaticServiceRegistry.AddStaticService(Type type, object instance, bool promote)
+		{
+			((IServiceContainer)this).AddService(type, instance, promote);
+#if ASYNC
+			_staticServices[type] = instance;
+#endif // ASYNC
+		}
 
 		/////////////////////////////////////////////////////////////////////////////
 		// Overridden Package Implementation
-
-		void InitializeRuntime()
-		{
-			_runtime = new AnkhRuntime(this);
-#if AS_BUILD_REPLACED
-			_runtime.PreLoad();
-#endif // AS_BUILD_REPLACED
-
-			IServiceContainer container = GetService<IServiceContainer>();
-			container.AddService(typeof(IAnkhPackage), this, true);
-			container.AddService(typeof(IAnkhQueryService), this, true);
-
-			_runtime.AddModule(new AnkhModule(_runtime));
-			_runtime.AddModule(new AnkhSccModule(_runtime));
-			_runtime.AddModule(new AnkhVSModule(_runtime));
-			_runtime.AddModule(new AnkhUIModule(_runtime));
-
-			RegisterEditors();
-
-			NotifyLoaded(false);
-
-			_runtime.Start();
-
-			NotifyLoaded(true);
-		}
 
 		private void NotifyLoaded(bool started)
 		{
@@ -262,13 +264,99 @@ namespace Ankh.VSPackage
 				Marshal.Release(handle);
 			}
 		}
-
-		void IAnkhStaticServiceRegistry.AddStaticService(Type type, object instance, bool promote)
-		{
-			((IServiceContainer)this).AddService(type, instance, promote);
-			_staticServices[type] = instance;
-		}
-
 		#endregion
 	}
+
+#if AS_BUILD_REPLACED
+	void InitializeRuntime()
+	{
+		_runtime = new AnkhRuntime(this);
+#if AS_BUILD_REPLACED
+		_runtime.PreLoad();
+#endif // AS_BUILD_REPLACED
+
+		IServiceContainer container = GetService<IServiceContainer>();
+		container.AddService(typeof(IAnkhPackage), this, true);
+		container.AddService(typeof(IAnkhQueryService), this, true);
+
+		_runtime.AddModule(new AnkhModule(_runtime));
+		_runtime.AddModule(new AnkhSccModule(_runtime));
+		_runtime.AddModule(new AnkhVSModule(_runtime));
+		_runtime.AddModule(new AnkhUIModule(_runtime));
+
+		RegisterEditors();
+
+		NotifyLoaded(false);
+
+		_runtime.Start();
+
+		NotifyLoaded(true);
+	}
+	
+	readonly Dictionary<Type, object> _staticServices = new Dictionary<Type, object>();
+
+	void IAnkhStaticServiceRegistry.AddStaticService(Type type, object instance, bool promote)
+	{
+		((IServiceContainer)this).AddService(type, instance, promote);
+		_staticServices[type] = instance;
+	}
+
+#if ASYNC
+	protected async override System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+	{
+		await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+
+		InitializeSync();
+	}
+	protected async override System.Threading.Tasks.Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
+	{
+		await base.InitializeAsync(cancellationToken, progress);
+
+		await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+
+		if (InCommandLineMode)
+			return; // Do nothing; speed up devenv /setup by not loading all our modules!
+
+		InitializeRuntime(); // Moved to function of their own to speed up devenv /setup
+		RegisterAsOleComponent();
+	}
+
+	protected override object GetService(Type serviceType)
+	{
+		if (_staticServices.TryGetValue(serviceType, out var v))
+		{
+			return v;
+		}
+
+		try
+		{
+			return base.GetService(serviceType);
+		}
+		catch (InvalidOperationException)
+		{
+			if (serviceType == typeof(IAnkhServiceProvider)
+				|| serviceType == typeof(IAnkhQueryService))
+			{
+				return this;
+			}
+
+			throw;
+		}
+	}
+
+#else // ASYNC
+	/// <summary>
+	/// Initialization of the package; this method is called right after the package is sited, so this is the place
+	/// where you can put all the initialization code that rely on services provided by VisualStudio.
+	/// </summary>
+	protected override void Initialize()
+	{
+		if (InCommandLineMode)
+			return; // Do nothing; speed up devenv /setup by not loading all our modules!
+
+		InitializeRuntime(); // Moved to function of their own to speed up devenv /setup
+		RegisterAsOleComponent();
+	}
+#endif // ASYNC
+#endif // AS_BUILD_REPLACED
 }

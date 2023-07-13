@@ -167,17 +167,20 @@ namespace Ankh.Scc
             if (enableProjects != _hookedProjects)
             {
                 IVsTrackProjectDocuments2 tracker = GetService<IVsTrackProjectDocuments2>(typeof(SVsTrackProjectDocuments));
-
-                if (enableProjects && tracker != null)
+                if (tracker != null)
                 {
-                    Marshal.ThrowExceptionForHR(tracker.AdviseTrackProjectDocumentsEvents(this, out _projectCookie));
-
-                    _hookedProjects = true;
-                }
-                else if (_hookedProjects)
-                {
-                    Marshal.ThrowExceptionForHR(tracker.UnadviseTrackProjectDocumentsEvents(_projectCookie));
-                    _hookedProjects = false;
+                    //FIXME: really dont want to throw here on these if shutting down
+                    //  is just too bad, best effort
+                    if (enableProjects)
+                    {
+                        Marshal.ThrowExceptionForHR(tracker.AdviseTrackProjectDocumentsEvents(this, out _projectCookie));
+                        _hookedProjects = true;
+                    }
+                    else if (_hookedProjects)
+                    {
+                        Marshal.ThrowExceptionForHR(tracker.UnadviseTrackProjectDocumentsEvents(_projectCookie));
+                        _hookedProjects = false;
+                    }
                 }
 
                 IAnkhConfigurationService cfg = GetService<IAnkhConfigurationService>();

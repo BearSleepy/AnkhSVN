@@ -45,7 +45,8 @@ namespace Ankh.Scc
 
 		partial void CreateDummyTask(ref object task);
 
-		protected virtual object RunTaskOnMainThread(SccAction action)
+		protected object RunTaskOnMainThread(SccAction action)
+		//protected virtual object RunTaskOnMainThread(SccAction action)
 		{
 			object task = null;
 

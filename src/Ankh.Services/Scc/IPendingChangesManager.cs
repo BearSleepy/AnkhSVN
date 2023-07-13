@@ -116,7 +116,7 @@ namespace Ankh.Scc
 		/// </summary>
 		void Refresh(string path);
 		/// <summary>
-		/// Schedules a refresh of thepending change state for the specified paths
+		/// Schedules a refresh of the pending change state for the specified paths
 		/// </summary>
 		/// <param name="paths"></param>
 		void Refresh(IEnumerable<string> paths);

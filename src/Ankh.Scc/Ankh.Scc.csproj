@@ -243,6 +243,7 @@
     <DefineConstants>$(DefineConstants);$(FaReleaseDefines)</DefineConstants>
     <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '17.0'">$(DefineConstants);VS_17_ENV</DefineConstants>
     <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '15.0'">$(DefineConstants);VS_15_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '14.0'">$(DefineConstants);VS_14_ENV</DefineConstants>
     <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '12.0'">$(DefineConstants);VS_12_ENV</DefineConstants>
     <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '11.0'">$(DefineConstants);VS_11_ENV</DefineConstants>
     <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '10.0'">$(DefineConstants);VS_10_ENV</DefineConstants>

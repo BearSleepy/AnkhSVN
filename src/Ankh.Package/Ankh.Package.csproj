@@ -30,6 +30,7 @@
     <DeployExtension>False</DeployExtension>
     <CopyVsixExtensionFiles>True</CopyVsixExtensionFiles>
     <CopyVsixExtensionLocation>..\..\..\Debug17\Extensions\Application\AnkhSvn\</CopyVsixExtensionLocation>
+    <CreateVsixContainer>False</CreateVsixContainer>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <DebugType>none</DebugType>
@@ -136,7 +137,7 @@
     <None Include="Ankh.Package.snk" />
     <None Include="Gui\Scc\CompareProperties.pdn" />
     <Content Include="AnkhSVN-Preview.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="AnkhSvn.vsct" />
@@ -147,7 +148,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="LICENSE.rtf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="Gui\Scc\Legacy\CompareProperties.pdn" />
@@ -558,6 +559,7 @@
     <DefineConstants>$(DefineConstants);$(FaReleaseDefines)</DefineConstants>
     <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '17.0'">$(DefineConstants);VS_17_ENV</DefineConstants>
     <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '15.0'">$(DefineConstants);VS_15_ENV</DefineConstants>
+    <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '14.0'">$(DefineConstants);VS_14_ENV</DefineConstants>
     <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '12.0'">$(DefineConstants);VS_12_ENV</DefineConstants>
     <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '11.0'">$(DefineConstants);VS_11_ENV</DefineConstants>
     <DefineConstants Condition="'$(VisualStudioVersion)' &gt;= '10.0'">$(DefineConstants);VS_10_ENV</DefineConstants>

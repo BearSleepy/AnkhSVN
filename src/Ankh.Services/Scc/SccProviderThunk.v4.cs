@@ -1,14 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Imaging.Interop;
-using Task = System.Threading.Tasks.Task;
+
 using Ankh.VS;
+
+using Microsoft.VisualStudio.Imaging.Interop;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Ankh.Scc
 {
-	partial class SccProviderThunk : IVsSccChanges, IVsSccChangesDisplayInformation, IVsSccCurrentBranch, IVsSccCurrentBranchDisplayInformation, IVsSccCurrentRepository, IVsSccCurrentRepositoryDisplayInformation/*, IVsSccUnpublishedCommits, IVsSccUnpublishedCommitsDisplayInformation*/, IVsSccPublish, IVsSccSolution
+	using Task = System.Threading.Tasks.Task;
+
+	partial class SccProviderThunk : IVsSccChanges, IVsSccChangesDisplayInformation, IVsSccCurrentBranch,
+		IVsSccCurrentBranchDisplayInformation, IVsSccCurrentRepository, IVsSccCurrentRepositoryDisplayInformation
+		/*, IVsSccUnpublishedCommits, IVsSccUnpublishedCommitsDisplayInformation*/
+#if VS_14_ENV
+		, IVsSccPublish, IVsSccSolution
+#endif // VS_15_ENV
 	{
 		string IVsSccCurrentBranchDisplayInformation.BranchDetail
 		{
@@ -119,9 +127,79 @@ namespace Ankh.Scc
 			remove { AdvertisePublish -= value; }
 		}*/
 
-#pragma warning disable 0067    // not yet implemented
+		#region Threading
+		partial void CreateDummyTask(ref object task)
+		{
+			task = new Task(DummyTask);
+		}
+		void DummyTask()
+		{
+
+		}
+		protected Task RunAsyncOnMainThread(SccAction action)
+		{
+			return (Task)RunTaskOnMainThread(action);
+		}
+		#endregion Threading
+
+		#region Publish Workflow
+#if VS_14_ENV
 		public event EventHandler AddedToSourceControl;
-#pragma warning restore 0067
+
+		public string GetSolutionFileName()
+        {
+            var sol = GetService(typeof(SVsSolution)) as IVsSolution;
+			if (sol == null)
+				return null;
+
+            string directory, file, userOptionsFile;
+            if (sol.GetSolutionInfo(out directory, out file, out userOptionsFile) == VSErr.S_OK)
+            {
+                return file;
+            }
+
+            return null;
+        }
+		
+		public bool IsSolutionLoaded()
+        {
+			return  GetSolutionFileName() != null;
+        }
+
+		void PublishWorkflow()
+		{
+			if (!IsSolutionLoaded())
+				return;	// this should never happen, as long as button only shows when a solution exists
+
+			//TODO: add actual publish here
+			//  the only reason this is here at all is to allow show up in publish button list.
+			//  some users using this button to 
+
+			// Raise the event to inform the shell that the solution was added to Source Control
+			AddedToSourceControl?.Invoke(this, EventArgs.Empty);
+		}
+
+		internal async Task RunAsyncOnMainThread(SccAction action, CancellationToken cancellationToken)
+		{
+			cancellationToken.ThrowIfCancellationRequested();
+			await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+			action();
+		}
+
+		async Task IVsSccPublish.BeginPublishWorkflowAsync(CancellationToken cancellationToken)
+		{
+			await RunAsyncOnMainThread(PublishWorkflow, cancellationToken);
+			//cancellationToken.ThrowIfCancellationRequested();
+   //         await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+			//PublishWorkflow();
+		}
+#endif // VS_14_ENV
+		#endregion Publish Workflow
+
+#if AS_BUILD_REPLACED
+		public event EventHandler AddedToSourceControl;
 
 		protected Task RunAsyncOnMainThread(SccAction action)
 		{
@@ -137,6 +215,8 @@ namespace Ankh.Scc
 		{
 			return RunAsyncOnMainThread(OnPublishWorkflow);
 		}
+
+#endif // AS_BUILD_REPLACED
 
 		System.Drawing.Point GetPoint(ISccUIClickedEventArgs args)
 		{

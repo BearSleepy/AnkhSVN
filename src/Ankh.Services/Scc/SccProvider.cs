@@ -598,9 +598,11 @@ namespace Ankh.Scc
             throw new NotImplementedException();
         }
 
+#if AS_BUILD_REPLACED
         protected override object RunTaskOnMainThread(SccAction action)
         {
             return base.RunTaskOnMainThread(action);
         }
+#endif // AS_BUILD_REPLACED
     }
 }
